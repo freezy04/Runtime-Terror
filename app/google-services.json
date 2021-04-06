@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "311373483549",
+    "project_id": "mobidoc-6a3ac",
+    "storage_bucket": "mobidoc-6a3ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311373483549:android:a269098f861f269c4680f4",
+        "android_client_info": {
+          "package_name": "com.example.mobidoc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311373483549-868qf1s75p0rmpbbgujkoqbvv8ts7hof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALBIsA4iUCcy4hIT7NQ_8UcxgPOsYxkHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311373483549-868qf1s75p0rmpbbgujkoqbvv8ts7hof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
