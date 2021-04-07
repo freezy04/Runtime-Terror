@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,6 +30,7 @@ import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
     EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo, DateOfBirth, Qualification, DegreeAndVarsity;
+    TextInputLayout mLayoutPassword;
     Button mRegisterBTN;
     TextView mHAVEACCOUNT;
     ProgressDialog progressDialog;
@@ -54,6 +56,7 @@ public class Register extends AppCompatActivity {
         PhoneNo = findViewById(R.id.PhoneNo);
         mEmailET = findViewById(R.id.email);
         mPasswordEt = findViewById(R.id.password);
+        mLayoutPassword = findViewById(R.id.layoutpassword);
         mRegisterBTN = findViewById(R.id.btn_register);
         mHAVEACCOUNT = findViewById(R.id.have_accountTv);
 
@@ -97,9 +100,9 @@ public class Register extends AppCompatActivity {
                 //if password has less than 8 or more than 20 characters, does not contain at least one lowercase letter, does not contain at least one uppercase letter,
                 //does not contain at least one number or does not contain at least one special character, displays error
                 if (password.length() < 8 || password.length() > 20 || !hasLowerCase.find() || !hasUpperCase.find() || !hasNumber.find() || !hasSpecial.find()) {
-                    mPasswordEt.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
+                    mLayoutPassword.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
                             " letter, number and special character");
-                    mPasswordEt.setFocusable(true);
+                    mLayoutPassword.setFocusable(true);
                     user_data_verified = false;
                 }
 
@@ -141,8 +144,7 @@ public class Register extends AppCompatActivity {
                 if (user_data_verified) {
                     // Check if user is signed in (non-null) and update UI accordingly.
 
-                    //registerUser(email, password, Fname, Lname, qualif, DateofB, degreeNvarsity, phonNo);
-                    Toast.makeText(Register.this, "no prob", Toast.LENGTH_SHORT).show();
+                    registerUser(email, password, Fname, Lname, qualif, DateofB, degreeNvarsity, phonNo);
 
 
                 }
