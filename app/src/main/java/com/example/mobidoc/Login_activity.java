@@ -44,7 +44,6 @@ import java.util.regex.Pattern;
 public class Login_activity extends AppCompatActivity {
     private EditText User_email , User_password;
     private FirebaseAuth firebaseAuth;
-    private String email , password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,20 +68,22 @@ public class Login_activity extends AppCompatActivity {
 
         Button login_Button = (Button) findViewById(R.id.loginBtn);
 
-        email = User_email.getText().toString();
-        password = User_password.getText().toString();
+        String email = User_email.getText().toString();
+        String password = User_password.getText().toString();
+
+
 
         firebaseAuth = FirebaseAuth.getInstance(); //get instance of Firebase Authorisation
 
-        /*** This checkes whether the user cleared their cache before entering the app or just minimised the app ****/
+        /*** This checks whether the user cleared their cache before entering the app or just minimised the app ****/
 
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        /* FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null){
             startActivity(new Intent(Login_activity.this,Dashboard.class));
             finish();
-        }
+        } */
 
-        /*** Implementing Remember Me Functionalities ****/
+        /*** Implementing Remember Me Function ****/
 
 
 
@@ -91,10 +92,9 @@ public class Login_activity extends AppCompatActivity {
         login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String Email = User_email.getText().toString(), Pass = User_password.getText().toString();
                 if(ValidateDetails(User_email , User_password)) {
-                    Log.d("myTag","lesson: " + email + " " + password);
-                    LoginUser(firebaseAuth, email, password);
+                    LoginUser(firebaseAuth, Email, Pass);
                 }
 
                 else{
@@ -163,7 +163,6 @@ public class Login_activity extends AppCompatActivity {
         // Get email id and password
         String getEmailId = Email.getText().toString();
         String getPassword = Password.getText().toString();
-
         final String regEx = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(getEmailId);
