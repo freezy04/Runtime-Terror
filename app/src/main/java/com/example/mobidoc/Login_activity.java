@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,9 +26,25 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*** Note to the UI Team:
+ *
+ *  Need two EditTexts ( min ) for Password and Login
+ *  Email : give id Username
+ *  Password : give id Password
+ *  Need at least One TextView with ID = show_pass  , if you decided to move it please notify me
+ *  Button for Login with ID = LoginBtn*
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * ***/
 public class Login_activity extends AppCompatActivity {
     private EditText User_email , User_password;
     private FirebaseAuth firebaseAuth;
+    private String email , password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +69,22 @@ public class Login_activity extends AppCompatActivity {
 
         Button login_Button = (Button) findViewById(R.id.loginBtn);
 
-        final String email = User_email.getText().toString();
-        final String password = User_password.getText().toString();
+        email = User_email.getText().toString();
+        password = User_password.getText().toString();
 
         firebaseAuth = FirebaseAuth.getInstance(); //get instance of Firebase Authorisation
 
+        /*** This checkes whether the user cleared their cache before entering the app or just minimised the app ****/
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if(currentUser != null) {
-            RememberMe(firebaseAuth); // Check if user is signed in (non-null) and update UI accordingly.
+        if (currentUser != null){
+            startActivity(new Intent(Login_activity.this,Dashboard.class));
+            finish();
         }
+
+        /*** Implementing Remember Me Functionalities ****/
+
+
 
         /*** Authenticate User and Sign Them in ***/
 
@@ -69,8 +92,14 @@ public class Login_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(firebaseAuth.getCurrentUser() != null && ValidateDetails(User_email , User_password)) {
+                if(ValidateDetails(User_email , User_password)) {
+                    Log.d("myTag","lesson: " + email + " " + password);
                     LoginUser(firebaseAuth, email, password);
+                }
+
+                else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "Something Went Wrong .. sob .. sob", Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });
@@ -119,9 +148,10 @@ public class Login_activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
                             Toast toast = Toast.makeText(getApplicationContext(), "Incorrect Login Details , Please try again", Toast.LENGTH_LONG);
+                            toast.show();
                         }
                         else{
-                            startActivity(new Intent(Login_activity.this , MainActivity.class));
+                            startActivity(new Intent(Login_activity.this , Dashboard.class));
                             finish();
                         }
                     }
@@ -145,6 +175,7 @@ public class Login_activity extends AppCompatActivity {
             Password.setError("Invalid Password");
             return false;
         }
+
         return true;
 
     }
