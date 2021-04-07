@@ -26,9 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Login_activity extends AppCompatActivity {
-    private Button Login_Button;
     private EditText User_email , User_password;
-    private TextView Show_password_visibility;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -42,6 +40,7 @@ public class Login_activity extends AppCompatActivity {
 
         /*** NetwWork Avaivilble ***/
         if(!isNetworkAvailable()){
+            System.err.println("No Internet");
             startActivity(new Intent(Login_activity.this,No_Internet.class));
         }
 
@@ -49,9 +48,9 @@ public class Login_activity extends AppCompatActivity {
 
         User_email = (EditText) findViewById(R.id.Username);
         User_password = (EditText) findViewById(R.id.Password);
-        Show_password_visibility = (TextView)findViewById(R.id.show_pass);
+        TextView show_password_visibility = (TextView) findViewById(R.id.show_pass);
 
-        Login_Button = (Button) findViewById(R.id.loginBtn);
+        Button login_Button = (Button) findViewById(R.id.loginBtn);
 
         final String email = User_email.getText().toString();
         final String password = User_password.getText().toString();
@@ -66,7 +65,7 @@ public class Login_activity extends AppCompatActivity {
 
         /*** Authenticate User and Sign Them in ***/
 
-        Login_Button.setOnClickListener(new View.OnClickListener() {
+        login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -76,7 +75,7 @@ public class Login_activity extends AppCompatActivity {
             }
         });
 
-        Show_password_visibility.setOnClickListener(new View.OnClickListener() {
+        show_password_visibility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggle_password(User_password);
