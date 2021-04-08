@@ -47,14 +47,6 @@ https://developer.android.com/reference
  # Testing
  - As this is a test-driven developent, we utilized TravisCI to build and test the ap on GitHub. Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. Below are badges that show the testing progress of our project.
 
-# Packages
-# Class Summary
-
-https://github.com/software-projects-qubit/Software-Project-1.0/wiki
-# Design Pattern
-
-https://github.com/Motaung08/Innovative-Skyline/wiki )
-...
 
 
 [![Build Status](https://travis-ci.com/freezy04/Runtime-Terror.svg?branch=master)](https://travis-ci.com/freezy04/Runtime-Terror)
