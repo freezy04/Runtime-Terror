@@ -5,7 +5,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -18,7 +21,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.paperdb.Paper;
 
 public class Register extends AppCompatActivity {
     EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo;
@@ -49,6 +53,7 @@ public class Register extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        Paper.init(this); //    @ Dylan 2179115 added this Code to store information locally
 
         FirstName = findViewById(R.id.FirstNameName);
         LastName = findViewById(R.id.LastName);
@@ -66,6 +71,11 @@ public class Register extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering User...");
+
+        /*** NetwWork Avaivilble ***/
+        if(!isNetworkAvailable()){
+            startActivity(new Intent(Register.this,No_Internet.class));
+        }
 
         mRegisterBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +163,8 @@ public class Register extends AppCompatActivity {
                         userTypeStr = "Patient";
                     }
 
+
+
                     registerUser(email, password, Fname, Lname, userTypeStr, phonNo);
 
 //                    registerUser(email, password, Fname, Lname, qualif, DateofB, degreeNvarsity, phonNo);
@@ -175,6 +187,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 if (userType.isChecked()) {
                     userType.setText("Doctor");
+
                 } else {
                     userType.setText("Patient");
                 }
@@ -212,8 +225,17 @@ public class Register extends AppCompatActivity {
                             reference.child(uid).setValue(hashMap);
 
                             Toast.makeText(Register.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Register.this, Dashboard.class));
-                            finish();
+
+                            /* ---- Dylan 2179115 added this code ----*/
+                            if("Doctor".equals(userType)) {
+                                Paper.book().write(Utilities.Doctor,"Doc");
+                                startActivity(new Intent(Register.this, Doctor_Dashboard.class));
+                                finish();
+                            } else {
+                                startActivity(new Intent(Register.this, Patient_Dashboard.class));
+                                finish();
+                            }
+
                         } else {
                             // If sign in fails, display a message to the user.
                             progressDialog.dismiss();
@@ -286,5 +308,13 @@ public class Register extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
+
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
 }

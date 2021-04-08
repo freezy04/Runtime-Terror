@@ -23,15 +23,16 @@
         android:layout_width="354dp"
         android:layout_height="143dp"
         android:gravity="clip_horizontal|center"
-        android:textColor="#003049"
         android:text="No Internet Connection detected :"
+        android:textColor="#003049"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <TextView
         android:id="@+id/textView2"

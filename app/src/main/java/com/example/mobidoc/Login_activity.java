@@ -10,8 +10,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,9 +30,17 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.paperdb.Paper;
 
 /*** Note to the UI Team:
  *
@@ -35,21 +48,19 @@ import java.util.regex.Pattern;
  *  Email : give id Username
  *  Password : give id Password
  *  Need at least One TextView with ID = show_pass  , if you decided to move it please notify me
- *  Button for Login with ID = LoginBtn*
- *
- *
- *
- *
- *
- *
- *
- * ***/
+ *  Button for Login with ID = LoginBtn
+ *  ***/
 public class Login_activity extends AppCompatActivity {
     private EditText User_email , User_password;
     private FirebaseAuth firebaseAuth;
+    private CheckBox ChRemember, ch_user;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private String uid;
     private TextView User_forgot_password;
 
     ProgressDialog progressDialogForgotpassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +68,7 @@ public class Login_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_activity);
 
-
+        Paper.init(this);
 
 
         /*** NetwWork Avaivilble ***/
@@ -66,41 +77,60 @@ public class Login_activity extends AppCompatActivity {
             startActivity(new Intent(Login_activity.this,No_Internet.class));
         }
 
-        /*** User clicked remember me ***/
+        //databaseReference = FirebaseAuth.getInstance().getReference().child();
 
         User_email = (EditText) findViewById(R.id.Username);
         User_password = (EditText) findViewById(R.id.Password);
         User_forgot_password = (TextView) findViewById(R.id.for_pass);
+        User_forgot_password = (TextView) findViewById(R.id.for_pass);
         TextView show_password_visibility = (TextView) findViewById(R.id.show_pass);
 
+        ChRemember = findViewById(R.id.checkBox);
         Button login_Button = (Button) findViewById(R.id.loginBtn);
 
         String email = User_email.getText().toString();
         String password = User_password.getText().toString();
 
+       ch_user = findViewById(R.id.chk_login_type);
 
 
-        firebaseAuth = FirebaseAuth.getInstance(); //get instance of Firebase Authorisation
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         /*** This checks whether the user cleared their cache before entering the app or just minimised the app ****/
 
-        /* FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if (currentUser != null){
-            startActivity(new Intent(Login_activity.this,Dashboard.class));
+
+            /* Remember Me Function */
+        String User_key = Paper.book().read(Utilities.USER_KEY);
+        String Doctor = Paper.book().read(Utilities.Doctor);
+
+        if(User_key != null){
+            if(Doctor != null){
+                //user is a doctor
+                startActivity(new Intent(Login_activity.this, Doctor_Dashboard.class));
+                finish();
+            }
+            //user is a patient
+            startActivity(new Intent(Login_activity.this, Patient_Dashboard.class));
             finish();
-        } */
+        }
 
-        /*** Implementing Remember Me Function ****/
+        /* End of Remember Me */
 
-
-
-        /*** Authenticate User and Sign Them in ***/
 
         login_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Email = User_email.getText().toString(), Pass = User_password.getText().toString();
                 if(ValidateDetails(User_email , User_password)) {
+
+                    /**** Remember me ****/
+
+                    if (ChRemember.isChecked()){
+                        Paper.book().write(Utilities.USER_KEY , "booked");
+                    }
+                    firebaseAuth = FirebaseAuth.getInstance();
                     LoginUser(firebaseAuth, Email, Pass);
                 }
 
@@ -110,6 +140,7 @@ public class Login_activity extends AppCompatActivity {
                 }
             }
         });
+
 
         show_password_visibility.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +158,8 @@ public class Login_activity extends AppCompatActivity {
 
         progressDialogForgotpassword = new ProgressDialog(this);
     }
+    // ********************************************************************************************************************************************************** //
+
     // sets up a Dialog that enables user to type in their registered email for requesting a new link that resets their passwords
     private void ShowForgotPasswordDialog() {
         AlertDialog.Builder builder  = new AlertDialog.Builder(this);
@@ -154,7 +187,6 @@ public class Login_activity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
 
         builder.create().show();;
     }
@@ -186,14 +218,6 @@ public class Login_activity extends AppCompatActivity {
     }
 
 
-
-    private void RememberMe(FirebaseAuth firebaseAuth){
-        if (firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(Login_activity.this,MainActivity.class));
-            finish();
-        }
-    }
-
     public void toggle_password(EditText password ){
         TextView show_password_visibility = findViewById(R.id.show_pass);
         if(show_password_visibility.getText().equals(" ")){
@@ -213,8 +237,11 @@ public class Login_activity extends AppCompatActivity {
     }
 
     private void LoginUser(FirebaseAuth firebaseAuth, String email , String password){
+        String Email = User_email.getText().toString();
+        String Password = User_password.getText().toString();
 
-        firebaseAuth.signInWithEmailAndPassword(email , password).addOnCompleteListener(Login_activity.this,
+
+        firebaseAuth.signInWithEmailAndPassword(Email , Password).addOnCompleteListener(Login_activity.this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -223,8 +250,17 @@ public class Login_activity extends AppCompatActivity {
                             toast.show();
                         }
                         else{
-                            startActivity(new Intent(Login_activity.this , Dashboard.class));
-                            finish();
+                                //Temp Fix :
+
+                            if (ch_user.isChecked()){
+                                startActivity(new Intent(Login_activity.this , Doctor_Dashboard.class));
+                                finish();
+                            }
+                            else {
+                                startActivity(new Intent(Login_activity.this, Patient_Dashboard.class));
+                                finish();
+                            }
+
                         }
                     }
                 });
@@ -257,4 +293,17 @@ public class Login_activity extends AppCompatActivity {
         NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+    public void userinfo(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
+         DatabaseReference ds = databaseReference.child("Doctors");
+         ds.orderByKey().limitToFirst(1);
+
+
+    }
+
+
 }
