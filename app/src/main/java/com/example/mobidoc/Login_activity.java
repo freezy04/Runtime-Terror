@@ -1,16 +1,19 @@
 package com.example.mobidoc;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +21,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,6 +47,9 @@ import java.util.regex.Pattern;
 public class Login_activity extends AppCompatActivity {
     private EditText User_email , User_password;
     private FirebaseAuth firebaseAuth;
+    private TextView User_forgot_password;
+
+    ProgressDialog progressDialogForgotpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,7 @@ public class Login_activity extends AppCompatActivity {
 
         User_email = (EditText) findViewById(R.id.Username);
         User_password = (EditText) findViewById(R.id.Password);
+        User_forgot_password = (TextView) findViewById(R.id.for_pass);
         TextView show_password_visibility = (TextView) findViewById(R.id.show_pass);
 
         Button login_Button = (Button) findViewById(R.id.loginBtn);
@@ -111,9 +118,74 @@ public class Login_activity extends AppCompatActivity {
             }
         });
 
+        User_forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowForgotPasswordDialog();
+            }
+        });
 
-
+        progressDialogForgotpassword = new ProgressDialog(this);
     }
+    // sets up a Dialog that enables user to type in their registered email for requesting a new link that resets their passwords
+    private void ShowForgotPasswordDialog() {
+        AlertDialog.Builder builder  = new AlertDialog.Builder(this);
+        builder.setTitle("Reset Password");
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        EditText RecoverEmail = new EditText(this);
+        RecoverEmail.setHint("Email");
+        RecoverEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        RecoverEmail.setMinEms(16);
+        linearLayout.addView(RecoverEmail);
+        linearLayout.setPadding(10,10,10,10);
+        builder.setView(linearLayout);
+
+        // Button for resetting password
+        builder.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String GetEmail = RecoverEmail.getText().toString().trim();
+                BeginResetting(GetEmail);
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+
+        builder.create().show();;
+    }
+    // Function show underlying  progress of sending email to the device and show whether an email was sent or not
+    private void BeginResetting(String getemaIl) {
+
+        progressDialogForgotpassword.setMessage("Sending Email...");
+        progressDialogForgotpassword.show();
+        firebaseAuth.sendPasswordResetEmail(getemaIl).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                progressDialogForgotpassword.dismiss();
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Login_activity.this, "Email Sent",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(Login_activity.this, "Failed...",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialogForgotpassword.dismiss();
+                Toast.makeText(Login_activity.this, ""+e.getMessage(),Toast.LENGTH_SHORT).show(); // Show an error if everything failed
+            }
+        });
+    }
+
+
 
     private void RememberMe(FirebaseAuth firebaseAuth){
         if (firebaseAuth.getCurrentUser() != null){
