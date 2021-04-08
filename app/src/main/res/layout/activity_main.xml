@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/register_btn"
-        android:text="Register"
+        android:text="Register here"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
