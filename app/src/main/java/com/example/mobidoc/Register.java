@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +30,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
-    EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo, DateOfBirth, Qualification, DegreeAndVarsity;
-    TextInputLayout mLayoutPassword;
+    EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo;
+//    EditText DateOfBirth, Qualification, DegreeAndVarsity;
+    Switch userType;
     Button mRegisterBTN;
     TextView mHAVEACCOUNT;
     ProgressDialog progressDialog;
@@ -50,15 +52,15 @@ public class Register extends AppCompatActivity {
 
         FirstName = findViewById(R.id.FirstNameName);
         LastName = findViewById(R.id.LastName);
-        Qualification = findViewById(R.id.Qualification);
-        DateOfBirth = findViewById(R.id.DateOfBirth);
-        DegreeAndVarsity = findViewById(R.id.DegreeAndVarsity);
+//        Qualification = findViewById(R.id.Qualification);
+//        DateOfBirth = findViewById(R.id.DateOfBirth);
+//        DegreeAndVarsity = findViewById(R.id.DegreeAndVarsity);
         PhoneNo = findViewById(R.id.PhoneNo);
         mEmailET = findViewById(R.id.email);
         mPasswordEt = findViewById(R.id.password);
-        mLayoutPassword = findViewById(R.id.layoutpassword);
         mRegisterBTN = findViewById(R.id.btn_register);
         mHAVEACCOUNT = findViewById(R.id.have_accountTv);
+        userType = findViewById(R.id.userTypeSwitch);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -70,9 +72,9 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String Fname = FirstName.getText().toString().trim();
                 String Lname = LastName.getText().toString().trim();
-                String qualif = Qualification.getText().toString().trim();
-                String DateofB = DateOfBirth.getText().toString().trim();
-                String degreeNvarsity = DegreeAndVarsity.getText().toString().trim();
+//                String qualif = Qualification.getText().toString().trim();
+//                String DateofB = DateOfBirth.getText().toString().trim();
+//                String degreeNvarsity = DegreeAndVarsity.getText().toString().trim();
                 String phonNo = PhoneNo.getText().toString().trim().replaceAll(" ", "");//removes all spaces from the phone number
                 String email = mEmailET.getText().toString().trim();
                 String password = mPasswordEt.getText().toString().trim();//should we trim here?
@@ -100,9 +102,9 @@ public class Register extends AppCompatActivity {
                 //if password has less than 8 or more than 20 characters, does not contain at least one lowercase letter, does not contain at least one uppercase letter,
                 //does not contain at least one number or does not contain at least one special character, displays error
                 if (password.length() < 8 || password.length() > 20 || !hasLowerCase.find() || !hasUpperCase.find() || !hasNumber.find() || !hasSpecial.find()) {
-                    mLayoutPassword.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
+                    mPasswordEt.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
                             " letter, number and special character");
-                    mLayoutPassword.setFocusable(true);
+                    mPasswordEt.setFocusable(true);
                     user_data_verified = false;
                 }
 
@@ -115,18 +117,18 @@ public class Register extends AppCompatActivity {
                     LastName.setError("Last name cannot be empty");
                     user_data_verified = false;
                 }
-                if (qualif.isEmpty()) {
-                    Qualification.setError("Qualifications cannot be empty");
-                    user_data_verified = false;
-                }
-                if (DateofB.isEmpty()) {
-                    DateOfBirth.setError("Date of birth cannot be empty");
-                    user_data_verified = false;
-                }
-                if (degreeNvarsity.isEmpty()) {
-                    DegreeAndVarsity.setError("Degree and university information cannot be empty");
-                    user_data_verified = false;
-                }
+//                if (qualif.isEmpty()) {
+//                    Qualification.setError("Qualifications cannot be empty");
+//                    user_data_verified = false;
+//                }
+//                if (DateofB.isEmpty()) {
+//                    DateOfBirth.setError("Date of birth cannot be empty");
+//                    user_data_verified = false;
+//                }
+//                if (degreeNvarsity.isEmpty()) {
+//                    DegreeAndVarsity.setError("Degree and university information cannot be empty");
+//                    user_data_verified = false;
+//                }
 
                 //checks if phone number is in correct format, otherwise displays error
                 hasLowerCase = lowerCase.matcher(phonNo);
@@ -144,7 +146,16 @@ public class Register extends AppCompatActivity {
                 if (user_data_verified) {
                     // Check if user is signed in (non-null) and update UI accordingly.
 
-                    registerUser(email, password, Fname, Lname, qualif, DateofB, degreeNvarsity, phonNo);
+                    String userTypeStr;
+                    if (userType.isChecked()) {//register as a doctor
+                        userTypeStr = "Doctor";
+                    } else {//register as a patient
+                        userTypeStr = "Patient";
+                    }
+
+                    registerUser(email, password, Fname, Lname, userTypeStr, phonNo);
+
+//                    registerUser(email, password, Fname, Lname, qualif, DateofB, degreeNvarsity, phonNo);
 
 
                 }
@@ -154,13 +165,24 @@ public class Register extends AppCompatActivity {
         mHAVEACCOUNT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(Register.this,LoginActivity.class));
-                //finish();
+                startActivity(new Intent(Register.this, Login_activity.class));
+                finish();
+            }
+        });
+
+        userType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userType.isChecked()) {
+                    userType.setText("Doctor");
+                } else {
+                    userType.setText("Patient");
+                }
             }
         });
     }
 
-    private void registerUser(String email, String password, String Fname, String Lname, String qualif, String DateofB, String degreeNvarsity, String phoneNo) {
+    private void registerUser(String email, String password, String Fname, String Lname, String userType, String phoneNo) {
         progressDialog.show();
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -180,14 +202,12 @@ public class Register extends AppCompatActivity {
                             hashMap.put("uid", uid);
                             hashMap.put("Fisrt name", Fname);
                             hashMap.put("Last name", Lname);
-                            hashMap.put("Date of birth", DateofB);
-                            hashMap.put("Qualification", qualif);
-                            hashMap.put("Degree and varsity", degreeNvarsity);
+                            hashMap.put("User Type", userType);
                             hashMap.put("Phone Number", phoneNo);
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-                            DatabaseReference reference = database.getReference("Doctors");
+                            DatabaseReference reference = database.getReference(userType + "s");
 
                             reference.child(uid).setValue(hashMap);
 
@@ -209,6 +229,56 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+
+//    private void registerUser(String email, String password, String Fname, String Lname, String qualif, String DateofB, String degreeNvarsity, String phoneNo) {
+//        progressDialog.show();
+//
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            progressDialog.dismiss();
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//
+//                            String email = user.getEmail();
+//                            String uid = user.getUid();
+//
+//                            HashMap<Object, String> hashMap = new HashMap<>();
+//                            hashMap.put("email", email);
+//                            hashMap.put("uid", uid);
+//                            hashMap.put("Fisrt name", Fname);
+//                            hashMap.put("Last name", Lname);
+//                            hashMap.put("Date of birth", DateofB);
+//                            hashMap.put("Qualification", qualif);
+//                            hashMap.put("Degree and varsity", degreeNvarsity);
+//                            hashMap.put("Phone Number", phoneNo);
+//
+//                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//
+//                            DatabaseReference reference = database.getReference("Doctors");
+//
+//                            reference.child(uid).setValue(hashMap);
+//
+//                            Toast.makeText(Register.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(Register.this, MainActivity.class));
+//                            finish();
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            progressDialog.dismiss();
+//                            Toast.makeText(Register.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressDialog.dismiss();
+//                Toast.makeText(Register.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {

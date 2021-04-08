@@ -58,13 +58,13 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_above="@id/layoutemail">
-        <EditText
-            android:id="@+id/DateOfBirth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Date of Birth"
-            android:inputType="date"
-            android:textColor="@android:color/black" />
+<!--        <EditText-->
+<!--            android:id="@+id/DateOfBirth"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Date of Birth"-->
+<!--            android:inputType="date"-->
+<!--            android:textColor="@android:color/black" />-->
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,13 +77,13 @@
         android:layout_centerVertical="true"
         android:layout_above="@id/layoutDegreeAndVarsity">
 
-        <EditText
-            android:id="@+id/Qualification"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Qualification"
-            android:inputType="textLongMessage"
-            android:textColor="@android:color/black" />
+<!--        <EditText-->
+<!--            android:id="@+id/Qualification"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Qualification"-->
+<!--            android:inputType="textLongMessage"-->
+<!--            android:textColor="@android:color/black" />-->
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -95,13 +95,13 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
 
-        <EditText
-            android:id="@+id/DegreeAndVarsity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Degree and Varsity"
-            android:inputType="textLongMessage"
-            android:textColor="@android:color/black" />
+<!--        <EditText-->
+<!--            android:id="@+id/DegreeAndVarsity"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Degree and Varsity"-->
+<!--            android:inputType="textLongMessage"-->
+<!--            android:textColor="@android:color/black" />-->
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -185,5 +185,24 @@
         android:layout_below="@id/btn_register"
         android:layout_marginTop="30dp"
         android:textColor="@android:color/black"/>
+
+    <Switch
+        android:id="@+id/userTypeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="195dp"
+        android:text="Patient" />
+
+    <TextView
+        android:id="@+id/userTypeSelectionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="186dp"
+        android:text="Sign up as a:"
+        android:translationY="-50px" />
 
 </RelativeLayout>
