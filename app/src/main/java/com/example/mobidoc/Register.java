@@ -212,7 +212,7 @@ public class Register extends AppCompatActivity {
                             reference.child(uid).setValue(hashMap);
 
                             Toast.makeText(Register.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Register.this, MainActivity.class));
+                            startActivity(new Intent(Register.this, Dashboard.class));
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
