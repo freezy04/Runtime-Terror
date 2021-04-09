@@ -63,7 +63,6 @@ public class Patient_Dashboard extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
-                    User user = snapshot.getValue(User.class);
                     //TODO: Get User Info
                 }
             }
