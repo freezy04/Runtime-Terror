@@ -1,6 +1,6 @@
 # Mobile Patient Tracker
 - #### Product Scope
-    - HI
+    - 
 - #### Function
 - #### Purpose
 
