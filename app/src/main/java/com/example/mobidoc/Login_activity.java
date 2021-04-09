@@ -57,7 +57,7 @@ public class Login_activity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private String uid;
-    private TextView User_forgot_password;
+    private TextView User_forgot_password,Create_account;
 
     ProgressDialog progressDialogForgotpassword;
 
@@ -83,6 +83,7 @@ public class Login_activity extends AppCompatActivity {
         User_password = (EditText) findViewById(R.id.Password);
         User_forgot_password = (TextView) findViewById(R.id.for_pass);
         User_forgot_password = (TextView) findViewById(R.id.for_pass);
+        Create_account = (TextView)findViewById(R.id.create_user);
         TextView show_password_visibility = (TextView) findViewById(R.id.show_pass);
 
         ChRemember = findViewById(R.id.checkBox);
@@ -155,6 +156,14 @@ public class Login_activity extends AppCompatActivity {
                 ShowForgotPasswordDialog();
             }
         });
+
+       Create_account.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               startActivity(new Intent(Login_activity.this, Register.class));
+               finish();
+           }
+       });
 
         progressDialogForgotpassword = new ProgressDialog(this);
     }
