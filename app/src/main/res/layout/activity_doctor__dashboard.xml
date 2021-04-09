@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text=" Doctor : Welcome User to your Dashboard "
-        android:textColor="@color/black"
+        android:textColor="@color/dark_navy_blue"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,11 +27,13 @@
         android:id="@+id/imageView2"
         android:layout_width="382dp"
         android:layout_height="395dp"
+        android:layout_marginBottom="68dp"
+        android:alpha="0.5"
+        android:src="@drawable/logo_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_dashboard_temp"
         tools:ignore="MissingConstraints,VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
