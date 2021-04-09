@@ -15,6 +15,13 @@ public class Utilities {
         public static final String Doctor = "doctor";
 
 
+        private static FirebaseAuth mAuth;
+
+        public static FirebaseUser getMain(){
+                mAuth = FirebaseAuth.getInstance();
+                return mAuth.getCurrentUser();
+        }
+
 
 
 }

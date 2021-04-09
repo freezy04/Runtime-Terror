@@ -51,16 +51,15 @@ import io.paperdb.Paper;
  *  Button for Login with ID = LoginBtn
  *  ***/
 public class Login_activity extends AppCompatActivity {
-    private EditText User_email , User_password;
+    public static String User_type;
     private FirebaseAuth firebaseAuth;
-    private CheckBox ChRemember, ch_user;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private String uid;
-    private TextView User_forgot_password,Create_account;
+    public static FirebaseUser MainUser;
+    private EditText User_email, User_password;
+    private CheckBox ChRemember;
+    private TextView User_forgot_password, Create_account;
+
 
     ProgressDialog progressDialogForgotpassword;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +71,9 @@ public class Login_activity extends AppCompatActivity {
 
 
         /*** NetwWork Avaivilble ***/
-        if(!isNetworkAvailable()){
+        if (!isNetworkAvailable()) {
             System.err.println("No Internet");
-            startActivity(new Intent(Login_activity.this,No_Internet.class));
+            startActivity(new Intent(Login_activity.this, No_Internet.class));
         }
 
         //databaseReference = FirebaseAuth.getInstance().getReference().child();
@@ -83,7 +82,7 @@ public class Login_activity extends AppCompatActivity {
         User_password = (EditText) findViewById(R.id.Password);
         User_forgot_password = (TextView) findViewById(R.id.for_pass);
         User_forgot_password = (TextView) findViewById(R.id.for_pass);
-        Create_account = (TextView)findViewById(R.id.create_user);
+        Create_account = (TextView) findViewById(R.id.create_user);
         TextView show_password_visibility = (TextView) findViewById(R.id.show_pass);
 
         ChRemember = findViewById(R.id.checkBox);
@@ -91,8 +90,6 @@ public class Login_activity extends AppCompatActivity {
 
         String email = User_email.getText().toString();
         String password = User_password.getText().toString();
-
-       ch_user = findViewById(R.id.chk_login_type);
 
 
 
@@ -102,19 +99,24 @@ public class Login_activity extends AppCompatActivity {
         /*** This checks whether the user cleared their cache before entering the app or just minimised the app ****/
 
 
-            /* Remember Me Function */
+        /* Remember Me Function */
         String User_key = Paper.book().read(Utilities.USER_KEY);
         String Doctor = Paper.book().read(Utilities.Doctor);
 
-        if(User_key != null){
-            if(Doctor != null){
+
+
+        if (User_key != null) {
+
+            if (Doctor != null) {
                 //user is a doctor
                 startActivity(new Intent(Login_activity.this, Doctor_Dashboard.class));
                 finish();
             }
-            //user is a patient
-            startActivity(new Intent(Login_activity.this, Patient_Dashboard.class));
-            finish();
+            else {
+                //user is a patient
+                startActivity(new Intent(Login_activity.this, Patient_Dashboard.class));
+                finish();
+            }
         }
 
         /* End of Remember Me */
@@ -124,18 +126,16 @@ public class Login_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Email = User_email.getText().toString(), Pass = User_password.getText().toString();
-                if(ValidateDetails(User_email , User_password)) {
+                if (ValidateDetails(User_email, User_password)) {
 
                     /**** Remember me ****/
 
-                    if (ChRemember.isChecked()){
-                        Paper.book().write(Utilities.USER_KEY , "booked");
+                    if (ChRemember.isChecked()) {
+                        Paper.book().write(Utilities.USER_KEY, "booked");
                     }
                     firebaseAuth = FirebaseAuth.getInstance();
                     LoginUser(firebaseAuth, Email, Pass);
-                }
-
-                else{
+                } else {
                     Toast toast = Toast.makeText(getApplicationContext(), "Something Went Wrong .. sob .. sob", Toast.LENGTH_LONG);
                     toast.show();
                 }
@@ -157,13 +157,13 @@ public class Login_activity extends AppCompatActivity {
             }
         });
 
-       Create_account.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               startActivity(new Intent(Login_activity.this, Register.class));
-               finish();
-           }
-       });
+        Create_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login_activity.this, Register.class));
+                finish();
+            }
+        });
 
         progressDialogForgotpassword = new ProgressDialog(this);
     }
@@ -171,7 +171,7 @@ public class Login_activity extends AppCompatActivity {
 
     // sets up a Dialog that enables user to type in their registered email for requesting a new link that resets their passwords
     private void ShowForgotPasswordDialog() {
-        AlertDialog.Builder builder  = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Reset Password");
 
         LinearLayout linearLayout = new LinearLayout(this);
@@ -180,7 +180,7 @@ public class Login_activity extends AppCompatActivity {
         RecoverEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         RecoverEmail.setMinEms(16);
         linearLayout.addView(RecoverEmail);
-        linearLayout.setPadding(10,10,10,10);
+        linearLayout.setPadding(10, 10, 10, 10);
         builder.setView(linearLayout);
 
         // Button for resetting password
@@ -197,8 +197,10 @@ public class Login_activity extends AppCompatActivity {
             }
         });
 
-        builder.create().show();;
+        builder.create().show();
+        ;
     }
+
     // Function show underlying  progress of sending email to the device and show whether an email was sent or not
     private void BeginResetting(String getemaIl) {
 
@@ -208,35 +210,31 @@ public class Login_activity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 progressDialogForgotpassword.dismiss();
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(Login_activity.this, "Email Sent",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(Login_activity.this, "Failed...",Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
+                    Toast.makeText(Login_activity.this, "Email Sent", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Login_activity.this, "Failed...", Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialogForgotpassword.dismiss();
-                Toast.makeText(Login_activity.this, ""+e.getMessage(),Toast.LENGTH_SHORT).show(); // Show an error if everything failed
+                Toast.makeText(Login_activity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // Show an error if everything failed
             }
         });
     }
 
 
-    public void toggle_password(EditText password ){
+    public void toggle_password(EditText password) {
         TextView show_password_visibility = findViewById(R.id.show_pass);
-        if(show_password_visibility.getText().equals(" ")){
+        if (show_password_visibility.getText().equals(" ")) {
             show_password_visibility.setText(".");
             password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             password.setSelection(password.length());
             Drawable d = getResources().getDrawable(R.drawable.show_password);
             show_password_visibility.setBackground(d);
-        }
-        else{
+        } else {
             show_password_visibility.setText(" ");
             password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             password.setSelection(password.length());
@@ -245,37 +243,34 @@ public class Login_activity extends AppCompatActivity {
         }
     }
 
-    private void LoginUser(FirebaseAuth firebaseAuth, String email , String password){
+    private void LoginUser(FirebaseAuth firebaseAuth, String email, String password) {
         String Email = User_email.getText().toString();
         String Password = User_password.getText().toString();
 
 
-        firebaseAuth.signInWithEmailAndPassword(Email , Password).addOnCompleteListener(Login_activity.this,
+        firebaseAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(Login_activity.this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()){
+                        if (!task.isSuccessful()) {
                             Toast toast = Toast.makeText(getApplicationContext(), "Incorrect Login Details , Please try again", Toast.LENGTH_LONG);
                             toast.show();
-                        }
-                        else{
-                                //Temp Fix :
+                        } else {
 
-                            if (ch_user.isChecked()){
-                                startActivity(new Intent(Login_activity.this , Doctor_Dashboard.class));
-                                finish();
-                            }
-                            else {
-                                startActivity(new Intent(Login_activity.this, Patient_Dashboard.class));
-                                finish();
-                            }
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            MainUser = user; //Master User
+                            assert user != null;
+                            String UID = user.getUid();
+
+                            LoginUserAs(UID, "Doctors");
+
 
                         }
                     }
                 });
     }
 
-    private boolean ValidateDetails(TextView Email , TextView Password) {
+    private boolean ValidateDetails(TextView Email, TextView Password) {
 
         // Get email id and password
         String getEmailId = Email.getText().toString();
@@ -303,14 +298,37 @@ public class Login_activity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    public void userinfo(){
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+    public void LoginUserAs(String UID, String USER_TYPE) {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference();
+        DatabaseReference user_ref = ref.child(USER_TYPE);
 
-         DatabaseReference ds = databaseReference.child("Doctors");
-         ds.orderByKey().limitToFirst(1);
+        /* Create user from info in Database ****/
+        user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
 
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+                    Log.d("MyTag", "User is a Doctor :)");
+                    User_type = "Doctors";
+                    Paper.book().write(Utilities.Doctor, "True"); // used for remember me :D
+                    startActivity(new Intent(Login_activity.this, Doctor_Dashboard.class));
+                    finish();
+                }
+                else {
+                    Log.d("MyTag", "User is a Patient:)");
+                    User_type = "Patients";
+                    startActivity(new Intent(Login_activity.this, Patient_Dashboard.class));
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
