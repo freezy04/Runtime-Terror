@@ -34,8 +34,10 @@ import java.util.regex.Pattern;
 import io.paperdb.Paper;
 
 public class Register extends AppCompatActivity {
+
+    //GUI element declaration
     EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo;
-//    EditText DateOfBirth, Qualification, DegreeAndVarsity;
+    //    EditText DateOfBirth, Qualification, DegreeAndVarsity;
     Switch userType;
     Button mRegisterBTN;
     TextView mHAVEACCOUNT;
@@ -73,8 +75,8 @@ public class Register extends AppCompatActivity {
         progressDialog.setMessage("Registering User...");
 
         /*** NetwWork Avaivilble ***/
-        if(!isNetworkAvailable()){
-            startActivity(new Intent(Register.this,No_Internet.class));
+        if (!isNetworkAvailable()) {
+            startActivity(new Intent(Register.this, No_Internet.class));
         }
 
         mRegisterBTN.setOnClickListener(new View.OnClickListener() {
@@ -90,70 +92,8 @@ public class Register extends AppCompatActivity {
                 String password = mPasswordEt.getText().toString().trim();//should we trim here?
 
 
-                boolean user_data_verified = true;//variable to track whether any of the user-entered data is invalid
-
-                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {//if email address is not in valid format, displays error
-                    mEmailET.setError("Invalid Email");
-                    mEmailET.setFocusable(true);
-                    user_data_verified = false;
-                }
-//                else if (email is in database)
-
-                //checks if password is in correct format, if not displays error message
-                //defines patterns and matchers for password security
-                Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
-                Pattern upperCase = Pattern.compile("\\p{Upper}");//all uppercase letters
-                Pattern number = Pattern.compile("\\p{Digit}");//all numbers
-                Pattern special = Pattern.compile("\\p{Punct}");//all special characters
-                Matcher hasLowerCase = lowerCase.matcher(password);
-                Matcher hasUpperCase = upperCase.matcher(password);
-                Matcher hasNumber = number.matcher(password);
-                Matcher hasSpecial = special.matcher(password);
-                //if password has less than 8 or more than 20 characters, does not contain at least one lowercase letter, does not contain at least one uppercase letter,
-                //does not contain at least one number or does not contain at least one special character, displays error
-                if (password.length() < 8 || password.length() > 20 || !hasLowerCase.find() || !hasUpperCase.find() || !hasNumber.find() || !hasSpecial.find()) {
-                    mPasswordEt.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
-                            " letter, number and special character");
-                    mPasswordEt.setFocusable(true);
-                    user_data_verified = false;
-                }
-
-                //checks if personal information fields are empty, if so displays the appropriate error(s)
-                if (Fname.isEmpty()) {
-                    FirstName.setError("First name cannot be empty");
-                    user_data_verified = false;
-                }
-                if (Lname.isEmpty()) {
-                    LastName.setError("Last name cannot be empty");
-                    user_data_verified = false;
-                }
-//                if (qualif.isEmpty()) {
-//                    Qualification.setError("Qualifications cannot be empty");
-//                    user_data_verified = false;
-//                }
-//                if (DateofB.isEmpty()) {
-//                    DateOfBirth.setError("Date of birth cannot be empty");
-//                    user_data_verified = false;
-//                }
-//                if (degreeNvarsity.isEmpty()) {
-//                    DegreeAndVarsity.setError("Degree and university information cannot be empty");
-//                    user_data_verified = false;
-//                }
-
-                //checks if phone number is in correct format, otherwise displays error
-                hasLowerCase = lowerCase.matcher(phonNo);
-                hasUpperCase = upperCase.matcher(phonNo);
-                hasSpecial = special.matcher(phonNo);
-                if (hasLowerCase.find() || hasUpperCase.find() || hasSpecial.find()) {//checks if phone number has any digits or special characters
-                    PhoneNo.setError("Phone number cannot contain letters or special characters");
-                    user_data_verified = false;
-                } else if (phonNo.length() != 10) {//checks if the phone number is the correct length
-                    PhoneNo.setError("Phone number must be 10 numbers long");
-                    user_data_verified = false;
-                }
-
                 //check for SQL injection?
-                if (user_data_verified) {
+                if (validateDetails(Fname, Lname, phonNo, email, password, true)) {
                     // Check if user is signed in (non-null) and update UI accordingly.
 
                     String userTypeStr;
@@ -162,7 +102,6 @@ public class Register extends AppCompatActivity {
                     } else {//register as a patient
                         userTypeStr = "Patient";
                     }
-
 
 
                     registerUser(email, password, Fname, Lname, userTypeStr, phonNo);
@@ -193,6 +132,88 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    protected boolean validateFname(String Fname, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
+        if (Fname.isEmpty()) {
+            if (displayErrors) {
+                FirstName.setError("First name cannot be empty");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateLname(String Lname, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
+        if (Lname.isEmpty()) {
+            if (displayErrors) {
+                LastName.setError("Last name cannot be empty");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatePhoneNo(String phonNo, boolean displayErrors) {//checks if phone number is in correct format, otherwise displays error
+        Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
+        Pattern upperCase = Pattern.compile("\\p{Upper}");//all uppercase letters
+        Pattern special = Pattern.compile("\\p{Punct}");//all special characters
+        Matcher hasLowerCase = lowerCase.matcher(phonNo);
+        Matcher hasUpperCase = upperCase.matcher(phonNo);
+        Matcher hasSpecial = special.matcher(phonNo);
+        if (hasLowerCase.find() || hasUpperCase.find() || hasSpecial.find()) {//checks if phone number has any digits or special characters
+            if (displayErrors) {
+                PhoneNo.setError("Phone number cannot contain letters or special characters");
+            }
+            return false;
+        } else if (phonNo.length() != 10) {//checks if the phone number is the correct length
+            if (displayErrors) {
+                PhoneNo.setError("Phone number must be 10 numbers long");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateEmail(String email, boolean displayErrors) {//if email address is not in valid format, displays error
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (displayErrors) {
+                mEmailET.setError("Invalid Email");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatePassword(String password, boolean displayErrors) {//checks if password is in correct format, if not displays error message
+        //defines patterns and matchers for password security
+        Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
+        Pattern upperCase = Pattern.compile("\\p{Upper}");//all uppercase letters
+        Pattern number = Pattern.compile("\\p{Digit}");//all numbers
+        Pattern special = Pattern.compile("\\p{Punct}");//all special characters
+        Matcher hasLowerCase = lowerCase.matcher(password);
+        Matcher hasUpperCase = upperCase.matcher(password);
+        Matcher hasNumber = number.matcher(password);
+        Matcher hasSpecial = special.matcher(password);
+        //if password has less than 8 or more than 20 characters, does not contain at least one lowercase letter, does not contain at least one uppercase letter,
+        //does not contain at least one number or does not contain at least one special character, displays error
+        if (password.length() < 8 || password.length() > 20 || !hasLowerCase.find() || !hasUpperCase.find() || !hasNumber.find() || !hasSpecial.find()) {
+            if (displayErrors) {
+                mPasswordEt.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
+                        " letter, number and special character");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateDetails(String Fname, String Lname, String phonNo, String email, String password, boolean displayErrors) {
+        boolean Fname_valid = validateFname(Fname, displayErrors);
+        boolean Lname_valid = validateLname(Lname, displayErrors);
+        boolean phonNo_valid = validatePhoneNo(phonNo, displayErrors);
+        boolean email_valid = validateEmail(email, displayErrors);
+        boolean password_valid = validatePassword(password, displayErrors);
+        return Fname_valid && Lname_valid && phonNo_valid && email_valid && password_valid;
     }
 
     private void registerUser(String email, String password, String Fname, String Lname, String userType, String phoneNo) {
@@ -227,8 +248,8 @@ public class Register extends AppCompatActivity {
                             Toast.makeText(Register.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
 
                             /* ---- Dylan 2179115 added this code ----*/
-                            if("Doctor".equals(userType)) {
-                                Paper.book().write(Utilities.Doctor,"Doc");
+                            if ("Doctor".equals(userType)) {
+                                Paper.book().write(Utilities.Doctor, "Doc");
                                 startActivity(new Intent(Register.this, Doctor_Dashboard.class));
                                 finish();
                             } else {
@@ -307,7 +328,6 @@ public class Register extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
-
 
 
     private boolean isNetworkAvailable() {
