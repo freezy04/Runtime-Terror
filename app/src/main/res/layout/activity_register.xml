@@ -151,10 +151,10 @@
         android:id="@+id/layoutpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_below="@+id/layoutemail"
+        android:layout_centerInParent="true"
         app:passwordToggleEnabled="true">
+
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
