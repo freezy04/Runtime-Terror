@@ -10,6 +10,7 @@
       
 - #### Purpose
       -  the purpose of this app is to help doctors see the medical history of their patients.
+      -  when the patients roll up then the doctor can just quickly look up the medical history and dish out the appropriate treatment
 
 # Requirements
 - #### User
