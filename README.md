@@ -1,5 +1,8 @@
 # Mobile Patient Tracker
 - #### Product Scope 
+      - develop a mobile application for viewing and managing patient data.
+       - data comprises of, and not limited to, patient name, disease history, medication administered, date of arrival, consultation and treatment cost etc
+       
 - #### Function
 - #### Purpose
 
