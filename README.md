@@ -13,7 +13,7 @@
 
 - #### Deverloper
   - Android Studio 4.1.3 (recommended)
-  - Built-in Android Studio emulator or an android device to run the app. The latter needs to have the setting in developer mode with USV debuggin enabled USB cable.
+  - Built-in Android Studio emulator or an android device to run the app. The latter needs to have the setting in developer mode with USB debugging enabled USB cable.
 
 # Programmimg languages
 - Java
@@ -27,7 +27,7 @@ https://developer.android.com/training/basics/firstapp/creating-project
 
 - #### Instructions
   - ##### Step 1
-    - Clone project **Runtime-Terror**
+    - Clone the project **Runtime-Terror**
   - #####  Step 2
       - Assemble files on Android Studio
     - Select **Build -&gt; Make Project**
