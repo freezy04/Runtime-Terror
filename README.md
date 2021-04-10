@@ -55,7 +55,7 @@ https://developer.android.com/reference
           - **Learn more:** https://developer.android.com/studio/run;https://developer.android.com/studio/build
 
  # Testing
- - As this is a test-driven developent, we utilized TravisCI to build and test the app on GitHub. Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. Below are badges that show the testing progress of our project.
+ - As this is a test-driven developent, we utilized TravisCI to build and test the app on GitHub. Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. The following are badges that show the testing progress of our project.
 
 
 
