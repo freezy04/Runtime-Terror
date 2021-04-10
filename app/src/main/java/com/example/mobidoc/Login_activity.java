@@ -143,7 +143,7 @@ public class Login_activity extends AppCompatActivity {
         User_forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowForgotPasswordDialog();
+                Show_ForgotPassword_ProgressDialog();
             }
         });
 
@@ -160,7 +160,7 @@ public class Login_activity extends AppCompatActivity {
     // ********************************************************************************************************************************************************** //
 
     // sets up a Dialog that enables user to type in their registered email for requesting a new link that resets their passwords
-    private void ShowForgotPasswordDialog() {
+    private void Show_ForgotPassword_ProgressDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Reset Password");
 
@@ -178,7 +178,7 @@ public class Login_activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String GetEmail = RecoverEmail.getText().toString().trim();
-                BeginResetting(GetEmail);
+                BeginResettingPassword(GetEmail);
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -192,7 +192,7 @@ public class Login_activity extends AppCompatActivity {
     }
 
     // Function show underlying  progress of sending email to the device and show whether an email was sent or not
-    private void BeginResetting(String getemaIl) {
+    private void BeginResettingPassword(String getemaIl) {
 
         progressdialogforgotpassword.setMessage("Sending Email...");
         progressdialogforgotpassword.show();
