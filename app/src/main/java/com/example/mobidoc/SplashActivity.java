@@ -24,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
         splash.start();
+        getSupportActionBar().hide(); // hiding ActionBar  on splash Screen
 
     }
 }
