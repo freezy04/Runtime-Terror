@@ -5,6 +5,8 @@
       - once the data is saved onto the system it will be stored for their perusal
        
 - #### Function
+      - the doctors should be able to log onto the platform and enter relevant information about their patient
+      - 
 - #### Purpose
 
 # Requirements
