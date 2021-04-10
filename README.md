@@ -6,7 +6,7 @@
        
 - #### Function
       - the doctors should be able to log onto the platform and enter relevant information about their patient
-      - 
+      - be able to continually upgrade the system by entering the latest medical data of their patients
 - #### Purpose
 
 # Requirements
