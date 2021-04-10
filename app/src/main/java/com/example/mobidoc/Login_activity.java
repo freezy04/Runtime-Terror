@@ -57,8 +57,6 @@ public class Login_activity extends AppCompatActivity {
     private EditText User_email, User_password;
     private CheckBox ChRemember;
     private TextView User_forgot_password, Create_account;
-
-
     ProgressDialog progressDialogForgotpassword;
 
     @Override
