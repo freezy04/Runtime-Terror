@@ -82,14 +82,11 @@ public class Login_activity extends AppCompatActivity {
         User_forgot_password = (TextView) findViewById(R.id.for_pass);
         Create_account = (TextView) findViewById(R.id.create_user);
         TextView show_password_visibility = (TextView) findViewById(R.id.show_pass);
-
         ChRemember = findViewById(R.id.checkBox);
         Button login_Button = (Button) findViewById(R.id.loginBtn);
 
         String email = User_email.getText().toString();
         String password = User_password.getText().toString();
-
-
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -100,8 +97,6 @@ public class Login_activity extends AppCompatActivity {
         /* Remember Me Function */
         String User_key = Paper.book().read(Utilities.USER_KEY);
         String Doctor = Paper.book().read(Utilities.Doctor);
-
-
 
         if (User_key != null) {
 
