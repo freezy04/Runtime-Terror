@@ -11,9 +11,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -57,7 +54,7 @@ public class Login_activity extends AppCompatActivity {
     private EditText User_email, User_password;
     private CheckBox ChRemember;
     private TextView User_forgot_password, Create_account;
-    ProgressDialog progressDialogForgotpassword;
+    ProgressDialog progressdialogforgotpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +155,7 @@ public class Login_activity extends AppCompatActivity {
             }
         });
 
-        progressDialogForgotpassword = new ProgressDialog(this);
+        progressdialogforgotpassword = new ProgressDialog(this);
     }
     // ********************************************************************************************************************************************************** //
 
@@ -197,12 +194,12 @@ public class Login_activity extends AppCompatActivity {
     // Function show underlying  progress of sending email to the device and show whether an email was sent or not
     private void BeginResetting(String getemaIl) {
 
-        progressDialogForgotpassword.setMessage("Sending Email...");
-        progressDialogForgotpassword.show();
+        progressdialogforgotpassword.setMessage("Sending Email...");
+        progressdialogforgotpassword.show();
         firebaseAuth.sendPasswordResetEmail(getemaIl).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                progressDialogForgotpassword.dismiss();
+                progressdialogforgotpassword.dismiss();
                 if (task.isSuccessful()) {
                     Toast.makeText(Login_activity.this, "Email Sent", Toast.LENGTH_SHORT).show();
                 } else {
@@ -212,7 +209,7 @@ public class Login_activity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                progressDialogForgotpassword.dismiss();
+                progressdialogforgotpassword.dismiss();
                 Toast.makeText(Login_activity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // Show an error if everything failed
             }
         });
@@ -239,7 +236,6 @@ public class Login_activity extends AppCompatActivity {
     private void LoginUser(FirebaseAuth firebaseAuth, String email, String password) {
         String Email = User_email.getText().toString();
         String Password = User_password.getText().toString();
-
 
         firebaseAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(Login_activity.this,
                 new OnCompleteListener<AuthResult>() {
