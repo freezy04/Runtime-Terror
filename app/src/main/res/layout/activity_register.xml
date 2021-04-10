@@ -183,13 +183,14 @@
         android:id="@+id/have_accountTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_register"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="49dp"
         android:gravity="center"
         android:text="Already have account? Login"
         android:textAlignment="center"
-        android:textColor="#8BC34A" />
+        android:textColor="#8BC34A"
+        android:translationY="-20px" />
 
     <Switch
         android:id="@+id/userTypeSwitch"
@@ -198,7 +199,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="195dp"
-        android:text="Patient" />
+        android:text="Patient"
+        android:translationY="-200px" />
 
     <TextView
         android:id="@+id/userTypeSelectionLabel"
@@ -208,6 +210,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="186dp"
         android:text="Sign up as a:"
-        android:translationY="-50px" />
+        android:translationY="-250px" />
 
 </RelativeLayout>
