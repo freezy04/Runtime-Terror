@@ -29,7 +29,7 @@ https://developer.android.com/training/basics/firstapp/creating-project
   - ##### Step 1
     - Clone the project **Runtime-Terror**
   - #####  Step 2
-      - Assemble files on Android Studio
+      - Assemble he files on Android Studio
     - Select **Build -&gt; Make Project**
     - Additional libraries containing Android API references:
 https://developer.android.com/reference
@@ -49,7 +49,7 @@ https://developer.android.com/reference
           - **Learn more:** https://developer.android.com/studio/run;https://developer.android.com/studio/build
 
  # Testing
- - As this is a test-driven developent, we utilized TravisCI to build and test the ap on GitHub. Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. Below are badges that show the testing progress of our project.
+ - As this is a test-driven developent, we utilized TravisCI to build and test the app on GitHub. Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. Below are badges that show the testing progress of our project.
 
 
 
