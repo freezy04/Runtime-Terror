@@ -9,11 +9,11 @@
 
 # Requirements
 - #### User
-  - The user needs to have and android device and am internet connection/access
+  - The user needs to have an android device and internet connection
 
 - #### Deverloper
   - Android Studio 4.1.3 (recommended)
-  - Built-in Android Studio emulator or an android device to run the app. The latteer needs to have the setting in developer mode with USV debuggin enabled USB cable.
+  - Built-in Android Studio emulator or an android device to run the app. The latter needs to have the setting in developer mode with USV debuggin enabled USB cable.
 
 # Programmimg languages
 - Java
