@@ -2,7 +2,7 @@
 - #### Product Scope 
       - develop a mobile application for viewing and managing patient data.
       - data comprises of, and not limited to, patient name, disease history, medication administered, date of arrival, consultation and treatment cost etc
-      - once the data is saved onto the system it will be stored for their perusal
+      - once the data is saved onto the system it will be stored for the doctor's perusal
        
 - #### Function
       - the doctors should be able to log onto the platform and enter relevant information about their patient
