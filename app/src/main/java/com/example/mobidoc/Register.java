@@ -37,7 +37,6 @@ public class Register extends AppCompatActivity {
 
     //GUI element declaration
     EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo;
-    //    EditText DateOfBirth, Qualification, DegreeAndVarsity;
     Switch userType;
     Button mRegisterBTN;
     TextView mHAVEACCOUNT;
@@ -109,6 +108,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        //start intent if user already have account
         mHAVEACCOUNT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,55 +269,7 @@ public class Register extends AppCompatActivity {
         });
     }
 
-//    private void registerUser(String email, String password, String Fname, String Lname, String qualif, String DateofB, String degreeNvarsity, String phoneNo) {
-//        progressDialog.show();
-//
-//        mAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            progressDialog.dismiss();
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//
-//                            String email = user.getEmail();
-//                            String uid = user.getUid();
-//
-//                            HashMap<Object, String> hashMap = new HashMap<>();
-//                            hashMap.put("email", email);
-//                            hashMap.put("uid", uid);
-//                            hashMap.put("Fisrt name", Fname);
-//                            hashMap.put("Last name", Lname);
-//                            hashMap.put("Date of birth", DateofB);
-//                            hashMap.put("Qualification", qualif);
-//                            hashMap.put("Degree and varsity", degreeNvarsity);
-//                            hashMap.put("Phone Number", phoneNo);
-//
-//                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//
-//                            DatabaseReference reference = database.getReference("Doctors");
-//
-//                            reference.child(uid).setValue(hashMap);
-//
-//                            Toast.makeText(Register.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(Register.this, MainActivity.class));
-//                            finish();
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//                            progressDialog.dismiss();
-//                            Toast.makeText(Register.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                progressDialog.dismiss();
-//                Toast.makeText(Register.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
