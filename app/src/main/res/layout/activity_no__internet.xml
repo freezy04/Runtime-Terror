@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".No_Internet">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="316dp"
-        android:layout_height="221dp"
-        android:src="@drawable/wifi_off"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.798" />
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="354dp"
-        android:layout_height="143dp"
-        android:gravity="clip_horizontal|center"
-        android:text="No Internet Connection detected :"
-        android:textColor="@color/dark_navy_blue"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="221dp"
+           android:layout_marginTop="250dp"
+           android:gravity="center"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="356dp"
-        android:layout_height="68dp"
-        android:layout_marginBottom="202dp"
-        android:text="Please check your network connectivity and restart MobiDoc"
-        android:textColor="@color/dark_blue"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+           <ImageView
+               android:id="@+id/imageView"
+               android:layout_width="316dp"
+               android:layout_height="221dp"
+               android:src="@drawable/wifi_off"
+
+               />
+
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="143dp"
+           android:gravity="center"
+           android:layout_marginTop="40dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent">
+           <TextView
+               android:id="@+id/textView"
+               android:layout_width="match_parent"
+               android:layout_height="143dp"
+               android:paddingLeft="30dp"
+               android:paddingRight="30dp"
+               android:gravity="center_horizontal"
+
+               android:text="No Internet Connection detected :"
+               android:textColor="@color/dark_navy_blue"
+               android:textSize="35sp"
+               android:textStyle="bold" />
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="68dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           android:layout_marginTop="130dp">
+           <TextView
+               android:id="@+id/textView2"
+               android:layout_width="match_parent"
+               android:layout_height="68dp"
+              android:padding="10dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:gravity="center"
+               android:text="Please check your network connectivity and restart MobiDoc"
+               android:textColor="@color/dark_blue"
+               android:textSize="20sp"
+               />
+       </LinearLayout>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,179 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
-    tools:context=".Register">
 
+    tools:context=".Register">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="Register"
+        android:layout_marginTop="15dp"
+        android:text="WELCOME TO MOBIDOC"
+
         android:textAlignment="center"
         android:textColor="@color/dark_navy_blue"
         android:textSize="25sp" />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutLastName"
+
+
+    <EditText
+        android:id="@+id/LastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_above="@id/layoutQualification">
-        <EditText
-            android:id="@+id/LastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Last name"
-            android:inputType="textPersonName"
-            android:textColor="@android:color/black" />
+        android:layout_marginTop="200dp"
+        android:hint="Last name"
+        android:drawablePadding="9dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        android:maxLines="1"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/black" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutFirstName"
+
+
+    <EditText
+        android:id="@+id/FirstNameName"
+        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-       android:layout_marginTop="30dp"
-        android:layout_above="@id/layoutLastName">
-        <EditText
-            android:id="@+id/FirstNameName"
+        android:hint="First name"
+        android:drawablePadding="9dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        android:maxLines="1"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/black" />
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="First name"
-            android:inputType="textPersonName"
-            android:textColor="@android:color/black" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutDateOfBirth"
+
+
+
+
+
+
+
+
+
+
+
+    <EditText
+        android:id="@+id/PhoneNo"
+        android:layout_marginTop="250dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_above="@id/layoutemail">
-<!--        <EditText-->
-<!--            android:id="@+id/DateOfBirth"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Date of Birth"-->
-<!--            android:inputType="date"-->
-<!--            android:textColor="@android:color/black" />-->
+        android:hint="Phone number"
+        android:drawablePadding="9dp"
+        android:drawableLeft="@drawable/ic_phone_black_24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        android:maxLines="1"
+        android:inputType="textPhonetic"
+        android:textColor="@android:color/black" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutQualification"
+
+
+
+    <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_above="@id/layoutDegreeAndVarsity">
+        android:layout_marginTop="300dp"
+        android:hint="Email"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="9dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        android:maxLines="1"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/black" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/Qualification"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Qualification"-->
-<!--            android:inputType="textLongMessage"-->
-<!--            android:textColor="@android:color/black" />-->
 
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutDegreeAndVarsity"
+
+
+    <EditText
+        android:id="@+id/password"
+        android:maxLines="1"
+        android:layout_marginTop="350dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:hint="Password"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="9dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/DegreeAndVarsity"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Degree and Varsity"-->
-<!--            android:inputType="textLongMessage"-->
-<!--            android:textColor="@android:color/black" />-->
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutPhoneNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_below="@id/layoutDegreeAndVarsity">
-
-        <EditText
-            android:id="@+id/PhoneNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone number"
-            android:inputType="textPhonetic"
-            android:textColor="@android:color/black" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutemail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_below="@id/layoutPhoneNo">
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textColor="@android:color/black" />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layoutpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutemail"
-        android:layout_centerInParent="true"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="@android:color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_register"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layoutpassword"
+
         android:layout_centerHorizontal="true"
 
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="420dp"
         android:text="Register"
         app:cornerRadius="40dp"
         app:iconTint="@color/dark_blue"
@@ -185,7 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="490dp"
         android:gravity="center"
         android:text="Already have account? Login"
         android:textAlignment="center"
@@ -213,3 +183,5 @@
         android:translationY="-250px" />
 
 </RelativeLayout>
+
+</ScrollView>
