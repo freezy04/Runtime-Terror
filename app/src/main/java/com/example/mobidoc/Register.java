@@ -59,9 +59,6 @@ public class Register extends AppCompatActivity {
 
         FirstName = findViewById(R.id.FirstNameName);
         LastName = findViewById(R.id.LastName);
-//        Qualification = findViewById(R.id.Qualification);
-//        DateOfBirth = findViewById(R.id.DateOfBirth);
-//        DegreeAndVarsity = findViewById(R.id.DegreeAndVarsity);
         PhoneNo = findViewById(R.id.PhoneNo);
         mEmailET = findViewById(R.id.email);
         mPasswordEt = findViewById(R.id.password);
@@ -106,7 +103,6 @@ public class Register extends AppCompatActivity {
 
                     registerUser(email, password, Fname, Lname, userTypeStr, phonNo);
 
-//                    registerUser(email, password, Fname, Lname, qualif, DateofB, degreeNvarsity, phonNo);
 
 
                 }
@@ -184,7 +180,7 @@ public class Register extends AppCompatActivity {
         }
         return true;
     }
-
+    // validates Passwords
     private boolean validatePassword(String password, boolean displayErrors) {//checks if password is in correct format, if not displays error message
         //defines patterns and matchers for password security
         Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
