@@ -178,7 +178,13 @@ public class Login_activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String GetEmail = RecoverEmail.getText().toString().trim();
+                if(GetEmail.isEmpty())
+                {
+                    Toast.makeText(Login_activity.this, "Please enter email, Try again...", Toast.LENGTH_SHORT).show();
+                }
+                else{
                 BeginResettingPassword(GetEmail);
+                }
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -188,7 +194,7 @@ public class Login_activity extends AppCompatActivity {
         });
 
         builder.create().show();
-        ;
+
     }
 
     // Function show underlying  progress of sending email to the device and show whether an email was sent or not
