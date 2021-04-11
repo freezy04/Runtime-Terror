@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,10 +63,18 @@ public class Login_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_activity);
 
+        /* Nav Bar ****/
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Login");
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         Paper.init(this);
 
 
-        /*** NetwWork Avaivilble ***/
+        /* ** NetWork Available ***/
         if (!isNetworkAvailable()) {
             System.err.println("No Internet");
             startActivity(new Intent(Login_activity.this, No_Internet.class));
@@ -126,7 +135,7 @@ public class Login_activity extends AppCompatActivity {
                     firebaseAuth = FirebaseAuth.getInstance();
                     LoginUser(firebaseAuth, Email, Pass);
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Something Went Wrong .. sob .. sob", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), " Invalid Login Details ", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -271,21 +280,38 @@ public class Login_activity extends AppCompatActivity {
     private boolean ValidateDetails(TextView Email, TextView Password) {
 
         // Get email id and password
+        boolean email = true,pass=true;
         String getEmailId = Email.getText().toString();
         String getPassword = Password.getText().toString();
         final String regEx = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(getEmailId);
-
         // Check for both field is empty or not
         if (getEmailId.equals("") & (getEmailId.length() == 0) & !m.matches()
                 & getPassword.equals("") & (getPassword.length() == 0)) {
-            Email.setError("Invalid Email");
-            Password.setError("Invalid Password");
-            return false;
+            Email.setError("Invalid Email : Please enter a valid email");
+            Password.setError("Invalid Password : Please enter a password");
+            email =  false;
+            pass = false;
         }
 
-        return true;
+        if(!m.matches()){
+            Email.setError("Invalid Email : Please enter a valid email");
+            email = false;
+        }
+        if(getEmailId.equals("") & (getEmailId.length() == 0) & (!m.matches()) ){
+            Email.setError("Invalid Email : Please enter a valid email");
+            email = false;
+        }
+
+        if(getPassword.equals("") & (getPassword.length() == 0)){
+            Password.setError("Password cannot be empty");
+            pass = false;
+        }
+
+
+
+        return (email & pass);
 
     }
 
@@ -328,6 +354,12 @@ public class Login_activity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
 
