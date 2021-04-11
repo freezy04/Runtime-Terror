@@ -182,8 +182,10 @@ public class Login_activity extends AppCompatActivity {
                 {
                     Toast.makeText(Login_activity.this, "Please enter email, Try again...", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                BeginResettingPassword(GetEmail);
+                else
+                {
+                    BeginResettingPassword(GetEmail);
+
                 }
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
