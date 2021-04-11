@@ -165,15 +165,34 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutpassword"
+        android:layout_centerInParent="true"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:textColor="@android:color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <Button
         android:id="@+id/btn_register"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layoutpassword"
+        android:layout_below="@id/layoutConfirmPassword"
         android:layout_centerHorizontal="true"
 
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="0dp"
         android:text="Register"
         app:cornerRadius="40dp"
         app:iconTint="@color/dark_blue"
