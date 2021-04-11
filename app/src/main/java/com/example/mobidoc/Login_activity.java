@@ -195,7 +195,7 @@ public class Login_activity extends AppCompatActivity {
     private void BeginResettingPassword(String getemaIl) {
 
         progressdialogforgotpassword.setMessage("Sending Email...");
-        progressdialogforgotpassword.show();
+        progressdialogforgotpassword.show(); // Shows action Bar
         firebaseAuth.sendPasswordResetEmail(getemaIl).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
