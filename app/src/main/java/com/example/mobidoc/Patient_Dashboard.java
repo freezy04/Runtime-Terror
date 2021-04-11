@@ -9,12 +9,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import io.paperdb.Paper;
@@ -22,12 +25,15 @@ import io.paperdb.Paper;
 
 public class Patient_Dashboard extends AppCompatActivity {
     FirebaseUser firebaseUser;
+    TextView name;
+    DatabaseReference usersDbRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
         firebaseUser = Utilities.getMain(); // returns the user from
+        name = findViewById(R.id.Fname);
 
         getAccount(firebaseUser.getUid(), "Patients");
 
@@ -58,12 +64,23 @@ public class Patient_Dashboard extends AppCompatActivity {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
 
-        DatabaseReference user_ref = ref.child(USER_TYPE); //Doctor or Patient
-        user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
+
+        usersDbRef = db.getReference("Patients");
+        //DatabaseReference user_ref = ref.child(USER_TYPE); //Doctor or Patient
+        //user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
+        Query userQuery = usersDbRef.orderByChild("uid").equalTo(UID);
+        userQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()) {
                     //TODO: Get User Info
+                    for(DataSnapshot ds : snapshot.getChildren()){
+                        String Fname = ""+ ds.child("Fisrt name").getValue();
+                        String Lname = ""+ ds.child("Last name").getValue();
+
+                        //Able to retrieve Patient name uncomment to see it works
+                        //name.setText(Fname+" "+ Lname);
+                    }
                 }
             }
 
