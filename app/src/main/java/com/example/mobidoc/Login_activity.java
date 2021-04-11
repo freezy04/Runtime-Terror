@@ -178,6 +178,7 @@ public class Login_activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String GetEmail = RecoverEmail.getText().toString().trim();
+
                 if(GetEmail.isEmpty())
                 {
                     Toast.makeText(Login_activity.this, "Please enter email, Try again...", Toast.LENGTH_SHORT).show();
