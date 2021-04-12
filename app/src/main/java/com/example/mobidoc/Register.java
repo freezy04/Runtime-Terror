@@ -36,7 +36,7 @@ import io.paperdb.Paper;
 public class Register extends AppCompatActivity {
 
     //GUI element declaration
-    EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo;
+    EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo, mConfirm_password;
     Switch userType;
     Button mRegisterBTN;
     TextView mHAVEACCOUNT;
@@ -61,6 +61,7 @@ public class Register extends AppCompatActivity {
         PhoneNo = findViewById(R.id.PhoneNo);
         mEmailET = findViewById(R.id.email);
         mPasswordEt = findViewById(R.id.password);
+        mConfirm_password = findViewById(R.id.confirm_password);
         mRegisterBTN = findViewById(R.id.btn_register);
         mHAVEACCOUNT = findViewById(R.id.have_accountTv);
         userType = findViewById(R.id.userTypeSwitch);
@@ -86,10 +87,11 @@ public class Register extends AppCompatActivity {
                 String phonNo = PhoneNo.getText().toString().trim().replaceAll(" ", "");//removes all spaces from the phone number
                 String email = mEmailET.getText().toString().trim();
                 String password = mPasswordEt.getText().toString().trim();//should we trim here?
+                String confirm_password = mConfirm_password.getText().toString().trim();
 
 
                 //check for SQL injection?
-                if (validateDetails(Fname, Lname, phonNo, email, password, true)) {
+                if (validateDetails(Fname, Lname, phonNo, email, password, confirm_password, true)) {
                     // Check if user is signed in (non-null) and update UI accordingly.
 
                     String userTypeStr;
@@ -203,13 +205,24 @@ public class Register extends AppCompatActivity {
         return true;
     }
 
-    private boolean validateDetails(String Fname, String Lname, String phonNo, String email, String password, boolean displayErrors) {
+    private boolean validateConPassword(String confirm_password, String password, boolean displayErrors){
+        if(confirm_password.equals(password)){
+            return true;
+        }else{
+            mConfirm_password.setError("Please enter matching password");
+            return false;
+        }
+
+    }
+
+    private boolean validateDetails(String Fname, String Lname, String phonNo, String email, String password, String confirm_password, boolean displayErrors) {
         boolean Fname_valid = validateFname(Fname, displayErrors);
         boolean Lname_valid = validateLname(Lname, displayErrors);
         boolean phonNo_valid = validatePhoneNo(phonNo, displayErrors);
         boolean email_valid = validateEmail(email, displayErrors);
         boolean password_valid = validatePassword(password, displayErrors);
-        return Fname_valid && Lname_valid && phonNo_valid && email_valid && password_valid;
+        boolean confirm_password_valid = validateConPassword(confirm_password, password, displayErrors);
+        return Fname_valid && Lname_valid && phonNo_valid && email_valid && password_valid && confirm_password_valid;
     }
 
     private void registerUser(String email, String password, String Fname, String Lname, String userType, String phoneNo) {
@@ -223,6 +236,19 @@ public class Register extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            user.sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(Register.this,
+                                                        "Verification email sent to " + user.getEmail(),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
 
                             String email = user.getEmail();
                             String uid = user.getUid();
