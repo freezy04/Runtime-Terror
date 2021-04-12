@@ -47,6 +47,7 @@ import io.paperdb.Paper;
  *  Password : give id Password
  *  Need at least One TextView with ID = show_pass  , if you decided to move it please notify me
  *  Button for Login with ID = LoginBtn
+ *
  *  ***/
 public class Login_activity extends AppCompatActivity {
     public static String User_type;
@@ -96,6 +97,8 @@ public class Login_activity extends AppCompatActivity {
 
         show_password_visibility.setText(" "); // Ensures the show_password works 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        show_password_visibility.setText(" ");
 
         /*** This checks whether the user cleared their cache before entering the app or just minimised the app ****/
 
@@ -235,13 +238,17 @@ public class Login_activity extends AppCompatActivity {
 
 
     public void toggle_password(EditText password) {
+
         TextView show_password_visibility = findViewById(R.id.show_pass);
+
         if (show_password_visibility.getText().equals(" ")) {
             show_password_visibility.setText(".");
             password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             password.setSelection(password.length());
             Drawable d = getResources().getDrawable(R.drawable.show_password);
             show_password_visibility.setBackground(d);
+
+
         } else {
             show_password_visibility.setText(" ");
             password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);

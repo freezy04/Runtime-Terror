@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +29,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +43,7 @@ public class Register extends AppCompatActivity {
     EditText mEmailET, mPasswordEt, FirstName, LastName, PhoneNo, mConfirm_password;
     Switch userType;
     Button mRegisterBTN;
-    TextView mHAVEACCOUNT;
+    TextView mHAVEACCOUNT,show_pass_confirm , show_pass_act;
     ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
@@ -75,6 +79,29 @@ public class Register extends AppCompatActivity {
         if (!isNetworkAvailable()) {
             startActivity(new Intent(Register.this, No_Internet.class));
         }
+        /* **** Show / Hide Passwords ******/
+        
+        show_pass_act = findViewById(R.id.show_pass1);
+        show_pass_confirm = findViewById(R.id.show_pass2);
+
+        show_pass_act.setText(" ");
+        show_pass_confirm.setText(" ");
+
+        show_pass_act.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggle_password_act(mPasswordEt);
+            }
+        });
+
+        show_pass_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggle_password_confirm(mConfirm_password);
+            }
+        });
+        
+        /* *******************************************************************************************************/
 
         mRegisterBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +157,8 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     protected boolean validateFname(String Fname, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
@@ -295,7 +324,45 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    public void toggle_password_act(EditText password) {
+        TextView show_password_visibility = findViewById(R.id.show_pass1);
 
+        if (show_password_visibility.getText().equals(" ")) {
+            show_password_visibility.setText(".");
+            password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            password.setSelection(password.length());
+            Drawable d = getResources().getDrawable(R.drawable.show_password);
+            show_password_visibility.setBackground(d);
+
+
+        } else {
+            show_password_visibility.setText(" ");
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            password.setSelection(password.length());
+            Drawable d = getResources().getDrawable(R.drawable.hide_password);
+            show_password_visibility.setBackground(d);
+        }
+    }
+
+    public void toggle_password_confirm (EditText password) {
+
+        TextView show_password_visibility = findViewById(R.id.show_pass2);
+        if (show_password_visibility.getText().equals(" ")) {
+            show_password_visibility.setText(".");
+            password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            password.setSelection(password.length());
+            Drawable d = getResources().getDrawable(R.drawable.show_password);
+            show_password_visibility.setBackground(d);
+
+
+        } else {
+            show_password_visibility.setText(" ");
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            password.setSelection(password.length());
+            Drawable d = getResources().getDrawable(R.drawable.hide_password);
+            show_password_visibility.setBackground(d);
+        }
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
