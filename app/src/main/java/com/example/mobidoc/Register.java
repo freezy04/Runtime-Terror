@@ -118,18 +118,7 @@ public class Register extends AppCompatActivity {
                 finish();
             }
         });
-
-        userType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (userType.isChecked()) {
-                    userType.setText("Doctor");
-
-                } else {
-                    userType.setText("Patient");
-                }
-            }
-        });
+        
     }
 
     protected boolean validateFname(String Fname, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
