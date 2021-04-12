@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:layout_marginTop="16dp"
-        android:text="WELCOME TO MOBIDOC "
+        android:text="WELCOME TO MOBIDOC"
 
         android:textAlignment="center"
         android:textColor="@color/dark_navy_blue"
