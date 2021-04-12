@@ -80,7 +80,7 @@ public class Register extends AppCompatActivity {
             startActivity(new Intent(Register.this, No_Internet.class));
         }
         /* **** Show / Hide Passwords ******/
-        
+
         show_pass_act = findViewById(R.id.show_pass1);
         show_pass_confirm = findViewById(R.id.show_pass2);
 
@@ -100,7 +100,7 @@ public class Register extends AppCompatActivity {
                 toggle_password_confirm(mConfirm_password);
             }
         });
-        
+
         /* *******************************************************************************************************/
 
         mRegisterBTN.setOnClickListener(new View.OnClickListener() {
@@ -145,19 +145,6 @@ public class Register extends AppCompatActivity {
                 finish();
             }
         });
-
-        userType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (userType.isChecked()) {
-                    userType.setText("Doctor");
-
-                } else {
-                    userType.setText("Patient");
-                }
-            }
-        });
-
 
     }
 
