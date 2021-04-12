@@ -138,9 +138,10 @@
         app:layout_constraintTop_toTopOf="parent"
 android:gravity="center_horizontal"
         android:layout_marginTop="205dp">
+
         <TextView
             android:id="@+id/show_pass"
-            android:layout_width="31dp"
+            android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_marginLeft="300dp"
             android:background="@drawable/show_password"
