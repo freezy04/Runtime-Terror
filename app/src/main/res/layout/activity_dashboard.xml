@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:layout_gravity="center"
-                android:text=" Patient : Welcome User to your Dashboard."
+                android:text=" Patient : Welcome User to your Dashboard. "
                 android:textColor="@color/dark_navy_blue"
                 android:textSize="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"

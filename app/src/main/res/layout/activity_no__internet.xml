@@ -44,7 +44,7 @@
                android:paddingRight="30dp"
                android:gravity="center_horizontal"
 
-               android:text="No Internet Connection detected :"
+               android:text="No Internet Connection detected:"
                android:textColor="@color/dark_navy_blue"
                android:textSize="35sp"
                android:textStyle="bold" />
