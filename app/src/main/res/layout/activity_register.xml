@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:layout_marginTop="16dp"
-        android:text="WELCOME TO MOBIDOC"
+        android:text="WELCOME TO MOBIDOC "
 
         android:textAlignment="center"
         android:textColor="@color/dark_navy_blue"
@@ -133,7 +133,22 @@
         android:background="@android:color/transparent"
         android:inputType="textPassword"
         android:textColor="@android:color/black" />
-
+    <EditText
+        android:id="@+id/confirm_password"
+        android:maxLines="1"
+        android:layout_marginTop="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm password"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="9dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black" />
 
     <Button
         android:id="@+id/btn_register"
@@ -143,11 +158,12 @@
 
         android:layout_centerHorizontal="true"
 
-        android:layout_marginTop="420dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="890dp"
         android:text="Register"
+        android:textColorHighlight="@color/dark_blue"
         app:cornerRadius="40dp"
-        app:iconTint="@color/dark_blue"
-        android:textColorHighlight="@color/dark_blue"/>
+        app:iconTint="@color/dark_blue" />
 
     <TextView
         android:id="@+id/have_accountTv"
@@ -155,7 +171,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="530dp"
         android:gravity="center"
         android:text="Already have account? Login"
         android:textAlignment="center"
@@ -168,7 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="195dp"
+        android:layout_marginTop="185dp"
         android:text="Patient"
         android:translationY="-200px" />
 
@@ -178,7 +194,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="186dp"
+        android:layout_marginTop="175dp"
         android:text="Sign up as a:"
         android:translationY="-250px" />
 
