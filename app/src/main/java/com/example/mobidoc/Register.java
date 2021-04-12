@@ -237,6 +237,19 @@ public class Register extends AppCompatActivity {
                             progressDialog.dismiss();
                             FirebaseUser user = mAuth.getCurrentUser();
 
+                            user.sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(Register.this,
+                                                        "Verification email sent to " + user.getEmail(),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+
                             String email = user.getEmail();
                             String uid = user.getUid();
 
