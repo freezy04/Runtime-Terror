@@ -94,7 +94,7 @@ public class Login_activity extends AppCompatActivity {
         String email = User_email.getText().toString();
         String password = User_password.getText().toString();
 
-
+        show_password_visibility.setText(" "); // Ensures the show_password works 
         firebaseAuth = FirebaseAuth.getInstance();
 
         /*** This checks whether the user cleared their cache before entering the app or just minimised the app ****/
