@@ -272,10 +272,10 @@ public class Register extends AppCompatActivity {
                             HashMap<Object, String> hashMap = new HashMap<>();
                             hashMap.put("email", email);
                             hashMap.put("uid", uid);
-                            hashMap.put("Fisrt name", Fname);
-                            hashMap.put("Last name", Lname);
-                            hashMap.put("User Type", userType);
-                            hashMap.put("Phone Number", phoneNo);
+                            hashMap.put("first_name", Fname);
+                            hashMap.put("last_name", Lname);
+                            hashMap.put("user_type", userType);
+                            hashMap.put("phone_num", phoneNo);
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
