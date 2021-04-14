@@ -32,10 +32,7 @@ public class Patient_Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        firebaseUser = Utilities.getMain(); // returns the user from
-        name = findViewById(R.id.Fname);
 
-        getAccount(firebaseUser.getUid(), "Patients");
 
     }
 
