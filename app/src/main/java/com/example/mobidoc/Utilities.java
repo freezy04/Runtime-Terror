@@ -28,12 +28,6 @@ public class Utilities {
                 return mAuth.getCurrentUser();
         }
 
-        public static void getDoc(Doctor doctor){
-                doc = doctor;
-        }
-        public static Doctor returnDoc(){
-                return doc;
-        }
 
         public static String getUID(){
                 FirebaseUser user = getCurrentUser();
