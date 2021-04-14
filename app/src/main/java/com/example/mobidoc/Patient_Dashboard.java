@@ -61,7 +61,7 @@ public class Patient_Dashboard extends AppCompatActivity {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
 
-
+       
         usersDbRef = db.getReference("Patients");
         //DatabaseReference user_ref = ref.child(USER_TYPE); //Doctor or Patient
         //user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
