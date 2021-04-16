@@ -15,11 +15,10 @@ import java.util.ArrayList;
 
 public class Utilities {
 
-        public static ArrayList<Doctor> dcs;
+
         public static final String USER_KEY = "default";
         public static final String Patient = "patient";
-        public static final String Doctor = "doctor";
-        public static Doctor doc;
+        public static final String Doctor = "doctor";  
 
 
         private static FirebaseAuth mAuth;
@@ -29,12 +28,6 @@ public class Utilities {
                 return mAuth.getCurrentUser();
         }
 
-        public static void getDoc(Doctor doctor){
-                doc = doctor;
-        }
-        public static Doctor returnDoc(){
-                return doc;
-        }
 
         public static String getUID(){
                 FirebaseUser user = getCurrentUser();
