@@ -27,8 +27,6 @@ public class Doctor_Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor__dashboard);
 
-        firebaseUser = Utilities.getMain(); // returns the user from firebase
-        getAccount(firebaseUser.getUid(), "Doctors");
     }
 
     @Override
