@@ -21,6 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Doctor_Dashboard" />
+        <activity android:name=".DoctorRegisterActivity" />
+        <activity android:name=".PatientRegisterActivityOne" />
+        <activity android:name=".PatientRegisterActivityTwo" />
         <activity android:name=".Patient_Dashboard" />
         <activity android:name=".No_Internet" />
         <activity android:name=".Login_activity" />

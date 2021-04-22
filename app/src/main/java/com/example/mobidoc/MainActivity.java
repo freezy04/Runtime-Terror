@@ -9,20 +9,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mRegisterBTN,mLoginBYN;
+    Button mDocRegisterBTN, mPatRegisterBTN, mLoginBYN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRegisterBTN = findViewById(R.id.register_btn);
+        mDocRegisterBTN = findViewById(R.id.doc_register_btn);
+        mPatRegisterBTN = findViewById(R.id.pat_register_btn);
         mLoginBYN = findViewById(R.id.login_btn);
 
-        mRegisterBTN.setOnClickListener(new View.OnClickListener() {
+        mDocRegisterBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Register.class));
+                startActivity(new Intent(MainActivity.this, DoctorRegisterActivity.class));
+            }
+        });
+        mPatRegisterBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PatientRegisterActivityOne.class));
             }
         });
         mLoginBYN.setOnClickListener(new View.OnClickListener() {

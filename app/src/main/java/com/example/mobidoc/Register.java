@@ -29,8 +29,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,14 +58,14 @@ public class Register extends AppCompatActivity {
 
         Paper.init(this); //    @ Dylan 2179115 added this Code to store information locally
 
-        FirstName = findViewById(R.id.FirstNameName);
-        LastName = findViewById(R.id.LastName);
-        PhoneNo = findViewById(R.id.PhoneNo);
-        mEmailET = findViewById(R.id.email);
-        mPasswordEt = findViewById(R.id.password);
-        mConfirm_password = findViewById(R.id.confirm_password);
-        mRegisterBTN = findViewById(R.id.btn_register);
-        mHAVEACCOUNT = findViewById(R.id.have_accountTv);
+        FirstName = findViewById(R.id.fNameET);
+        LastName = findViewById(R.id.lNameET);
+        PhoneNo = findViewById(R.id.experienceET);
+        mEmailET = findViewById(R.id.emailET);
+        mPasswordEt = findViewById(R.id.passwordET);
+        mConfirm_password = findViewById(R.id.confirmPasswordET);
+        mRegisterBTN = findViewById(R.id.registerBTN);
+        mHAVEACCOUNT = findViewById(R.id.haveAccountTW);
         userType = findViewById(R.id.userTypeSwitch);
 
         mAuth = FirebaseAuth.getInstance();
@@ -81,8 +79,8 @@ public class Register extends AppCompatActivity {
         }
         /* **** Show / Hide Passwords ******/
 
-        show_pass_act = findViewById(R.id.show_pass1);
-        show_pass_confirm = findViewById(R.id.show_pass2);
+        show_pass_act = findViewById(R.id.showPasswordTW);
+        show_pass_confirm = findViewById(R.id.showConfirmPasswordTW);
 
         show_pass_act.setText(" ");
         show_pass_confirm.setText(" ");
@@ -312,7 +310,7 @@ public class Register extends AppCompatActivity {
     }
 
     public void toggle_password_act(EditText password) {
-        TextView show_password_visibility = findViewById(R.id.show_pass1);
+        TextView show_password_visibility = findViewById(R.id.showPasswordTW);
 
         if (show_password_visibility.getText().equals(" ")) {
             show_password_visibility.setText(".");
@@ -333,7 +331,7 @@ public class Register extends AppCompatActivity {
 
     public void toggle_password_confirm (EditText password) {
 
-        TextView show_password_visibility = findViewById(R.id.show_pass2);
+        TextView show_password_visibility = findViewById(R.id.showConfirmPasswordTW);
         if (show_password_visibility.getText().equals(" ")) {
             show_password_visibility.setText(".");
             password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);

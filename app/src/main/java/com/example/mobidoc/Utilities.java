@@ -11,8 +11,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 public class Utilities {
 
 
@@ -45,16 +43,15 @@ public class Utilities {
                 user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                Doctor D = new Doctor();
+                                //Doctor D = new Doctor();
 
                                 for ( DataSnapshot ds : snapshot.getChildren()) {
-                                        Doctor doctor = ds.getValue(Doctor.class);
+                                        com.example.mobidoc.Doctor doctor = ds.getValue(Doctor.class);
                                         //creates an instance of doctor and assigns the firebase data to it's respective columns
                                         Log.d("TestingApp","This is " + ds.getValue());
-                                        Log.d("TestingApp","This is " +  doctor.getemail());
-                                        Log.d("TestingApp","This is " + doctor.getlast_name());
-                                        Log.d("TestingApp","This is " + doctor.getphone_num());
-                                        Log.d("TestingApp","This is " + doctor.getuser_type());
+                                        Log.d("TestingApp","This is " +  doctor.getEmail());
+                                        Log.d("TestingApp","This is " + doctor.getLast_name());
+                                        Log.d("TestingApp","This is " + doctor.getUser_type());
                                         Log.d("TestingApp","This is " + doctor.getFirst_name());
 
 
