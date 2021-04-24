@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,11 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mobidoc.R;
+import com.example.mobidoc.ui.login.Login_activity;
+import com.example.mobidoc.ui.registration.DoctorRegisterActivity;
+import com.example.mobidoc.ui.registration.PatientRegisterActivityOne;
 
 public class MainActivity extends AppCompatActivity {
 

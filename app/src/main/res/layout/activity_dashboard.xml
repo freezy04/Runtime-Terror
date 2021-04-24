@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dash_ui"
-    tools:context=".Patient_Dashboard">
+    tools:context=".ui.dashboards.Patient_Dashboard">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

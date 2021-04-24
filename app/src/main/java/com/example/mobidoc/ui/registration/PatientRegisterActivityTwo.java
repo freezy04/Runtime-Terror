@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui.registration;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +15,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobidoc.ui.login.Login_activity;
+import com.example.mobidoc.ui.No_Internet;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.R;
+import com.example.mobidoc.models.Patient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +34,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
     private EditText diseaseHistoryET, medicationHistoryET, allergiesET;
     private String email, password, fName, lName, age, sex;
     private TextView haveAccountTW;
-    private Button registerBTN;
+    private Button registerBTN, backBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
@@ -66,6 +72,12 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
             }
         });
 
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void initializeActivity() {
@@ -82,6 +94,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         medicationHistoryET = findViewById(R.id.medicationHistoryET);
         allergiesET = findViewById(R.id.allergiesET);
         registerBTN = findViewById(R.id.registerBTN);
+        backBTN = findViewById(R.id.backBTN);
         haveAccountTW = findViewById(R.id.haveAccountTW);
 
         Intent patientRegistrationStepTwo = getIntent();

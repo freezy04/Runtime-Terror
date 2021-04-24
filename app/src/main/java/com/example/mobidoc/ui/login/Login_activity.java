@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui.login;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -23,6 +23,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.ui.No_Internet;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.R;
+import com.example.mobidoc.utils.Utilities;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

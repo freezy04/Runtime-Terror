@@ -1,8 +1,8 @@
-package com.example.mobidoc;
+package com.example.mobidoc.models;
 
 public class User {
 
-    private String Name , Surname , Email , PhoneNumber, User_type;
+    private String Name , Surname , Email;
 
    /* private User(String name , String surname , String email , String phoneNumber, String user_type){
 
@@ -13,20 +13,14 @@ public class User {
 
     } */
 
+    public User(){}
+
     public String getName() {
         return Name;
     }
 
     public void setName(String name) {
         Name = name;
-    }
-
-    public String getPhoneNumber() {
-        return PhoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
     }
 
     public String getEmail() {

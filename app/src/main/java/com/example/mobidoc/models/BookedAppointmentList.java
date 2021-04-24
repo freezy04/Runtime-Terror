@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.models;
 
 import com.google.firebase.database.Query;
 
