@@ -90,6 +90,15 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         haveAccountTW = findViewById(R.id.haveAccountTW);
         showPasswordTW = findViewById(R.id.showPasswordTW);
         showConfirmPasswordTW = findViewById(R.id.showConfirmPasswordTW);
+
+        Intent patRegIntent = getIntent();
+        if (patRegIntent.getIntExtra("step", 0) != 0) {
+            emailET.setText(patRegIntent.getStringExtra("email"));
+            fNameET.setText(patRegIntent.getStringExtra("fName"));
+            lNameET.setText(patRegIntent.getStringExtra("lName"));
+            ageET.setText(patRegIntent.getStringExtra("age"));
+            sexET.setText(patRegIntent.getStringExtra("sex"));
+        }
     }
 
     private void networkAvailabilityCheck() {
