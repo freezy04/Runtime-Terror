@@ -42,11 +42,11 @@ import io.paperdb.Paper;
 
 public class Login extends AppCompatActivity {
 
-    private FirebaseAuth firebaseAuth;
-    private EditText User_email, User_password;
-    private CheckBox ChRemember;
-    private Button login_Button;
-    private TextView User_forgot_password, Create_account , show_password_visibility;
+    public FirebaseAuth firebaseAuth;
+    public EditText User_email, User_password;
+    public CheckBox ChRemember;
+    public Button login_Button;
+    public TextView User_forgot_password, Create_account , show_password_visibility;
     ProgressDialog progressdialogforgotpassword;
 
     @Override
@@ -177,7 +177,7 @@ public class Login extends AppCompatActivity {
                 });
     }
 
-    private boolean ValidateDetails(TextView Email, TextView Password) {
+    public boolean ValidateDetails(EditText Email, EditText Password) {
         boolean email = true,pass=true;
         String getEmailId = Email.getText().toString();
         String getPassword = Password.getText().toString();
@@ -212,7 +212,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private boolean isNetworkAvailable() {
+    public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
