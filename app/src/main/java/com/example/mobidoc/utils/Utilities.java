@@ -1,8 +1,9 @@
-package com.example.mobidoc;
+package com.example.mobidoc.utils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.mobidoc.models.Doctor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,7 +47,7 @@ public class Utilities {
                                 //Doctor D = new Doctor();
 
                                 for ( DataSnapshot ds : snapshot.getChildren()) {
-                                        com.example.mobidoc.Doctor doctor = ds.getValue(Doctor.class);
+                                        com.example.mobidoc.models.Doctor doctor = ds.getValue(Doctor.class);
                                         //creates an instance of doctor and assigns the firebase data to it's respective columns
                                         Log.d("TestingApp","This is " + ds.getValue());
                                         Log.d("TestingApp","This is " +  doctor.getEmail());

@@ -1,9 +1,11 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.mobidoc.R;
 
 public class SplashActivity extends AppCompatActivity {
 

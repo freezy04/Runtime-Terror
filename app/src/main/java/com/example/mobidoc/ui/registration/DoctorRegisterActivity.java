@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui.registration;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,6 +21,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.ui.login.Login;
+import com.example.mobidoc.ui.No_Internet;
+import com.example.mobidoc.R;
+import com.example.mobidoc.utils.Utilities;
+import com.example.mobidoc.models.Doctor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -34,11 +40,11 @@ import io.paperdb.Paper;
 
 public class DoctorRegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, qualificationsET, experienceET;
+    public EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, qualificationsET, experienceET;
     private Spinner specializationSPN;
     private String specialization;
     private TextView showPasswordTW, showConfirmPasswordTW, haveAccountTW;
-    private Button registerBTN;
+    public Button registerBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
@@ -60,7 +66,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
 
         //if user already has an account switch to login screen
         haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(DoctorRegisterActivity.this, Login_activity.class));
+            startActivity(new Intent(DoctorRegisterActivity.this, Login.class));
             finish();
         });
 

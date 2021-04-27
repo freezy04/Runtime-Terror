@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui.registration;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobidoc.ui.login.Login;
+import com.example.mobidoc.ui.No_Internet;
+import com.example.mobidoc.R;
+
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +29,7 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
 
     private EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET;
     private TextView haveAccountTW, showPasswordTW, showConfirmPasswordTW;
-    private Button registerBTN;
+    private Button nextBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +47,12 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
 
         //if user already has an account switch to login screen
         haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(PatientRegisterActivityOne.this, Login_activity.class));
+            startActivity(new Intent(PatientRegisterActivityOne.this, Login.class));
             finish();
         });
 
         //validate details
-        registerBTN.setOnClickListener(v -> {
+        nextBTN.setOnClickListener(v -> {
             if (validateDetails(emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET, true)) {
                 // Check if user is signed in (non-null) and update UI accordingly.
                 Intent patientRegistrationStepTwo = new Intent(PatientRegisterActivityOne.this, PatientRegisterActivityTwo.class);
@@ -82,10 +86,19 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         lNameET = findViewById(R.id.lNameET);
         ageET = findViewById(R.id.ageET);
         sexET = findViewById(R.id.sexET);
-        registerBTN = findViewById(R.id.registerBTN);
+        nextBTN = findViewById(R.id.nextBTN);
         haveAccountTW = findViewById(R.id.haveAccountTW);
         showPasswordTW = findViewById(R.id.showPasswordTW);
         showConfirmPasswordTW = findViewById(R.id.showConfirmPasswordTW);
+
+        Intent patRegIntent = getIntent();
+        if (patRegIntent.getIntExtra("step", 0) != 0) {
+            emailET.setText(patRegIntent.getStringExtra("email"));
+            fNameET.setText(patRegIntent.getStringExtra("fName"));
+            lNameET.setText(patRegIntent.getStringExtra("lName"));
+            ageET.setText(patRegIntent.getStringExtra("age"));
+            sexET.setText(patRegIntent.getStringExtra("sex"));
+        }
     }
 
     private void networkAvailabilityCheck() {

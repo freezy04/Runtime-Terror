@@ -1,8 +1,10 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.mobidoc.R;
 
 public class No_Internet extends AppCompatActivity {
 

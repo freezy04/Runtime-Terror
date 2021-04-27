@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui.registration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,6 +20,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.ui.login.Login;
+import com.example.mobidoc.ui.No_Internet;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.R;
+import com.example.mobidoc.utils.Utilities;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -139,7 +145,7 @@ public class Register extends AppCompatActivity {
         mHAVEACCOUNT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Register.this, Login_activity.class));
+                startActivity(new Intent(Register.this, Login.class));
                 finish();
             }
         });

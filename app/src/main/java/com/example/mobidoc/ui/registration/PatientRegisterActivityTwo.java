@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui.registration;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,6 +14,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobidoc.R;
+import com.example.mobidoc.models.Patient;
+import com.example.mobidoc.ui.No_Internet;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.ui.login.Login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +33,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
     private EditText diseaseHistoryET, medicationHistoryET, allergiesET;
     private String email, password, fName, lName, age, sex;
     private TextView haveAccountTW;
-    private Button registerBTN;
+    private Button registerBTN, backBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
@@ -42,7 +47,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
 
         //if user already has an account switch to login screen
         haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(PatientRegisterActivityTwo.this, Login_activity.class));
+            startActivity(new Intent(PatientRegisterActivityTwo.this, Login.class));
             finish();
         });
 
@@ -54,18 +59,20 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
                 String medicationHistory = medicationHistoryET.getText().toString().trim();
                 String allergies = allergiesET.getText().toString().trim();
                 Patient pat = new Patient(fName, lName, "Patient", email, age, sex, diseaseHistory, medicationHistory, allergies);
-                System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +
-                        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +
-                        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +
-                        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +
-                        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +
-                        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                System.err.println(pat.getEmail() + " " + password);
-
                 registerUser(pat, password);
             }
         });
 
+        backBTN.setOnClickListener(v -> {
+            Intent backIntent = new Intent(PatientRegisterActivityTwo.this, PatientRegisterActivityOne.class);
+            backIntent.putExtra("step", 1);
+            backIntent.putExtra("email", email);
+            backIntent.putExtra("fName", fName);
+            backIntent.putExtra("lName", lName);
+            backIntent.putExtra("age", age);
+            backIntent.putExtra("sex", sex);
+            startActivity(backIntent);
+        });
     }
 
     private void initializeActivity() {
@@ -82,6 +89,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         medicationHistoryET = findViewById(R.id.medicationHistoryET);
         allergiesET = findViewById(R.id.allergiesET);
         registerBTN = findViewById(R.id.registerBTN);
+        backBTN = findViewById(R.id.backBTN);
         haveAccountTW = findViewById(R.id.haveAccountTW);
 
         Intent patientRegistrationStepTwo = getIntent();
