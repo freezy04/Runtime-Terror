@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 public class DoctorRegisterActivityTest {
 
     @Rule
-    ActivityScenarioRule<DoctorRegisterActivity> asr = new ActivityScenarioRule<>(DoctorRegisterActivity.class);
+    public ActivityScenarioRule<DoctorRegisterActivity> asr = new ActivityScenarioRule<>(DoctorRegisterActivity.class);
 
     @Test
     public void registerDoctor_DoctorNotRegistered_RegistrationFailed() {
