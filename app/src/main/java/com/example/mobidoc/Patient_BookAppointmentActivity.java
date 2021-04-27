@@ -806,7 +806,6 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
     }
 
 
-
     @Override
     protected void onStart() {
         super.onStart();
