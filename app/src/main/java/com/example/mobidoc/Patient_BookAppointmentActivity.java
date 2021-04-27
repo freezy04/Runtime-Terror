@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.example.mobidoc.ui.login.Login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -814,7 +815,7 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
         if(currentUser == null){
             Toast.makeText(this, "You are not Logged In.....Login first for further process", Toast.LENGTH_SHORT).show();
 
-            Intent login_Intent = new Intent(Patient_BookAppointmentActivity.this,Login_activity.class);
+            Intent login_Intent = new Intent(Patient_BookAppointmentActivity.this, Login.class);
             startActivity(login_Intent);
         }else {
             flagChecked=0;
