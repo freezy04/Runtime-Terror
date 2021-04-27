@@ -26,7 +26,7 @@
         <activity android:name=".ui.registration.PatientRegisterActivityTwo" />
         <activity android:name=".ui.dashboards.Patient_Dashboard" />
         <activity android:name=".ui.No_Internet" />
-        <activity android:name=".ui.login.Login_activity" />
+        <activity android:name=".ui.login.Login" />
         <activity android:name=".ui.registration.Register" />
         <activity android:name=".ui.MainActivity"/>
     </application>

@@ -18,7 +18,7 @@ import com.example.mobidoc.R;
 import com.example.mobidoc.models.Patient;
 import com.example.mobidoc.ui.No_Internet;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
-import com.example.mobidoc.ui.login.Login_activity;
+import com.example.mobidoc.ui.login.Login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +47,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
 
         //if user already has an account switch to login screen
         haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(PatientRegisterActivityTwo.this, Login_activity.class));
+            startActivity(new Intent(PatientRegisterActivityTwo.this, Login.class));
             finish();
         });
 

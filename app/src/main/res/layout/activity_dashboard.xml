@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+                android:layout_columnWeight="2"
                 android:layout_margin="12dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="30dp"
@@ -73,12 +73,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
                     android:padding="16dp">
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="87dp"
+                        android:gravity="left"
                         android:src="@drawable/ic_userprofile" />
 
                     <TextView
@@ -104,13 +106,15 @@
                 >
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
+                        android:gravity = "left"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src ="@drawable/ic_calendar"/>
@@ -138,28 +142,37 @@
                 app:cardElevation="30dp"
                 >
 
-                <LinearLayout
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:stretchColumns="2"
+                    >
+
+                <TableRow
+                    android:padding="3dip">
 
                     <ImageView
+                        android:layout_column="1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:layout_gravity="left"
+                        android:gravity = "left"
                         android:src ="@drawable/ic_settings"/>
 
                     <TextView
+
+                        android:layout_column="1"
                         android:layout_width="wrap_content"
+                        android:gravity="center_horizontal"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:padding="20dp"
                         android:text="Settings"
                         android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:textSize="25sp" />
+                </TableRow>
 
 
-                </LinearLayout>
+                </TableLayout>
 
             </androidx.cardview.widget.CardView>
 

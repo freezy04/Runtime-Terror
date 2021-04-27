@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
-import com.example.mobidoc.ui.login.Login_activity;
+import com.example.mobidoc.ui.login.Login;
 import com.example.mobidoc.ui.No_Internet;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.example.mobidoc.R;
@@ -145,7 +145,7 @@ public class Register extends AppCompatActivity {
         mHAVEACCOUNT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Register.this, Login_activity.class));
+                startActivity(new Intent(Register.this, Login.class));
                 finish();
             }
         });

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.ui.login.Login_activity;
+import com.example.mobidoc.ui.login.Login;
 import com.example.mobidoc.ui.No_Internet;
 import com.example.mobidoc.R;
 
@@ -47,7 +47,7 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
 
         //if user already has an account switch to login screen
         haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(PatientRegisterActivityOne.this, Login_activity.class));
+            startActivity(new Intent(PatientRegisterActivityOne.this, Login.class));
             finish();
         });
 
