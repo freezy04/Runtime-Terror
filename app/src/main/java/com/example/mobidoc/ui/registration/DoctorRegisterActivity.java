@@ -40,11 +40,11 @@ import io.paperdb.Paper;
 
 public class DoctorRegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, qualificationsET, experienceET;
+    public EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, qualificationsET, experienceET;
     private Spinner specializationSPN;
     private String specialization;
     private TextView showPasswordTW, showConfirmPasswordTW, haveAccountTW;
-    private Button registerBTN;
+    public Button registerBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
