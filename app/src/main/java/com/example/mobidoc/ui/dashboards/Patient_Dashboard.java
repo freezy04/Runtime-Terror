@@ -1,18 +1,18 @@
 package com.example.mobidoc.ui.dashboards;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.mobidoc.R;
+import com.example.mobidoc.ui.Appointment.DoctorList;
 import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.R;
 import com.example.mobidoc.utils.Utilities;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,22 +28,20 @@ import io.paperdb.Paper;
 public class Patient_Dashboard extends AppCompatActivity {
     FirebaseUser firebaseUser;
     TextView name;
+    TextView BookAppointment;
     DatabaseReference usersDbRef;
-    LinearLayout book_consultation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        book_consultation = findViewById(R.id.consultation);
+        BookAppointment = findViewById(R.id.BookAppointment);
 
-        book_consultation.setOnClickListener(v -> {
-            startActivity(new Intent(Patient_Dashboard.this, Patient_BookAppointmentActivity.class));
+        BookAppointment.setOnClickListener(v -> {
+            startActivity(new Intent(Patient_Dashboard.this, DoctorList.class));
             finish();
         });
-
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
