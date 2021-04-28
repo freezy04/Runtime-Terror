@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.Login_activity"
+    tools:context=".ui.login.Login"
     >
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -143,6 +143,7 @@
             android:id="@+id/show_pass"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
+            android:text=" "
             android:layout_marginLeft="250dp"
             android:background="@drawable/show_password"
             android:textAllCaps="false"
