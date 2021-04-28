@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DoctorList extends AppCompatActivity {
+public class Doctor_List extends AppCompatActivity {
 
     RecyclerView recyclerView;
     adapterAppointment AdapterAppointment;
@@ -46,7 +46,7 @@ public class DoctorList extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.users_recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(DoctorList.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(Doctor_List.this));
         userDoctor = new ArrayList<>();
         getAllUsers();
     }
@@ -71,7 +71,7 @@ public class DoctorList extends AppCompatActivity {
                         userDoctor.add(modelUsers);
                     }
 
-                    AdapterAppointment = new adapterAppointment(DoctorList.this, userDoctor);
+                    AdapterAppointment = new adapterAppointment(Doctor_List.this, userDoctor);
 
                     recyclerView.setAdapter(AdapterAppointment);
                 }
@@ -109,7 +109,7 @@ public class DoctorList extends AppCompatActivity {
 
                     }
 
-                    AdapterAppointment = new adapterAppointment(DoctorList.this , userDoctor);
+                    AdapterAppointment = new adapterAppointment(Doctor_List.this , userDoctor);
 
                     AdapterAppointment.notifyDataSetChanged();
 
@@ -170,7 +170,7 @@ public class DoctorList extends AppCompatActivity {
         if(user != null){
             // mProfile.setText(user.getEmail());
         }else{
-            startActivity(new Intent(DoctorList.this, MainActivity.class));
+            startActivity(new Intent(Doctor_List.this, MainActivity.class));
             finish();
         }
     }

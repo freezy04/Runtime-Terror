@@ -10,7 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.mobidoc.ui.Appointment.DoctorList;
+import com.example.mobidoc.ui.Appointment.Doctor_List;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.utils.Utilities;
@@ -38,7 +38,7 @@ public class Patient_Dashboard extends AppCompatActivity {
         BookAppointment = findViewById(R.id.BookAppointment);
 
         BookAppointment.setOnClickListener(v -> {
-            startActivity(new Intent(Patient_Dashboard.this, DoctorList.class));
+            startActivity(new Intent(Patient_Dashboard.this, Doctor_List.class));
             finish();
         });
     }
