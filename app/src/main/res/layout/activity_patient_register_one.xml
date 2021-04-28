@@ -27,7 +27,7 @@
             android:id="@+id/lNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="250dp"
             android:hint="Last name"
             android:drawablePadding="9dp"
             android:drawableLeft="@drawable/ic_person_black_24dp"
@@ -45,7 +45,7 @@
 
         <EditText
             android:id="@+id/fNameET"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="200dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="First name"
@@ -77,7 +77,7 @@
             android:inputType="textPersonName"
             android:maxLines="1"
             android:textColor="@android:color/black"
-            android:translationY="-200px" />
+            />
 
         <EditText
             android:id="@+id/sexET"

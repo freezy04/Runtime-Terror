@@ -103,7 +103,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         confirmPasswordET = findViewById(R.id.confirmPasswordET);
         fNameET = findViewById(R.id.fNameET);
         lNameET = findViewById(R.id.lNameET);
-        qualificationsET = findViewById(R.id.qualificationsET);
+        //qualificationsET = findViewById(R.id.qualificationsET);
         experienceET = findViewById(R.id.experienceET);
         specializationSPN = findViewById(R.id.specializationSPN);
         registerBTN = findViewById(R.id.registerBTN);
