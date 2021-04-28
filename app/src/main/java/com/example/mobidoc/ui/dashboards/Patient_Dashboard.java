@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.Patient_BookAppointmentActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.utils.Utilities;
