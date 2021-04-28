@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Appointment.DoctorList">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/SelectDoctor"
+        android:layout_height="wrap_content"
+        android:text="Select Doctor want appointment with"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="520dp"
+        />
+
+    <view class="androidx.recyclerview.widget.RecyclerView"
+        android:id="@+id/users_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+
+        />
+
+
+
+</FrameLayout>
