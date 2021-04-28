@@ -1,17 +1,19 @@
 package com.example.mobidoc.ui.dashboards;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.mobidoc.ui.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mobidoc.Patient_BookAppointmentActivity;
 import com.example.mobidoc.R;
+import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.utils.Utilities;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +30,18 @@ public class Patient_Dashboard extends AppCompatActivity {
     FirebaseUser firebaseUser;
     TextView name;
     DatabaseReference usersDbRef;
+    LinearLayout book_consultation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        book_consultation = findViewById(R.id.consultation);
+
+        book_consultation.setOnClickListener(v -> {
+            startActivity(new Intent(Patient_Dashboard.this, Patient_BookAppointmentActivity.class));
+            finish();
+        });
 
     }
 
