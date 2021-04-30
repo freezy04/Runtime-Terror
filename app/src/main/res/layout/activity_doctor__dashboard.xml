@@ -63,8 +63,9 @@
               android:layout_rowWeight="1"
               android:layout_columnWeight="1"
               android:layout_margin="12dp"
-              app:cardCornerRadius="12dp"
+              app:cardCornerRadius="20dp"
               app:cardElevation="30dp"
+              app:cardBackgroundColor="#00FFFFFF"
               >
 
               <LinearLayout
@@ -72,7 +73,8 @@
                   android:layout_height="match_parent"
                   android:gravity="center"
                   android:orientation="vertical"
-                  android:padding="16dp">
+                  android:padding="16dp"
+                  android:background="@drawable/recycler">
 
                     <ImageView
                         android:layout_width="80dp"
@@ -100,6 +102,7 @@
               android:layout_margin="12dp"
               app:cardCornerRadius="12dp"
               app:cardElevation="30dp"
+              app:cardBackgroundColor="#00FFFFFF"
               >
 
               <LinearLayout
@@ -107,7 +110,8 @@
                   android:layout_height="match_parent"
                   android:gravity="center"
                   android:orientation="vertical"
-                  android:padding="16dp">
+                  android:padding="16dp"
+                  android:background="@drawable/recycler">
 
                   <ImageView
                       android:layout_width="80dp"
@@ -135,6 +139,7 @@
               android:layout_margin="12dp"
               app:cardCornerRadius="12dp"
               app:cardElevation="30dp"
+              app:cardBackgroundColor="#00FFFFFF"
               >
 
               <LinearLayout
@@ -142,7 +147,8 @@
                   android:layout_height="match_parent"
                   android:gravity="center"
                   android:orientation="vertical"
-                  android:padding="16dp">
+                  android:padding="16dp"
+                  android:background="@drawable/recycler">
 
                   <ImageView
                       android:layout_width="80dp"
@@ -171,6 +177,7 @@
               android:layout_margin="12dp"
               app:cardCornerRadius="12dp"
               app:cardElevation="30dp"
+              app:cardBackgroundColor="#00FFFFFF"
               android:layout_marginBottom="40dp"
               >
 
@@ -179,7 +186,8 @@
                   android:layout_height="match_parent"
                   android:gravity="center"
                   android:orientation="vertical"
-                  android:padding="16dp">
+                  android:padding="16dp"
+                  android:background="@drawable/recycler">
 
                   <ImageView
                       android:layout_width="80dp"
