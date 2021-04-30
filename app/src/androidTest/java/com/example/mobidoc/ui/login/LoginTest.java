@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class LoginTest {
 
     @Rule
-    ActivityScenarioRule<Login> activityScenarioRule = new ActivityScenarioRule<>(Login.class);
+    public ActivityScenarioRule<Login> activityScenarioRule = new ActivityScenarioRule<>(Login.class);
 
     @Test
     public void loginUser_UserDoctorNotLoggedIn_isSuccessful(){
