@@ -2,28 +2,35 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
-    app:cardUseCompatPadding="true"
-    app:cardCornerRadius="30dp"
+
+    app:cardCornerRadius="20dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="#FFFFFF"
-    app:contentPadding="3dp">
+    app:cardBackgroundColor="#00FFFFFF"
+
+    android:background="@drawable/recycler"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
             android:id="@+id/avatarIv"
-            android:src="@drawable/doc_icon"
-            android:layout_width="70dp"
-            android:layout_height="70dp"/>
+            android:src="@drawable/doctor"
+            android:layout_width="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="50dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -31,14 +38,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Person Name"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="15sp"
+                android:fontFamily="@font/font_2"
+                android:textColor="@color/navy_blue"/>
             <TextView
                 android:id="@+id/Specialization"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:text="Person Specialization"

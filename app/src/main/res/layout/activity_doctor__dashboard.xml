@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dash_ui"
+    android:background="@drawable/bg_ui"
     tools:context=".ui.dashboards.Doctor_Dashboard">
 
 
@@ -19,14 +19,12 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
+          android:layout_marginTop="20dp"
+          android:fontFamily="@font/font_2"
           android:gravity="center_horizontal"
+
           android:paddingLeft="20dp"
           android:paddingRight="20dp"
-          android:rotationY="2"
-          android:shadowColor="#000000"
-          android:shadowDx="5"
-          android:shadowDy="5"
-          android:shadowRadius="5"
           android:text="Welcome to your Dashboard  Doctor"
           android:textColor="@color/white"
           android:textSize="30dp"
@@ -35,7 +33,7 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.066"
+          app:layout_constraintVertical_bias="0.0"
           tools:ignore="MissingConstraints" />
 
 
@@ -81,12 +79,13 @@
                         android:layout_height="80dp"
                         android:src ="@drawable/ic_docprofile"/>
 
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="Profile"
-                         android:textColor="@color/black"
-                         android:textSize="18sp" />
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Profile"
+                      android:textColor="@color/black"
+                      android:textSize="18sp"
+                      android:fontFamily="@font/font_2"/>
 
 
               </LinearLayout>
@@ -120,7 +119,8 @@
                       android:layout_height="wrap_content"
                       android:text="Patient Records"
                       android:textColor="@color/black"
-                      android:textSize="18sp" />
+                      android:textSize="18sp"
+                      android:fontFamily="@font/font_2"/>
 
 
               </LinearLayout>
@@ -154,7 +154,8 @@
                       android:layout_height="wrap_content"
                       android:text="Appointments"
                       android:textColor="@color/black"
-                      android:textSize="18sp" />
+                      android:textSize="18sp"
+                      android:fontFamily="@font/font_2"/>
 
 
               </LinearLayout>
@@ -190,7 +191,8 @@
                       android:layout_height="wrap_content"
                       android:text="Settings"
                       android:textColor="@color/black"
-                      android:textSize="18sp" />
+                      android:textSize="18sp"
+                      android:fontFamily="@font/font_2"/>
 
 
               </LinearLayout>

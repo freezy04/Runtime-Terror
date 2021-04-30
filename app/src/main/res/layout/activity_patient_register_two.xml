@@ -20,7 +20,8 @@
 
             android:textAlignment="center"
             android:textColor="@color/dark_navy_blue"
-            android:textSize="25sp" />
+            android:textSize="30sp"
+            android:fontFamily="@font/font_2"/>
 
 
         <EditText
@@ -29,15 +30,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:translationY="140dp"
+            android:translationY="170dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawableLeft="@drawable/ic_medication"
             android:drawablePadding="9dp"
             android:hint="Medication History"
             android:inputType="textPersonName"
             android:maxLines="1"
+            android:fontFamily="@font/font_2"
             android:textColor="@android:color/black" />
 
 
@@ -47,17 +49,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-
+            android:fontFamily="@font/font_2"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawableLeft="@drawable/ic_disease"
             android:drawablePadding="9dp"
             android:hint="Disease Histroy"
             android:inputType="textPersonName"
             android:maxLines="1"
             android:textColor="@android:color/black"
-            android:translationY="90dp" />
+            android:translationY="120dp" />
 
 
         <EditText
@@ -66,15 +68,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:translationY="190dp"
+            android:translationY="220dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/email"
+            android:drawableLeft="@drawable/ic_allergies"
             android:drawablePadding="9dp"
             android:hint="Allergies"
             android:inputType="textEmailAddress"
             android:maxLines="1"
+            android:fontFamily="@font/font_2"
             android:textColor="@android:color/black" />
 
 
@@ -86,8 +89,8 @@
 
             android:layout_centerHorizontal="true"
 
-            android:layout_centerVertical="true"
-
+            android:translationY="300dp"
+            android:fontFamily="@font/font_2"
             android:text="Register"
             android:textColorHighlight="@color/dark_blue"
             app:cornerRadius="40dp"
@@ -101,8 +104,9 @@
             android:text="Back"
             android:textColorHighlight="@color/dark_blue"
             app:cornerRadius="40dp"
+            android:fontFamily="@font/font_2"
             app:iconTint="@color/dark_blue"
-            android:translationY="60dp"
+            android:translationY="100dp"
             />
 
         <TextView
@@ -117,7 +121,8 @@
             android:text="Already have account? Login"
             android:textAlignment="center"
             android:textColor="#8BC34A"
-            android:translationY="110dp" />
+            android:fontFamily="@font/font_2"
+            android:translationY="160dp" />
 
 
 

@@ -20,7 +20,8 @@
 
             android:textAlignment="center"
             android:textColor="@color/dark_navy_blue"
-            android:textSize="25sp" />
+            android:textSize="30dp"
+            android:fontFamily="@font/font_2"/>
 
 
         <EditText
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:hint="Last name"
+            android:fontFamily="@font/font_2"
             android:drawablePadding="9dp"
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:layout_marginStart="24dp"
@@ -49,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="First name"
+            android:fontFamily="@font/font_2"
             android:drawablePadding="9dp"
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:layout_marginStart="24dp"
@@ -71,11 +74,12 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:drawableLeft="@drawable/ic_num"
             android:drawablePadding="9dp"
             android:hint="Years of experience"
             android:inputType="textPhonetic"
             android:maxLines="1"
+            android:fontFamily="@font/font_2"
             android:textColor="@android:color/black" />
 
 
@@ -97,6 +101,7 @@
             android:layout_marginRight="24dp"
             android:background="@android:color/transparent"
             android:maxLines="1"
+            android:fontFamily="@font/font_2"
             android:inputType="textEmailAddress"
             android:textColor="@android:color/black" />
 
@@ -116,6 +121,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLines="1"
+            android:fontFamily="@font/font_2"
             android:textColor="@android:color/black" />
 
         <EditText
@@ -133,6 +139,7 @@
             android:hint="Confirm password"
             android:inputType="textPassword"
             android:maxLines="1"
+            android:fontFamily="@font/font_2"
             android:textColor="@android:color/black" />
 
         <Button
@@ -148,6 +155,7 @@
             android:text="Register"
             android:textColorHighlight="@color/dark_blue"
             app:cornerRadius="40dp"
+            android:fontFamily="@font/font_2"
             app:iconTint="@color/dark_blue" />
 
         <TextView
@@ -161,6 +169,7 @@
             android:text="Already have account? Login"
             android:textAlignment="center"
             android:textColor="#8BC34A"
+            android:fontFamily="@font/font_2"
             android:translationY="-20px" />
 
         <TextView
@@ -205,7 +214,7 @@
             android:layout_marginLeft="200dp"
             android:layout_marginTop="95dp"
 
-
+            android:fontFamily="@font/font_2"
             android:drawableLeft="@drawable/ic_person_black_24dp" />
 
         <TextView
@@ -213,6 +222,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialization:"
+            android:fontFamily="@font/font_2"
             android:layout_marginTop="100dp"
             android:layout_marginLeft="72dp"
             android:layout_marginRight="24dp"/>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dash_ui"
+    android:background="@drawable/bg_ui"
     tools:context=".ui.Appointment.Doctor_List">
 <FrameLayout
     android:layout_width="match_parent"
@@ -15,11 +15,11 @@
         android:id="@+id/SelectDoctor"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:text="Doctor List"
         android:gravity="center_horizontal"
         android:textColor="@color/white"
-
+        android:fontFamily="@font/font_2"
         />
     <TextView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
         android:text="Please select your doctor of choice"
         android:gravity="center_horizontal"
         android:textColor="@color/light_blue"
-
+        android:fontFamily="@font/font_2"
         />
     <view
         android:id="@+id/users_recyclerView"
