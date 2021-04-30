@@ -20,11 +20,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.R;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.No_Internet;
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
-import com.example.mobidoc.R;
 import com.example.mobidoc.utils.Utilities;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -187,7 +187,7 @@ public class Login extends AppCompatActivity {
 
         // Check for both field is empty or not
         if (getEmailId.equals("") & (getEmailId.length() == 0) & !m.matches()
-                & getPassword.equals("") & (getPassword.length() == 0)) {
+                & getPassword.equals("") & (getPassword.length() < 8)) {
             Email.setError("Invalid Email : Please enter a valid email");
             Password.setError("Invalid Password : Please enter a password");
             email =  false;
@@ -203,7 +203,7 @@ public class Login extends AppCompatActivity {
             email = false;
         }
 
-        if(getPassword.equals("") & (getPassword.length() == 0)){
+        if(getPassword.equals("") & (getPassword.length() < 8) & getPassword.equals(" ")){
             Password.setError("Password cannot be empty");
             pass = false;
         }
