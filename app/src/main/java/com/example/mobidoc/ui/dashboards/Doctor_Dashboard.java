@@ -12,25 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.utils.Utilities;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import io.paperdb.Paper;
 
 public class Doctor_Dashboard extends AppCompatActivity {
-    FirebaseUser firebaseUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor__dashboard);
-
-
-
     }
 
     @Override
@@ -53,26 +44,4 @@ public class Doctor_Dashboard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getAccount(String UID,String USER_TYPE) {
-
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference();
-
-        DatabaseReference user_ref = ref.child(USER_TYPE); //Doctor or Patient
-        user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-
-
-                    //TODO: Get User Info
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 }

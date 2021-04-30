@@ -68,6 +68,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -104,7 +105,7 @@
                 >
 
                 <LinearLayout
-                    android:id="@+id/consultation"
+                    android:id="@+id/ll_consultation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
@@ -122,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:id="@+id/BookAppointment"
-                        android:text="Book Consulation"
+                        android:text="Book Consultation"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -142,7 +143,7 @@
                 >
 
                 <LinearLayout
-                    android:id="@+id/bookings"
+                    android:id="@+id/ll_appointments"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
@@ -179,33 +180,35 @@
                 android:layout_marginBottom="40dp"
                 >
 
-                <LinearLayout
-                    android:id="@+id/settings"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:gravity = "left"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src ="@drawable/ic_settings"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:id="@+id/ViewSettings"
-                        android:text="Settings"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-
-                </LinearLayout>
-
             </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/settings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:gravity="left"
+                    android:src="@drawable/ic_settings" />
+
+                <TextView
+                    android:id="@+id/ViewSettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="Settings"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
 
         </GridLayout>
 
