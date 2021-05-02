@@ -41,7 +41,7 @@ import io.paperdb.Paper;
 public class DoctorRegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, qualificationsET, experienceET;
-    private Spinner specializationSPN;
+    public Spinner specializationSPN;
     private String specialization;
     private TextView showPasswordTW, showConfirmPasswordTW, haveAccountTW;
     public Button registerBTN;
@@ -77,7 +77,8 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
             String confirmPassword = confirmPasswordET.getText().toString();
             String fName = fNameET.getText().toString().trim();
             String lName = lNameET.getText().toString().trim();
-            String qualifications = qualificationsET.getText().toString().trim();
+//            String qualifications = qualificationsET.getText().toString().trim();
+            String qualifications = "";
             String experience = experienceET.getText().toString().trim();
 
             if (validateDetails(email, password, confirmPassword, fName, lName, qualifications, experience, true)) {
@@ -200,7 +201,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         return false;
     }
 
-    private boolean validateFName(String fName, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
+    public boolean validateFName(String fName, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
         if (fName.isEmpty()) {
             if (displayErrors) {
                 fNameET.setError("First name cannot be empty");
@@ -223,7 +224,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
     private boolean validateQualifications(String qualifications, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
         if (qualifications.isEmpty()) {
             if (displayErrors) {
-                qualificationsET.setError("Qualification(s) cannot be empty");
+//                qualificationsET.setError("Qualification(s) cannot be empty");
             }
             return false;
         }
