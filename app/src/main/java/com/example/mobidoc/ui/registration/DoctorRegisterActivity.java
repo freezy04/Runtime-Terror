@@ -43,7 +43,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
     public EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, qualificationsET, experienceET;
     public Spinner specializationSPN;
     private String specialization;
-    private TextView showPasswordTW, showConfirmPasswordTW, haveAccountTW;
+    public TextView showPasswordTW, showConfirmPasswordTW, haveAccountTW;
     public Button registerBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
@@ -143,7 +143,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         specialization = "Other";
     }
 
-    private void toggleShowPassword(EditText password, TextView showPassword) {
+    public void toggleShowPassword(EditText password, TextView showPassword) {
         if (showPassword.getText().equals(" ")) {
             showPassword.setText(".");
             password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
