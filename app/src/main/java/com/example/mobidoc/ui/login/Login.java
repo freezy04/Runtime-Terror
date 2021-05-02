@@ -70,11 +70,9 @@ public class Login extends AppCompatActivity {
         RememberMe();
 
         login_Button.setOnClickListener(v -> {
-            if (ValidateDetails(User_email, User_password)) { LoginUser();  }
+            if (ValidateDetails(User_email, User_password)) { LoginUser(); }
 
-            else {
-                Toast.makeText(Login.this, "Invalid Login Details", Toast.LENGTH_SHORT).show();
-            }
+            else { Toast.makeText(Login.this, "Invalid Login Details", Toast.LENGTH_SHORT).show(); }
         });
 
 
@@ -178,33 +176,27 @@ public class Login extends AppCompatActivity {
     }
 
     public boolean ValidateDetails(EditText Email, EditText Password) {
-        boolean email = true,pass=true;
+
+        boolean email = true, pass=true;
         String getEmailId = Email.getText().toString();
         String getPassword = Password.getText().toString();
         final String regEx = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(getEmailId);
 
-        // Check for both field is empty or not
-        if (getEmailId.equals("") & (getEmailId.length() == 0) & !m.matches()
-                & getPassword.equals("") & (getPassword.length() < 8)) {
-            Email.setError("Invalid Email : Please enter a valid email");
-            Password.setError("Invalid Password : Please enter a password");
-            email =  false;
-            pass = false;
-        }
 
         if(!m.matches()){
             Email.setError("Invalid Email : Please enter a valid email");
             email = false;
         }
-        if(getEmailId.equals("") & (getEmailId.length() == 0) & (!m.matches()) ){
+
+        if(getEmailId.equals("") && (getEmailId.length() == 0) && (!m.matches()) ){
             Email.setError("Invalid Email : Please enter a valid email");
             email = false;
         }
 
-        if(getPassword.equals("") & (getPassword.length() < 8) & getPassword.equals(" ")){
-            Password.setError("Password cannot be empty");
+        if(getPassword.equals("") || (getPassword.length() < 8)){
+            Password.setError("Invalid Password : Length cannot be less than 8");
             pass = false;
         }
 
@@ -285,7 +277,5 @@ public class Login extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
-
-
 
 }

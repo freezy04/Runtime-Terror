@@ -79,12 +79,12 @@ public class LoginTest {
         });
     }
 
-    /* @Test
+    @Test
     public void CheckUserPassword_UserNotLoggedIn_isUnSuccessful(){
         activityScenarioRule.getScenario().onActivity(activity ->{
             activity.User_email.setText("gradea@yahoo.com");
             activity.User_password.setText("abe");
             assertFalse(activity.ValidateDetails(activity.User_email, activity.User_password));
         });
-    } */
+    }
 }
