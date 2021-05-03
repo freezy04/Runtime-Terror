@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.dashboards.Doctor_Dashboard" />
         <activity android:name=".ui.registration.DoctorRegisterActivity" />
         <activity android:name=".ui.registration.PatientRegisterActivityTwo" />
