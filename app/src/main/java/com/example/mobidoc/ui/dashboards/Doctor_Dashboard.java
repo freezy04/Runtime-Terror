@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobidoc.Doctor_EditProfileActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.utils.Utilities;
@@ -16,12 +18,19 @@ import com.example.mobidoc.utils.Utilities;
 import io.paperdb.Paper;
 
 public class Doctor_Dashboard extends AppCompatActivity {
-
+    LinearLayout doctor_profile,doctor_appointments,doctor_patients,doctor_settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor__dashboard);
+
+        doctor_profile = findViewById(R.id.ll_dotor_profile);
+        doctor_profile.setOnClickListener(v -> {
+            startActivity(new Intent(Doctor_Dashboard.this, Doctor_EditProfileActivity.class));
+            finish();
+        });
+
     }
 
     @Override

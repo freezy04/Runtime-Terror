@@ -69,6 +69,7 @@
               >
 
               <LinearLayout
+                  android:id="@+id/ll_dotor_profile"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:gravity="center"
@@ -106,6 +107,7 @@
               >
 
               <LinearLayout
+                  android:id="@+id/ll_patient_records"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:gravity="center"
@@ -143,6 +145,7 @@
               >
 
               <LinearLayout
+                  android:id="@+id/ll_appointments"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:gravity="center"
@@ -182,6 +185,7 @@
               >
 
               <LinearLayout
+                  android:id="@+id/ll_doctor_settings"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:gravity="center"

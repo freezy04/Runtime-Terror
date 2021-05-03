@@ -58,20 +58,21 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal"
         android:layout_marginTop="150dp">
+
         <EditText
             android:id="@+id/Username"
             android:layout_width="334dp"
             android:layout_height="39dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/email"
             android:drawablePadding="9dp"
-            android:hint="Email Address"
             android:fontFamily="@font/font_2"
+            android:hint="Email Address"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.517"
@@ -86,6 +87,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center_horizontal"
         android:layout_marginTop="200dp">
+
         <EditText
             android:id="@+id/Password"
             android:layout_width="334dp"
