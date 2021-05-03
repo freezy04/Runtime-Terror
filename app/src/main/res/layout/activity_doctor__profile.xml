@@ -7,6 +7,28 @@
     android:orientation="vertical"
     tools:context="com.example.mobidoc.ui.registration.Doctor_ProfileActivity">
 
+    <include android:id="@+id/doctor_profile_toolbar"
+        layout="@layout/app_bar_layout" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Doctor ID : D2322"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_gravity="right"/>
+
+    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"

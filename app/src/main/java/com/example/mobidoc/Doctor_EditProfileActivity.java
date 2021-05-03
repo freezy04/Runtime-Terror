@@ -32,10 +32,10 @@ public class Doctor_EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_doctor__edit_profile);
 
         //Toolbar
-        mToolbar = (Toolbar) findViewById(R.id.doctor_editProfile_toolbar);
+       /* mToolbar = (Toolbar) findViewById(R.id.doctor_editProfile_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Edit Profile");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
 
         mName = (TextView) findViewById(R.id.edit_doctor_name);
