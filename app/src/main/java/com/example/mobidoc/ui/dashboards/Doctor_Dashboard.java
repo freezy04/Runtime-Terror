@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.Doctor_EditProfileActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.ui.registration.Doctor_ProfileActivity;
 import com.example.mobidoc.utils.Utilities;
 
 import io.paperdb.Paper;
@@ -27,7 +27,7 @@ public class Doctor_Dashboard extends AppCompatActivity {
 
         doctor_profile = findViewById(R.id.ll_dotor_profile);
         doctor_profile.setOnClickListener(v -> {
-            startActivity(new Intent(Doctor_Dashboard.this, Doctor_EditProfileActivity.class));
+            startActivity(new Intent(Doctor_Dashboard.this, Doctor_ProfileActivity.class));
             finish();
         });
 
