@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobiDoc">
-        <activity android:name=".ui.registration.Doctor_ProfileActivity"></activity>
-        <!-- <activity android:name=".ui.MainActivity" android:label="Activity Title"  android:theme="@style/AppTheme.NoActionBar"/> -->
+        <activity android:name=".models.ViewPatientList"></activity>
+        <activity android:name=".ui.registration.Doctor_ProfileActivity" /> <!-- <activity android:name=".ui.MainActivity" android:label="Activity Title"  android:theme="@style/AppTheme.NoActionBar"/> -->
         <activity android:name=".Doctor_EditProfileActivity" />
         <activity android:name=".ui.Appointment.Booking" />
         <activity android:name=".ui.Appointment.Doctor_List" />
