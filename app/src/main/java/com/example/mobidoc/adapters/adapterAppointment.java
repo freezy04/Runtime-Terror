@@ -60,6 +60,7 @@ public class adapterAppointment extends RecyclerView.Adapter<adapterAppointment.
             public void onClick(View v) {
                 Intent intent = new Intent(context, Booking.class);
                 intent.putExtra("hisUid", hisUID);
+                intent.putExtra("hisName",userName);
                 context.startActivity(intent);
             }
         });
