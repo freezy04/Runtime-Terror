@@ -72,6 +72,18 @@
             android:fontFamily="@font/font_2"
             android:layout_marginTop="20dp"
             android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/reason"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/font_2"
+            android:inputType="textLongMessage"
+            android:background="@drawable/recycler"
+            android:hint="Reason for the appointment"
+            android:textColor="@android:color/black"/>
+
         <Button
             android:layout_width="match_parent"
             android:id="@+id/_Book"
