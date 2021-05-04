@@ -1,5 +1,6 @@
 package com.example.mobidoc.ui.Appointment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -26,6 +28,8 @@ import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.example.mobidoc.ui.registration.Register;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -38,13 +42,14 @@ import java.util.TimeZone;
 
 public class Booking extends AppCompatActivity {
 
-    TextView mDisplayDate,mDisplayTime;
+    TextView mDisplayDate, mDisplayTime;
     Button mBook;
+    EditText Reason;
     DatePickerDialog.OnDateSetListener onDateSetListener;
-    String Sdate, Stime, myUid,DoctorUid;
+    String Sdate, Stime, myUid, myName, DoctorUid, DoctorName;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
-    int hour,Minute;
+    int hour, Minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,7 @@ public class Booking extends AppCompatActivity {
         mDisplayDate = findViewById(R.id.Date);
         mDisplayTime = findViewById(R.id.Time);
         mBook = findViewById(R.id._Book);
+        Reason = findViewById(R.id.reason);
 
         checkUserStatus();
         progressDialog = new ProgressDialog(this);
@@ -61,6 +67,8 @@ public class Booking extends AppCompatActivity {
 
         Intent intent = getIntent();
         DoctorUid = intent.getStringExtra("hisUid");
+        DoctorName = intent.getStringExtra("hisName");
+
 
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +82,7 @@ public class Booking extends AppCompatActivity {
                         Booking.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         onDateSetListener,
-                        year,month,day);
+                        year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
@@ -101,15 +109,15 @@ public class Booking extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         Calendar c = Calendar.getInstance();
-                        c.set(Calendar.HOUR_OF_DAY,hourOfDay);
-                        c.set(Calendar.MINUTE,minute);
+                        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        c.set(Calendar.MINUTE, minute);
                         c.setTimeZone(TimeZone.getDefault());
                         SimpleDateFormat format = new SimpleDateFormat("k:mm a");
                         String time = format.format(c.getTime());
                         Stime = time;
                         mDisplayTime.setText(time);
                     }
-                },hour,Minute,false
+                }, hour, Minute, false
                 );
                 timePickerDialog.show();
             }
@@ -128,7 +136,9 @@ public class Booking extends AppCompatActivity {
                         String _Date = Sdate.trim();
                         String _Time = Stime.trim();
 
-                        BookAppointment(DoctorUid,_Date,_Time);
+                        String reason_for_appointment = Reason.getText().toString();
+
+                        BookAppointment(DoctorUid, _Date, _Time, DoctorName, reason_for_appointment);
                     }
                 });
                 dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -144,7 +154,7 @@ public class Booking extends AppCompatActivity {
         });
     }
 
-    private void BookAppointment(String DoctorUid, String Date,String Time){
+    private void BookAppointment(String DoctorUid, String Date, String Time, String Doctor_Name, String Reason_for_appointment) {
         progressDialog.show();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -152,9 +162,12 @@ public class Booking extends AppCompatActivity {
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("PatientUid", myUid);
+        hashMap.put("Patient_Name", myName);
         hashMap.put("DoctorUid", DoctorUid);
+        hashMap.put("Doctor_Name", Doctor_Name);
         hashMap.put("Date_for_appointment", Date);
         hashMap.put("Time_for_appointment", Time);
+        hashMap.put("Reason_for_appointment", Reason_for_appointment);
         databaseReference.child("Appointments").push().setValue(hashMap);
 
         mDisplayTime.setText("");
@@ -167,15 +180,13 @@ public class Booking extends AppCompatActivity {
         finish();
     }
 
-    private void checkUserStatus(){
+    private void checkUserStatus() {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user != null){
+        if (user != null) {
             // mProfile.setText(user.getEmail());
             myUid = user.getUid();
-        }else{
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            myName = user.getDisplayName();
         }
     }
 }
