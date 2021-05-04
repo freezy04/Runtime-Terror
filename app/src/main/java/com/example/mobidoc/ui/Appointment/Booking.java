@@ -25,7 +25,6 @@ import com.example.mobidoc.models.Patient;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
-import com.example.mobidoc.ui.registration.Register;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
