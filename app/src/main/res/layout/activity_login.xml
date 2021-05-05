@@ -147,7 +147,7 @@
 
         <TextView
             android:id="@+id/show_pass"
-            android:layout_width="12dp"
+            android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_marginLeft="250dp"
             android:background="@drawable/show_password"

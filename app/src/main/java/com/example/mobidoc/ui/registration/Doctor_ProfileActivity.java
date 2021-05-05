@@ -1,26 +1,34 @@
 package com.example.mobidoc.ui.registration;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import androidx.appcompat.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.mobidoc.Doctor_EditProfileActivity;
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.example.mobidoc.Doctor_EditProfileActivity;
+import com.example.mobidoc.R;
+import com.example.mobidoc.models.Doctor;
+import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.utils.Utilities;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import com.example.mobidoc.R;
 import com.google.firebase.database.ValueEventListener;
+
+import io.paperdb.Paper;
 
 public class Doctor_ProfileActivity extends AppCompatActivity {
 
@@ -44,46 +52,38 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         mEmail = (TextView) findViewById(R.id.doctor_email);
         mAge = (TextView) findViewById(R.id.doctor_age);
         mContact = (TextView) findViewById(R.id.doctor_contact);
-        mAddress = (TextView) findViewById(R.id.doctor_address);
 
-        //Toolbar
-        /*mToolbar = (Toolbar) findViewById(R.id.doctor_profile_toolbar);
-       setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Profile");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        NavBar();
+
+        getDoctorDetails();
+
 
         mName = (TextView) findViewById(R.id.doctor_name);
 
         mShowRosterPlanButton = (Button) findViewById(R.id.show_rosterPlan_button);
-        mShowRosterPlanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
-                alertDialogBox();
+        mShowRosterPlanButton.setOnClickListener(v -> {
+            //Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
+            alertDialogBox();
 
 
-            }
         });
 
         mEditProfileButton = (Button) findViewById(R.id.edit_profile_button);
-        mEditProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(Doctor_ProfileActivity.this,"Edit Profile Clicked",Toast.LENGTH_SHORT).show();
+        mEditProfileButton.setOnClickListener(v -> {
+            //Toast.makeText(Doctor_ProfileActivity.this,"Edit Profile Clicked",Toast.LENGTH_SHORT).show();
 
-                Intent editProfile_Intent = new Intent(Doctor_ProfileActivity.this, Doctor_EditProfileActivity.class);
+            Intent editProfile_Intent = new Intent(Doctor_ProfileActivity.this, Doctor_EditProfileActivity.class);
 
-                editProfile_Intent.putExtra("Name",name);
-                editProfile_Intent.putExtra("Specialization",specialization);
-                editProfile_Intent.putExtra("Experiance",experiance);
-                editProfile_Intent.putExtra("Education",education);
-                editProfile_Intent.putExtra("Email",email);
-                editProfile_Intent.putExtra("Age",age);
-                editProfile_Intent.putExtra("Contact",contact);
-                editProfile_Intent.putExtra("Address",address);
+            editProfile_Intent.putExtra("Name",name);
+            editProfile_Intent.putExtra("Specialization",specialization);
+            editProfile_Intent.putExtra("Experiance",experiance);
+            editProfile_Intent.putExtra("Education",education);
+            editProfile_Intent.putExtra("Email",email);
+            editProfile_Intent.putExtra("Age",age);
+            editProfile_Intent.putExtra("Contact",contact);
+            editProfile_Intent.putExtra("Address",address);
 
-                startActivity(editProfile_Intent);
-            }
+            startActivity(editProfile_Intent);
         });
 
     }
@@ -123,53 +123,76 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         }
 
         builder.setView(view);
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        builder.setNegativeButton("CANCEL", (dialog, which) -> dialog.dismiss());
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        mDoctorDatabase.child("Doctor_Details").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        public void getDoctorDetails(){
 
-                name = dataSnapshot.child("Name").getValue().toString();
-                email = dataSnapshot.child("Email").getValue().toString();
-                contact = dataSnapshot.child("Contact").getValue().toString();
-                education = dataSnapshot.child("Education").getValue().toString();
-                specialization = dataSnapshot.child("Specialization").getValue().toString();
-                experiance = dataSnapshot.child("Experiance").getValue().toString();
-                age = dataSnapshot.child("Age").getValue().toString();
-                address = dataSnapshot.child("Address").getValue().toString();
-                shift = dataSnapshot.child("Shift").getValue().toString();
+            FirebaseDatabase db = FirebaseDatabase.getInstance();  // get instance of our Firebase Database
+            DatabaseReference ref = db.getReference();             // retrieves the specific Realtime Database
+            DatabaseReference user_ref = ref.child("Doctors");
 
-                mName.setText(name);
-                mSpecialization.setText(specialization);
-                mExperiance.setText(experiance);
-                mEducation.setText(education);
-                mEmail.setText(email);
-                mAge.setText(age);
-                mContact.setText(contact);
-                mAddress.setText(address);
+            user_ref.orderByKey().equalTo(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            }
+                    for (DataSnapshot ds : snapshot.getChildren()) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                        Doctor doctor = ds.getValue(Doctor.class);
+                        mName.setText(doctor.getFirst_name());
+                        mSpecialization.setText(doctor.getSpecialization());
+                        mExperiance.setText(doctor.getExperience());
+                        mEducation.setText(doctor.getQualifications());
+                        mEmail.setText(doctor.getEmail());
+                        mAge.setText(doctor.getLast_name());
 
-            }
-        });
+                        Log.d("ProfileDoc", "This is " + doctor.getEmail());
 
+                    }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    public void NavBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Doctor Profile");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.log_out:
+                Paper.book().delete(Utilities.USER_KEY);
+                Paper.book().delete(Utilities.Doctor);
+                startActivity(new Intent(Doctor_ProfileActivity.this , MainActivity.class));
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
 }
