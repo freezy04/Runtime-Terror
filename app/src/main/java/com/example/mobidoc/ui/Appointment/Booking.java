@@ -159,6 +159,9 @@ public class Booking extends AppCompatActivity {
 
         String timestamp = String.valueOf(System.currentTimeMillis());
 
+//        Appointment appointment = new Appointment(myUid, myName, DoctorUid, Doctor_Name, Date, Time, Reason_for_appointment, "0");
+//        databaseReference.child("Appointments").push().setValue(appointment);
+
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("PatientUid", myUid);
         hashMap.put("Patient_Name", myName);
@@ -167,6 +170,7 @@ public class Booking extends AppCompatActivity {
         hashMap.put("Date_for_appointment", Date);
         hashMap.put("Time_for_appointment", Time);
         hashMap.put("Reason_for_appointment", Reason_for_appointment);
+        hashMap.put("Appointment_Cost", "0");
         databaseReference.child("Appointments").push().setValue(hashMap);
 
         mDisplayTime.setText("");

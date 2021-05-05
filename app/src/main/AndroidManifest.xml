@@ -34,6 +34,7 @@
         <activity android:name=".ui.dashboards.Patient_Dashboard" />
         <activity android:name=".ui.No_Internet" />
         <activity android:name=".ui.login.Login" />
+        <activity android:name=".ui.Appointment.DoctorConfirmAppointmentResults" />
     </application>
 
 </manifest>

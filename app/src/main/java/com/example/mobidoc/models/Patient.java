@@ -4,11 +4,12 @@ import com.google.firebase.firestore.PropertyName;
 
 public class Patient {
 
-    private String uid, first_name,last_name, user_type, email , age, sex, diseaseHistory, medicationHistory, allergies;
+    private String uid, first_name,last_name, user_type, email , age, sex, diseaseHistory, medicationHistory, allergies, currentMedication;
 
     public Patient(){}
 
-    public Patient(String uid, String first_name, String last_name, String user_type, String email, String age, String sex, String diseaseHistory, String medicationHistory, String allergies) {//with uid
+    public Patient(String uid, String first_name, String last_name, String user_type, String email, String age,
+                   String sex, String diseaseHistory, String medicationHistory, String allergies, String currentMedication) {//with uid
         this.uid = uid;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -19,9 +20,11 @@ public class Patient {
         this.diseaseHistory = diseaseHistory;
         this.medicationHistory = medicationHistory;
         this.allergies = allergies;
+        this.currentMedication = currentMedication;
     }
 
-    public Patient(String first_name, String last_name, String user_type, String email, String age, String sex, String diseaseHistory, String medicationHistory, String allergies) {//without uid
+    public Patient(String first_name, String last_name, String user_type, String email, String age,
+                   String sex, String diseaseHistory, String medicationHistory, String allergies, String currentMedication) {//without uid
         this.first_name = first_name;
         this.last_name = last_name;
         this.user_type = user_type;
@@ -31,6 +34,7 @@ public class Patient {
         this.diseaseHistory = diseaseHistory;
         this.medicationHistory = medicationHistory;
         this.allergies = allergies;
+        this.currentMedication = currentMedication;
     }
 
     @PropertyName("uid")
@@ -112,5 +116,14 @@ public class Patient {
     @PropertyName("allergies")
     public void setAllergies(String allergies) {
         this.allergies = allergies;
+    }
+
+    @PropertyName("CurrentMedication")
+    public String getCurrentMedication() {
+        return currentMedication;
+    }
+    @PropertyName("CurrentMedication")
+    public void setCurrentMedication(String currentMedication) {
+        this.currentMedication = currentMedication;
     }
 }

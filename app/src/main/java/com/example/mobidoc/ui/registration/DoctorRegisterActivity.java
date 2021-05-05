@@ -135,9 +135,11 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         specializationSPN.setAdapter(adapter);
         specializationSPN.setOnItemSelectedListener(this);
     }
+
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         specialization = parent.getItemAtPosition(pos).toString();
     }
+
     public void onNothingSelected(AdapterView<?> parent) {
         specialization = "Other";
     }
