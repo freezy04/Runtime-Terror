@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.mobidoc.Doctor_EditProfileActivity;
 import com.example.mobidoc.R;
@@ -34,7 +33,6 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
     private TextView mName, mEmail, mSpecialization, mExperiance, mAge, mContact, mAddress, mEducation;
     private Button mShowRosterPlanButton, mEditProfileButton;
-    private Toolbar mToolbar;
 
     private String name, specialization, experiance, education, email, age, contact, address, shift;
 
