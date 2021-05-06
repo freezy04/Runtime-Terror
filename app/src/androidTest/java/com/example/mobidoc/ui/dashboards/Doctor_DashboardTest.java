@@ -3,7 +3,6 @@ package com.example.mobidoc.ui.dashboards;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Rule;
-import org.junit.Test;
 
 public class Doctor_DashboardTest {
 
@@ -17,12 +16,12 @@ public class Doctor_DashboardTest {
         });
     }*/
 
-    @Test
+    /*@Test
     public void UserLoggedIn_ClickOnBookedAppointments(){
         activityScenarioRule.getScenario().onActivity(activity -> {
             activity.doctor_appointments.performClick();
         });
-    }
+    } */
 
     /* @Test
     public void UserLoggedIn_ClickOnPatientRecords(){
