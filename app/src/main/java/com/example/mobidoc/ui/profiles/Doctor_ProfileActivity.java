@@ -1,4 +1,4 @@
-package com.example.mobidoc.ui.registration;
+package com.example.mobidoc.ui.profiles;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.Doctor_EditProfileActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Doctor;
 import com.example.mobidoc.ui.MainActivity;

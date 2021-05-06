@@ -11,15 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
-import com.example.mobidoc.models.ViewPatientList;
+import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
+import com.example.mobidoc.ui.Appointment.DoctorViewPendingAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
-import com.example.mobidoc.ui.registration.Doctor_ProfileActivity;
+import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
 import com.example.mobidoc.utils.Utilities;
 
 import io.paperdb.Paper;
 
 public class Doctor_Dashboard extends AppCompatActivity {
-    LinearLayout doctor_profile,doctor_appointments,doctor_patients,doctor_settings;
+    LinearLayout doctor_profile,doctor_pending_appointments,doctor_patients,doctor_accepted_appointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,15 @@ public class Doctor_Dashboard extends AppCompatActivity {
             finish();
         });
 
-        doctor_appointments = findViewById(R.id.ll_appointments);
-        doctor_appointments.setOnClickListener(v -> {
-            startActivity(new Intent(Doctor_Dashboard.this, ViewPatientList.class));
+        doctor_pending_appointments = findViewById(R.id.ll_pending_appointments);
+        doctor_pending_appointments.setOnClickListener(v -> {
+            startActivity(new Intent(Doctor_Dashboard.this, DoctorViewPendingAppointmentsActivity.class));
+            finish();
+        });
+
+        doctor_accepted_appointments = findViewById(R.id.ll_accepted_appointments);
+        doctor_accepted_appointments.setOnClickListener(v -> {
+            startActivity(new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class));
             finish();
         });
 

@@ -1,4 +1,4 @@
-package com.example.mobidoc.models;
+package com.example.mobidoc.ui.Appointment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,20 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.mobidoc.R;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.SearchView;
 
 
-import com.example.mobidoc.adapters.adapterAppointment;
 import com.example.mobidoc.adapters.adapterPatient;
-import com.example.mobidoc.models.Doctor;
-import com.example.mobidoc.ui.Appointment.Doctor_List;
-import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.models.Appointment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPatientList extends AppCompatActivity {
+public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     adapterPatient AdapterPatient;
     List<Appointment> userPatient;
@@ -42,12 +32,12 @@ public class ViewPatientList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_patient_list);
+        setContentView(R.layout.activity_doctor_view_appointments);
 
         firebaseAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.users_recyclerView2);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ViewPatientList.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(DoctorViewAcceptedAppointmentsActivity.this));
         userPatient = new ArrayList<>();
         getAllUsers();
     }
@@ -68,11 +58,11 @@ public class ViewPatientList extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Appointment  modelUsers = ds.getValue(Appointment.class);
                     modelUsers.setId(ds.getKey());
-                    if(modelUsers.getDoctorUid().equals(fUser.getUid())){
+                    if(modelUsers.getDoctorUid().equals(fUser.getUid()) && modelUsers.getStatus().equals("accepted")){
                         userPatient.add(modelUsers);
                     }
 
-                    AdapterPatient = new adapterPatient(ViewPatientList.this, userPatient);
+                    AdapterPatient = new adapterPatient(DoctorViewAcceptedAppointmentsActivity.this, userPatient);
                     recyclerView.setAdapter(AdapterPatient);
                 }
             }

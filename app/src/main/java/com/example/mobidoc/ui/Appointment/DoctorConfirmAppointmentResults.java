@@ -3,7 +3,6 @@ package com.example.mobidoc.ui.Appointment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,10 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.models.Patient;
-import com.example.mobidoc.models.ViewPatientList;
-import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
-import com.example.mobidoc.ui.login.Login;
-import com.example.mobidoc.ui.registration.DoctorRegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,11 +44,11 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
         confirmBTN.setOnClickListener(v -> {
             updateDetails();
-            startActivity(new Intent(DoctorConfirmAppointmentResults.this, ViewPatientList.class));
+            startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
             finish();
         });
         BackBTN.setOnClickListener(v -> {
-            startActivity(new Intent(DoctorConfirmAppointmentResults.this, ViewPatientList.class));
+            startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
             finish();
         });
 
@@ -124,7 +119,7 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
                 }
                 progressDialog.dismiss();
                 Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
-                Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, ViewPatientList.class);
+                Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class);
                 startActivity(doctorViewAppointments);
                 finish();
             }
