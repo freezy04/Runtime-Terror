@@ -36,7 +36,7 @@ import java.util.List;
 public class ViewPatientList extends AppCompatActivity {
     RecyclerView recyclerView;
     adapterPatient AdapterPatient;
-    List<BookedAppointmentList> userPatient;
+    List<Appointment> userPatient;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -66,8 +66,8 @@ public class ViewPatientList extends AppCompatActivity {
 
                 userPatient.clear();
                 for(DataSnapshot ds: snapshot.getChildren()){
-                    BookedAppointmentList  modelUsers = ds.getValue(BookedAppointmentList.class);
-
+                    Appointment  modelUsers = ds.getValue(Appointment.class);
+                    modelUsers.setId(ds.getKey());
                     if(modelUsers.getDoctorUid().equals(fUser.getUid())){
                         userPatient.add(modelUsers);
                     }

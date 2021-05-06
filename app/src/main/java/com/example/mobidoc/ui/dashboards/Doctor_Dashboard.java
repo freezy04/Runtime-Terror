@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.ViewPatientList;
-import com.example.mobidoc.ui.Appointment.DoctorConfirmAppointmentResults;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.registration.Doctor_ProfileActivity;
 import com.example.mobidoc.utils.Utilities;
@@ -26,16 +25,6 @@ public class Doctor_Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor__dashboard);
-
-        //Gabe (2152375) added this block to go to the Doctor Confirm Appointment Results Screen
-        //just using the settings button for now until the doctor dashboard can be updated
-        doctor_settings = findViewById(R.id.ll_doctor_settings);
-        doctor_settings.setOnClickListener(v -> {
-            startActivity(new Intent(Doctor_Dashboard.this, DoctorConfirmAppointmentResults.class));
-            finish();
-        });
-
-
 
         doctor_profile = findViewById(R.id.ll_dotor_profile);
         doctor_profile.setOnClickListener(v -> {

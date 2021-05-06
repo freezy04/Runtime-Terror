@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.example.mobidoc.R;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.models.Patient;
 import com.example.mobidoc.models.ViewPatientList;
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.ui.login.Login;
 import com.example.mobidoc.ui.registration.DoctorRegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,9 +35,10 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
     public EditText newMedicationET, appointmentCostET;
     public Button confirmBTN , BackBTN;
+    private TextView headingTW;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
-    private String appointmentUID, patientUID;
+    private String appointmentUID, patientUID, patientName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         //initialize swing elements
         newMedicationET = findViewById(R.id.newMedicationET);
         appointmentCostET = findViewById(R.id.appointmentCostET);
+        headingTW = findViewById(R.id.headingTW);
         confirmBTN = findViewById(R.id.confirmBTN);
         BackBTN = findViewById(R.id.backBTN);
 
@@ -74,6 +78,9 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         Intent confirmResults = getIntent();
         appointmentUID = confirmResults.getStringExtra("appointmentUID");
         patientUID = confirmResults.getStringExtra("patientUID");
+        patientName = confirmResults.getStringExtra("patientName");
+
+        headingTW.setText(String.format("Appointment with %s", patientName));
 
         //set up progress dialog
         progressDialog = new ProgressDialog(this);
@@ -117,7 +124,9 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
                 }
                 progressDialog.dismiss();
                 Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
-                //TODO: switch to appropriate screen
+                Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, ViewPatientList.class);
+                startActivity(doctorViewAppointments);
+                finish();
             }
 
             @Override
@@ -128,7 +137,8 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         });
     }
 
-    private void updateMedication(String medication, String cost) {
+    private void confirmUpdates(String medication, String cost) {
+        progressDialog.show();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Patients");
         ref.addValueEventListener(new ValueEventListener() {
@@ -154,23 +164,18 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         });
     }
 
-
-    private void confirmUpdates(String medication, String cost) {
-        progressDialog.show();
-
-        //TODO: remove testing
-        patientUID = "u9d0ngAERLNk543UhIwhl4muRy82";
-        appointmentUID = "-MZxazD9vpT0F5aY1BaY";
-
-        updateMedication(medication, cost);
-    }
-
     private void updateDetails() {
         String newMedication = newMedicationET.getText().toString().trim();
         String appointmentCost = appointmentCostET.getText().toString().trim();
         if (costValid(appointmentCost)) {
             confirmUpdates(newMedication, appointmentCost);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 
 }

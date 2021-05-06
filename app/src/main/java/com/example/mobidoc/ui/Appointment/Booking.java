@@ -21,9 +21,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.mobidoc.R;
-import com.example.mobidoc.models.Patient;
-import com.example.mobidoc.ui.MainActivity;
-import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class Booking extends AppCompatActivity {
@@ -177,6 +174,7 @@ public class Booking extends AppCompatActivity {
         mDisplayTime.setText("");
         mDisplayDate.setText("");
 
+        progressDialog.dismiss();
         Toast.makeText(Booking.this,
                 "Appointment Booked...",
                 Toast.LENGTH_SHORT).show();

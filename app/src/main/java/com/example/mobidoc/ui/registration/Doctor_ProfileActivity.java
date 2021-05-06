@@ -61,7 +61,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         mShowRosterPlanButton = (Button) findViewById(R.id.show_rosterPlan_button);
         mShowRosterPlanButton.setOnClickListener(v -> {
             //Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
-            alertDialogBox();
+//            alertDialogBox();
 
 
         });
@@ -98,7 +98,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         TextView rosterLunchMorning = (TextView) view.findViewById(R.id.roster_lunch_morning);
         TextView rosterLunchEvening = (TextView) view.findViewById(R.id.roster_lunch_evening);
 
-        if(shift.equals("Morning")){
+//        if(shift.equals("Morning")){
 
             rosterShift.setText(shift);
 
@@ -108,17 +108,17 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
             rosterLunchMorning.setVisibility(View.VISIBLE);
             rosterLunchEvening.setVisibility(View.GONE);
 
-        }else {
-
-            rosterShift.setText(shift);
-
-            rosterTimingMorning.setVisibility(View.GONE);
-            rosterTimingEvening.setVisibility(View.VISIBLE);
-
-            rosterLunchMorning.setVisibility(View.GONE);
-            rosterLunchEvening.setVisibility(View.VISIBLE);
-
-        }
+//        }else {
+//
+//            rosterShift.setText(shift);
+//
+//            rosterTimingMorning.setVisibility(View.GONE);
+//            rosterTimingEvening.setVisibility(View.VISIBLE);
+//
+//            rosterLunchMorning.setVisibility(View.GONE);
+//            rosterLunchEvening.setVisibility(View.VISIBLE);
+//
+//        }
 
         builder.setView(view);
         builder.setNegativeButton("CANCEL", (dialog, which) -> dialog.dismiss());

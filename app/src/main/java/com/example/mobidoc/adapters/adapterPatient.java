@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobidoc.R;
-import com.example.mobidoc.models.BookedAppointmentList;
+import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.Appointment.DoctorConfirmAppointmentResults;
 
 import java.util.List;
@@ -17,9 +17,9 @@ import java.util.List;
 
 public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolder>{
     Context context;
-    List<BookedAppointmentList> userList;
+    List<Appointment> userList;
     TextView datetime2;
-       public adapterPatient(Context context, List<BookedAppointmentList> userList) {
+       public adapterPatient(Context context, List<Appointment> userList) {
         this.context = context;
         this.userList = userList;
     }
@@ -37,8 +37,9 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
 
-
-        String hisUID = userList.get(position).getDoctorUid();
+        String appointmentUID = userList.get(position).getId();
+        String patientUID = userList.get(position).getPatientUid();
+        String patientName = userList.get(position).getPatient_Name();
         // String userImage = userList.get(position).getImage();
         //String userPatientName = userList.get(position).getPatient_Name();
         //String userPatientMessage = userList.get(position).getPatient_Message();
@@ -52,7 +53,9 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DoctorConfirmAppointmentResults.class);
-                intent.putExtra("hisUid", hisUID);
+                intent.putExtra("appointmentUID", appointmentUID);
+                intent.putExtra("patientUID", patientUID);
+                intent.putExtra("patientName", patientName);
                 context.startActivity(intent);
             }
         });
