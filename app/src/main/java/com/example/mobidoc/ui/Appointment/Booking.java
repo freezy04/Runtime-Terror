@@ -130,8 +130,8 @@ public class Booking extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String _Date = Sdate.trim();
-                        String _Time = Stime.trim();
-//                        String _Time = "20:30 PM";
+//                        String _Time = Stime.trim();
+                        String _Time = "20:30 PM";
 
                         String reason_for_appointment = Reason.getText().toString();
 
@@ -157,19 +157,19 @@ public class Booking extends AppCompatActivity {
 
         String timestamp = String.valueOf(System.currentTimeMillis());
 
-//        Appointment appointment = new Appointment(myUid, myName, DoctorUid, Doctor_Name, Date, Time, Reason_for_appointment, "0");
-//        databaseReference.child("Appointments").push().setValue(appointment);
+        Appointment appointment = new Appointment(myUid, myName, DoctorUid, Doctor_Name, Date, Time, Reason_for_appointment, "0", "pending");
+        databaseReference.child("Appointments").push().setValue(appointment);
 
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("PatientUid", myUid);
-        hashMap.put("Patient_Name", myName +" "+ myNameL);
-        hashMap.put("DoctorUid", DoctorUid);
-        hashMap.put("Doctor_Name", Doctor_Name);
-        hashMap.put("Date_for_appointment", Date);
-        hashMap.put("Time_for_appointment", Time);
-        hashMap.put("Reason_for_appointment", Reason_for_appointment);
-        hashMap.put("Appointment_Cost", "0");
-        databaseReference.child("Appointments").push().setValue(hashMap);
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("PatientUid", myUid);
+//        hashMap.put("Patient_Name", myName +" "+ myNameL);
+//        hashMap.put("DoctorUid", DoctorUid);
+//        hashMap.put("Doctor_Name", Doctor_Name);
+//        hashMap.put("Date_for_appointment", Date);
+//        hashMap.put("Time_for_appointment", Time);
+//        hashMap.put("Reason_for_appointment", Reason_for_appointment);
+//        hashMap.put("Appointment_Cost", "0");
+//        databaseReference.child("Appointments").push().setValue(hashMap);
 
         mDisplayTime.setText("");
         mDisplayDate.setText("");

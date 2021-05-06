@@ -4,14 +4,15 @@ import com.google.firebase.firestore.PropertyName;
 
 public class Appointment {
 
-    private String id, PatientUid, Patient_Name, DoctorUid, Doctor_Name, Date_for_appointment, Time_for_appointment, Reason_for_appointment, Appointment_Cost;
+    private String id, PatientUid, Patient_Name, DoctorUid, Doctor_Name, Date_for_appointment,
+            Time_for_appointment, Reason_for_appointment, Appointment_Cost, status;
 
     public Appointment() {
     }
 
     //without id
-    public Appointment(String patientUid, String patient_Name, String doctorUid, String doctor_Name,
-                       String date_for_appointment, String time_for_appointment, String reason_for_appointment, String appointment_Cost) {
+    public Appointment(String patientUid, String patient_Name, String doctorUid, String doctor_Name, String date_for_appointment,
+                       String time_for_appointment, String reason_for_appointment, String appointment_Cost, String status) {
         PatientUid = patientUid;
         Patient_Name = patient_Name;
         DoctorUid = doctorUid;
@@ -20,11 +21,12 @@ public class Appointment {
         Time_for_appointment = time_for_appointment;
         Reason_for_appointment = reason_for_appointment;
         Appointment_Cost = appointment_Cost;
+        this.status = status;
     }
 
     //with id
-    public Appointment(String id, String patientUid, String patient_Name, String doctorUid, String doctor_Name,
-                       String date_for_appointment, String time_for_appointment, String reason_for_appointment, String appointment_Cost) {
+    public Appointment(String id, String patientUid, String patient_Name, String doctorUid, String doctor_Name, String date_for_appointment,
+                       String time_for_appointment, String reason_for_appointment, String appointment_Cost, String status) {
         this.id = id;
         PatientUid = patientUid;
         Patient_Name = patient_Name;
@@ -34,6 +36,7 @@ public class Appointment {
         Time_for_appointment = time_for_appointment;
         Reason_for_appointment = reason_for_appointment;
         Appointment_Cost = appointment_Cost;
+        this.status = status;
     }
 
     @PropertyName("id")
@@ -124,5 +127,15 @@ public class Appointment {
     @PropertyName("Appointment_Cost")
     public void setAppointment_Cost(String appointment_Cost) {
         Appointment_Cost = appointment_Cost;
+    }
+
+    @PropertyName("status")
+    public String getStatus() {
+        return status;
+    }
+
+    @PropertyName("status")
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

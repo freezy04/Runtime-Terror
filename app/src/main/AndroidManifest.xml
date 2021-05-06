@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobiDoc">
-        <activity android:name=".ui.Appointment.PatientViewAppoinmentActivity"></activity>
-        <activity android:name=".models.ViewPatientList" />
-        <activity android:name=".ui.registration.Doctor_ProfileActivity" /> <!-- <activity android:name=".ui.MainActivity" android:label="Activity Title"  android:theme="@style/AppTheme.NoActionBar"/> -->
-        <activity android:name=".Doctor_EditProfileActivity" />
+        <activity android:name=".ui.Appointment.PatientViewAppointmentActivity"></activity>
+        <activity android:name=".ui.Appointment.DoctorViewAcceptedAppointmentsActivity" />
+        <activity android:name=".ui.profiles.Doctor_ProfileActivity" /> <!-- <activity android:name=".ui.MainActivity" android:label="Activity Title"  android:theme="@style/AppTheme.NoActionBar"/> -->
+        <activity android:name=".ui.profiles.Doctor_EditProfileActivity" />
         <activity android:name=".ui.Appointment.Booking" />
         <activity android:name=".ui.Appointment.Doctor_List" />
         <activity android:name=".ui.SplashActivity">
@@ -36,6 +36,7 @@
         <activity android:name=".ui.No_Internet" />
         <activity android:name=".ui.login.Login" />
         <activity android:name=".ui.Appointment.DoctorConfirmAppointmentResults" />
+        <activity android:name=".ui.Appointment.DoctorViewPendingAppointmentsActivity" />
     </application>
 
 </manifest>
