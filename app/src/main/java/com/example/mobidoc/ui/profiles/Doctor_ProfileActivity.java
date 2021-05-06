@@ -57,13 +57,13 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
         mName = (TextView) findViewById(R.id.doctor_name);
 
-        mShowRosterPlanButton = (Button) findViewById(R.id.show_rosterPlan_button);
+        /*mShowRosterPlanButton = (Button) findViewById(R.id.show_rosterPlan_button);
         mShowRosterPlanButton.setOnClickListener(v -> {
             //Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
 //            alertDialogBox();
 
 
-        });
+        });*/
 
         mEditProfileButton = (Button) findViewById(R.id.edit_profile_button);
         mEditProfileButton.setOnClickListener(v -> {
