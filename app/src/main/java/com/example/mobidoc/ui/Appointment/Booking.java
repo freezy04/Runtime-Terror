@@ -134,6 +134,7 @@ public class Booking extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String _Date = Sdate.trim();
                         String _Time = Stime.trim();
+//                        String _Time = "20:30 PM";
 
                         String reason_for_appointment = Reason.getText().toString();
 
