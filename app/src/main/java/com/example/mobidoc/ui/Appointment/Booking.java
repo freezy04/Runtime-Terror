@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.ui.login.Login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,7 +43,7 @@ public class Booking extends AppCompatActivity {
     Button mBook;
     EditText Reason;
     DatePickerDialog.OnDateSetListener onDateSetListener;
-    String Sdate, Stime, myUid, myName, myNameL, DoctorUid, DoctorName;
+    String Sdate, Stime, myUid, myName, myNameL,reason_for_appointment, DoctorUid, DoctorName;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     int hour, Minute;
@@ -64,6 +65,8 @@ public class Booking extends AppCompatActivity {
         Intent intent = getIntent();
         DoctorUid = intent.getStringExtra("hisUid");
         DoctorName = intent.getStringExtra("hisName");
+
+        reason_for_appointment = Reason.getText().toString();
 
 
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -123,33 +126,39 @@ public class Booking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Booking.this);
-                dialog.setTitle("Are you sure?");
-                dialog.setMessage("Appointment will await confirmation from the doctor");
-                dialog.setPositiveButton("Booking", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String _Date = Sdate.trim();
-                        String _Time = Stime.trim();
+                if (ValidateDetails(mDisplayDate, mDisplayTime,Reason)) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(Booking.this);
+                    dialog.setTitle("Are you sure?");
+                    dialog.setMessage("Appointment will await confirmation from the doctor");
+                    dialog.setPositiveButton("Booking", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String _Date = Sdate.trim();
+                            String _Time = Stime.trim();
 //                        String _Time = "20:30 PM";
 
-                        String reason_for_appointment = Reason.getText().toString();
 
-                        BookAppointment(DoctorUid, _Date, _Time, DoctorName, reason_for_appointment);
-                    }
-                });
-                dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                            reason_for_appointment = Reason.getText().toString();
+                            BookAppointment(DoctorUid, _Date, _Time, DoctorName, reason_for_appointment);
+                        }
+                    });
+                    dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
 
-                AlertDialog alertDialog = dialog.create();
-                alertDialog.show();
+                    AlertDialog alertDialog = dialog.create();
+                    alertDialog.show();
+                }
+                else{
+                    Toast.makeText(Booking.this, "Invaild details", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+
 
     private void BookAppointment(String DoctorUid, String Date, String Time, String Doctor_Name, String Reason_for_appointment) {
         progressDialog.show();
@@ -157,19 +166,18 @@ public class Booking extends AppCompatActivity {
 
         String timestamp = String.valueOf(System.currentTimeMillis());
 
-//        Appointment appointment = new Appointment(myUid, myName, DoctorUid, Doctor_Name, Date, Time, Reason_for_appointment, "0");
-//        databaseReference.child("Appointments").push().setValue(appointment);
-
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("PatientUid", myUid);
-        hashMap.put("Patient_Name", myName +" "+ myNameL);
-        hashMap.put("DoctorUid", DoctorUid);
-        hashMap.put("Doctor_Name", Doctor_Name);
-        hashMap.put("Date_for_appointment", Date);
-        hashMap.put("Time_for_appointment", Time);
-        hashMap.put("Reason_for_appointment", Reason_for_appointment);
-        hashMap.put("Appointment_Cost", "0");
-        databaseReference.child("Appointments").push().setValue(hashMap);
+        Appointment appointment = new Appointment(myUid, myName+" "+myNameL, DoctorUid, Doctor_Name, Date, Time, Reason_for_appointment, "0", "pending");
+        databaseReference.child("Appointments").push().setValue(appointment);
+//        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("PatientUid", myUid);
+//        hashMap.put("Patient_Name", myName +" "+ myNameL);
+//        hashMap.put("DoctorUid", DoctorUid);
+//        hashMap.put("Doctor_Name", Doctor_Name);
+//        hashMap.put("Date_for_appointment", Date);
+//        hashMap.put("Time_for_appointment", Time);
+//        hashMap.put("Reason_for_appointment", Reason_for_appointment);
+//        hashMap.put("Appointment_Cost", "0");
+//        databaseReference.child("Appointments").push().setValue(hashMap);
 
         mDisplayTime.setText("");
         mDisplayDate.setText("");
@@ -182,6 +190,23 @@ public class Booking extends AppCompatActivity {
         finish();
     }
 
+    private boolean ValidateDetails(TextView date, TextView time, EditText reason){
+        boolean valid = true;
+
+        if(date.getText().toString().isEmpty()){
+            valid = false;
+            mDisplayDate.setError("select date for appointment");
+        }
+        if(time.getText().toString().isEmpty()){
+            valid = false;
+            mDisplayTime.setError("select time for appointment");
+        }
+        if(reason.getText().toString().isEmpty()){
+            valid = false;
+            reason.setError("Enter reason for appointment");
+        }
+        return (valid);
+    }
     private void checkUserStatus() {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
