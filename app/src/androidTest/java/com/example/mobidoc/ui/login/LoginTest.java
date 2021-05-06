@@ -87,4 +87,34 @@ public class LoginTest {
             assertFalse(activity.ValidateDetails(activity.User_email, activity.User_password));
         });
     }
+
+    @Test
+    public void loginUser_UserNotLoggedIn_SendToCreateAccountSuccess(){
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.Create_account.performClick();
+        });
+    }
+
+    @Test
+    public void CheckPassword_ToggleVisibility_HiddenPassword(){
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.show_password_visibility.performClick();
+        });
+    }
+
+    @Test
+    public void CheckPassword_ToggleVisibility_ShowPassword(){
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.show_password_visibility.setText(".");
+            activity.show_password_visibility.performClick();
+        });
+    }
+
+    @Test
+    public void CheckRememberMe_CheckBoxIsTicked(){
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.ChRemember.performClick();
+
+        });
+    }
 }

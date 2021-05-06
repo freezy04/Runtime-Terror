@@ -149,9 +149,9 @@
             android:id="@+id/show_pass"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
-            android:text=" "
             android:layout_marginLeft="250dp"
             android:background="@drawable/show_password"
+            android:text=" "
             android:textAllCaps="false"
 
             app:layout_constraintBottom_toBottomOf="parent"

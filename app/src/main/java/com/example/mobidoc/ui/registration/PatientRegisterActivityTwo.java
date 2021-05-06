@@ -58,7 +58,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
                 String diseaseHistory = diseaseHistoryET.getText().toString().trim();
                 String medicationHistory = medicationHistoryET.getText().toString().trim();
                 String allergies = allergiesET.getText().toString().trim();
-                Patient pat = new Patient(fName, lName, "Patient", email, age, sex, diseaseHistory, medicationHistory, allergies);
+                Patient pat = new Patient(fName, lName, "Patient", email, age, sex, diseaseHistory, medicationHistory, allergies, "");
                 registerUser(pat, password);
             }
         });

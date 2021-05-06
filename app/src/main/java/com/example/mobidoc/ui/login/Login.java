@@ -157,6 +157,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void LoginUser() {
+
         firebaseAuth = FirebaseAuth.getInstance();
         String Email = User_email.getText().toString();
         String Password = User_password.getText().toString();
@@ -166,9 +167,11 @@ public class Login extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         Toast.makeText(Login.this, "Incorrect Login Details", Toast.LENGTH_SHORT).show();
                     } else {
+
                         if(ChRemember.isChecked()){ //Remember me
                             Paper.book().write(Utilities.USER_KEY,"True");
                         }
+
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         LoginUserAs(user.getUid());
                     }
@@ -190,7 +193,7 @@ public class Login extends AppCompatActivity {
             email = false;
         }
 
-        if(getEmailId.equals("") && (getEmailId.length() == 0) && (!m.matches()) ){
+        if(getEmailId.equals("") || (getEmailId.length() == 0) ||  (!m.matches()) ){
             Email.setError("Invalid Email : Please enter a valid email");
             email = false;
         }
