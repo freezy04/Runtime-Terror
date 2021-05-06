@@ -1,5 +1,6 @@
 package com.example.mobidoc.adapters;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.BookedAppointmentList;
+import com.example.mobidoc.ui.Appointment.DoctorConfirmAppointmentResults;
 
 import java.util.List;
 
@@ -46,14 +48,14 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
         holder.mSpecializationTv2.setText(userDate);
 
 // moving to the  next activity
-      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Booking.class);
+                Intent intent = new Intent(context, DoctorConfirmAppointmentResults.class);
                 intent.putExtra("hisUid", hisUID);
                 context.startActivity(intent);
             }
-        }); */
+        });
     }
 
     @Override
