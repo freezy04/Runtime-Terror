@@ -98,29 +98,34 @@ public class Booking extends AppCompatActivity {
             }
         };
 
-        mDisplayTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                hour = calendar.get(Calendar.HOUR_OF_DAY);
-                Minute = calendar.get(Calendar.MINUTE);
-                TimePickerDialog timePickerDialog = new TimePickerDialog(Booking.this, R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        Calendar c = Calendar.getInstance();
-                        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        c.set(Calendar.MINUTE, minute);
-                        c.setTimeZone(TimeZone.getDefault());
-                        SimpleDateFormat format = new SimpleDateFormat("k:mm a");
-                        String time = format.format(c.getTime());
-                        Stime = time;
-                        mDisplayTime.setText(time);
-                    }
-                }, hour, Minute, false
-                );
-                timePickerDialog.show();
-            }
+        mDisplayTime.setOnClickListener(v -> {
+            timePicker();
         });
+
+
+//        mDisplayTime.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Calendar calendar = Calendar.getInstance();
+//                hour = calendar.get(Calendar.HOUR_OF_DAY);
+//                Minute = calendar.get(Calendar.MINUTE);
+//                TimePickerDialog timePickerDialog = new TimePickerDialog(Booking.this, R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
+//                    @Override
+//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                        Calendar c = Calendar.getInstance();
+//                        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//                        c.set(Calendar.MINUTE, minute);
+//                        c.setTimeZone(TimeZone.getDefault());
+//                        SimpleDateFormat format = new SimpleDateFormat("k:mm a");
+//                        String time = format.format(c.getTime());
+//                        Stime = time;
+//                        mDisplayTime.setText(time);
+//                    }
+//                }, hour, Minute, false
+//                );
+//                timePickerDialog.show();
+//            }
+//        });
 
         mBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,8 +139,9 @@ public class Booking extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String _Date = Sdate.trim();
-                            String _Time = Stime.trim();
+//                            String _Time = Stime.trim();
 //                        String _Time = "20:30 PM";
+                            String _Time = mDisplayTime.getText().toString().trim();
 
 
                             reason_for_appointment = Reason.getText().toString();
@@ -159,6 +165,14 @@ public class Booking extends AppCompatActivity {
         });
     }
 
+    private void timePicker() {
+        final Calendar cldr = Calendar.getInstance();
+        int hour = cldr.get(Calendar.HOUR_OF_DAY);
+        int minutes = cldr.get(Calendar.MINUTE);
+        TimePickerDialog picker = new TimePickerDialog(Booking.this,
+                (tp, sHour, sMinute) -> mDisplayTime.setText(sHour + ":" + sMinute), hour, minutes, true);
+        picker.show();
+    }
 
     private void BookAppointment(String DoctorUid, String Date, String Time, String Doctor_Name, String Reason_for_appointment) {
         progressDialog.show();
