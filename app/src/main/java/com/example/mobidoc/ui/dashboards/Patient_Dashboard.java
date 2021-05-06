@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.Appointment.Doctor_List;
+import com.example.mobidoc.ui.Appointment.PatientViewAppointmentActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.utils.Utilities;
 
@@ -19,7 +20,7 @@ import io.paperdb.Paper;
 
 
 public class Patient_Dashboard extends AppCompatActivity {
-    LinearLayout BookAppointment;
+    LinearLayout BookAppointment, AppointmentList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +28,18 @@ public class Patient_Dashboard extends AppCompatActivity {
 
         BookAppointment = findViewById(R.id.ll_consultation);
 
+        AppointmentList = findViewById(R.id.ll_appointments);
+
         BookAppointment.setOnClickListener(v -> {
             startActivity(new Intent(Patient_Dashboard.this, Doctor_List.class));
             finish();
         });
+
+        AppointmentList.setOnClickListener(v -> {
+            startActivity(new Intent(Patient_Dashboard.this, PatientViewAppointmentActivity.class));
+            finish();
+        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
