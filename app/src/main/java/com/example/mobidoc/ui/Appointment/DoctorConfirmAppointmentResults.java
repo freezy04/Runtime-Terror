@@ -3,6 +3,7 @@ package com.example.mobidoc.ui.Appointment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,6 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.models.Patient;
+import com.example.mobidoc.models.ViewPatientList;
+import com.example.mobidoc.ui.login.Login;
+import com.example.mobidoc.ui.registration.DoctorRegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +32,7 @@ import java.util.Objects;
 public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
     public EditText newMedicationET, appointmentCostET;
-    public Button confirmBTN;
+    public Button confirmBTN , BackBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     private String appointmentUID, patientUID;
@@ -42,6 +46,12 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
         confirmBTN.setOnClickListener(v -> {
             updateDetails();
+            startActivity(new Intent(DoctorConfirmAppointmentResults.this, ViewPatientList.class));
+            finish();
+        });
+        BackBTN.setOnClickListener(v -> {
+            startActivity(new Intent(DoctorConfirmAppointmentResults.this, ViewPatientList.class));
+            finish();
         });
 
     }
@@ -57,6 +67,7 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         newMedicationET = findViewById(R.id.newMedicationET);
         appointmentCostET = findViewById(R.id.appointmentCostET);
         confirmBTN = findViewById(R.id.confirmBTN);
+        BackBTN = findViewById(R.id.backBTN);
 
         mAuth = FirebaseAuth.getInstance();//get connection to firebase
 
