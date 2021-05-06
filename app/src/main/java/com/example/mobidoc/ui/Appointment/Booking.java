@@ -45,7 +45,7 @@ public class Booking extends AppCompatActivity {
     Button mBook;
     EditText Reason;
     DatePickerDialog.OnDateSetListener onDateSetListener;
-    String Sdate, Stime, myUid, myName, DoctorUid, DoctorName;
+    String Sdate, Stime, myUid, myName, myNameL, DoctorUid, DoctorName;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
     int hour, Minute;
@@ -134,6 +134,7 @@ public class Booking extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String _Date = Sdate.trim();
                         String _Time = Stime.trim();
+//                        String _Time = "20:30 PM";
 
                         String reason_for_appointment = Reason.getText().toString();
 
@@ -164,7 +165,7 @@ public class Booking extends AppCompatActivity {
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("PatientUid", myUid);
-        hashMap.put("Patient_Name", myName);
+        hashMap.put("Patient_Name", myName +" "+ myNameL);
         hashMap.put("DoctorUid", DoctorUid);
         hashMap.put("Doctor_Name", Doctor_Name);
         hashMap.put("Date_for_appointment", Date);
@@ -189,7 +190,25 @@ public class Booking extends AppCompatActivity {
         if (user != null) {
             // mProfile.setText(user.getEmail());
             myUid = user.getUid();
-            myName = user.getDisplayName();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference userRef = database.getReference("Patients");
+
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot ds : snapshot.getChildren()){
+                        if(ds.child("uid").getValue().equals(myUid)){
+                            myName = ds.child("first_name").getValue().toString();
+                            myNameL = ds.child("last_name").getValue().toString();
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
     }
 }
