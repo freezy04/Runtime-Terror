@@ -21,6 +21,7 @@ public class BookedAppointmentListTest {
         booked.setPatientID(anyString);
         booked.setTime_for_appointment(anyString);
         booked.setPatient_Message(anyString);
+
     }
 
     @Test
