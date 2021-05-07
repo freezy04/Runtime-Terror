@@ -1,5 +1,6 @@
 package com.example.mobidoc.ui.login;
 
+import androidx.lifecycle.Lifecycle;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -18,7 +19,7 @@ public class LoginTest {
 
     @Test
     public void loginUser_UserDoctorNotLoggedIn_isSuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("drken@gmail.com");
             activity.User_password.setText("Jazzman@1");
             activity.login_Button.performClick();
@@ -27,7 +28,7 @@ public class LoginTest {
 
     @Test
     public void loginUser_UserDoctorNotLoggedIn_isUnsuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("drken@gmail.com");
             activity.User_password.setText("MyNameJeff");
             activity.login_Button.performClick();
@@ -36,7 +37,7 @@ public class LoginTest {
 
     @Test
     public void loginUser_UserPatientNotLoggedIn_isUnsuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("sample_user@gmail.com");
             activity.User_password.setText("Meeso");
             activity.login_Button.performClick();
@@ -45,7 +46,7 @@ public class LoginTest {
 
     @Test
     public void loginUser_UserPatientNotLoggedIn_isSuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("sample_user@gmail.com");
             activity.User_password.setText("Jazzman@1");
             activity.login_Button.performClick();
@@ -54,7 +55,7 @@ public class LoginTest {
 
     @Test
     public void CheckUserEmail_UserNotLoggedIn_isSuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("soap@gmail.com");
             activity.User_password.setText("Jazzman@1");
             assertTrue(activity.ValidateDetails(activity.User_email, activity.User_password));
@@ -63,7 +64,7 @@ public class LoginTest {
 
     @Test
     public void CheckUserEmail_UserNotLoggedIn_isUnSuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("bobsaunty");
             activity.User_password.setText("Jazzman@1");
             assertFalse(activity.ValidateDetails(activity.User_email, activity.User_password));
@@ -72,7 +73,7 @@ public class LoginTest {
 
     @Test
     public void CheckUserPassword_UserNotLoggedIn_isSuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("gradea@yahoo.com");
             activity.User_password.setText("Jazzman@1");
             assertTrue(activity.ValidateDetails(activity.User_email, activity.User_password));
@@ -81,7 +82,7 @@ public class LoginTest {
 
     @Test
     public void CheckUserPassword_UserNotLoggedIn_isUnSuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.User_email.setText("gradea@yahoo.com");
             activity.User_password.setText("abe");
             assertFalse(activity.ValidateDetails(activity.User_email, activity.User_password));
@@ -90,21 +91,21 @@ public class LoginTest {
 
     @Test
     public void loginUser_UserNotLoggedIn_SendToCreateAccountSuccess(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.Create_account.performClick();
         });
     }
 
     @Test
     public void CheckPassword_ToggleVisibility_HiddenPassword(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.show_password_visibility.performClick();
         });
     }
 
     @Test
     public void CheckPassword_ToggleVisibility_ShowPassword(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.show_password_visibility.setText(".");
             activity.show_password_visibility.performClick();
         });
@@ -112,7 +113,7 @@ public class LoginTest {
 
     @Test
     public void CheckRememberMe_CheckBoxIsTicked(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.ChRemember.performClick();
 
         });

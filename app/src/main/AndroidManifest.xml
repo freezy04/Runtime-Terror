@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobiDoc">
+        <activity android:name=".ui.Appointment.Patient_Doctor_list"></activity>
         <activity android:name=".ui.Appointment.PatientViewAppointmentActivity" />
         <activity android:name=".ui.Appointment.DoctorViewAcceptedAppointmentsActivity" />
         <activity android:name=".ui.profiles.Doctor_ProfileActivity" /> <!-- <activity android:name=".ui.MainActivity" android:label="Activity Title"  android:theme="@style/AppTheme.NoActionBar"/> -->
@@ -28,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity" />
-        <activity android:name=".ui.profiles.Edit_Patient_Profile"/>
+        <activity android:name=".ui.profiles.Edit_Patient_Profile" />
         <activity android:name=".ui.profiles.Patient_Profile" />
         <activity android:name=".ui.dashboards.Doctor_Dashboard" />
         <activity android:name=".ui.registration.DoctorRegisterActivity" />
