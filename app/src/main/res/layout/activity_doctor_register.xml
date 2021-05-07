@@ -192,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_marginLeft="320dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="450dp"
             android:background="@drawable/show_password"
             android:textAllCaps="false"
 
@@ -207,7 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_marginLeft="320dp"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="400dp"
             android:background="@drawable/show_password"
             android:textAllCaps="false"
 
