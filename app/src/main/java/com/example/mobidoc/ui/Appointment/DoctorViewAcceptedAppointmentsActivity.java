@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mobidoc.R;
@@ -13,6 +14,9 @@ import com.example.mobidoc.R;
 
 import com.example.mobidoc.adapters.adapterPatient;
 import com.example.mobidoc.models.Appointment;
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.ui.registration.Patient_Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -81,5 +85,14 @@ NavBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
 
+    public void onBackPressed() {
+        startActivity(new Intent(DoctorViewAcceptedAppointmentsActivity.this, Doctor_Dashboard.class));
+        finish();
+    }
 }

@@ -17,7 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Doctor;
+import com.example.mobidoc.ui.Appointment.DoctorViewPendingAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.utils.Utilities;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -191,5 +193,8 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
-
+    public void onBackPressed() {
+        startActivity(new Intent(Doctor_ProfileActivity.this, Doctor_Dashboard.class));
+        finish();
+    }
 }
