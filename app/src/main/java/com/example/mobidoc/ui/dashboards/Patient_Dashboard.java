@@ -14,7 +14,7 @@ import com.example.mobidoc.R;
 import com.example.mobidoc.ui.Appointment.Doctor_List;
 import com.example.mobidoc.ui.Appointment.PatientViewAppointmentActivity;
 import com.example.mobidoc.ui.MainActivity;
-import com.example.mobidoc.ui.registration.Patient_Profile;
+import com.example.mobidoc.ui.profiles.Patient_Profile;
 import com.example.mobidoc.utils.Utilities;
 
 import io.paperdb.Paper;
@@ -33,18 +33,15 @@ public class Patient_Dashboard extends AppCompatActivity {
 
         BookAppointment.setOnClickListener(v -> {
             startActivity(new Intent(Patient_Dashboard.this, Doctor_List.class));
-            finish();
         });
 
         Profile_page = findViewById(R.id.ll_profile);
         Profile_page.setOnClickListener(v -> {
             startActivity(new Intent(Patient_Dashboard.this, Patient_Profile.class));
-            finish();
         });
 
         AppointmentList.setOnClickListener(v -> {
             startActivity(new Intent(Patient_Dashboard.this, PatientViewAppointmentActivity.class));
-            finish();
         });
 
     }

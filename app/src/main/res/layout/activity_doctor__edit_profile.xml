@@ -1,292 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.mobidoc.ui.profiles.Doctor_EditProfileActivity">
+    tools:context=".ui.profiles.Doctor_EditProfileActivity">
 
-    <include android:id="@+id/doctor_editProfile_toolbar"
-        layout="@layout/app_bar_layout" />
 
-    <FrameLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="220dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Doctor ID : D2322"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:layout_gravity="right"/>
-
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop ="50dp"
+        android:text="Edit Patient Profile"
+        android:textAlignment = "center"
+        android:textColor="@color/dark_navy_blue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:divider="@drawable/divider"
+            android:orientation="vertical"
+            android:showDividers="middle">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                >
-                <TextView
-                    android:id="@+id/edit_doctor_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Doctor Name"
-                    android:textStyle="bold"
-                    android:textColor="#3949AB"
-                    style="@style/Base.TextAppearance.AppCompat.Large"
-                    android:layout_gravity="center"
-                    android:onClick="update"/>
-
-                <ImageView
-                    android:id="@+id/edit_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:onClick="update"/>
-            </LinearLayout>
 
             <TextView
-                android:id="@+id/edit_doctor_specialization"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Specialization"
-                android:layout_gravity="center"/>
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:hint="You cannot change your Email Address for Security Purposes "
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/holo_red_light"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:translationY="120dp" />
 
-            <LinearLayout
+
+            <EditText
+                android:id="@+id/doc_fNameET"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawablePadding="9dp"
+                android:hint="First Name"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/black"
+                android:translationY="170dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+            <EditText
+                android:id="@+id/doc_lNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawablePadding="9dp"
+                android:hint="Surname"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/black"
+                android:translationY="170dp" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="Experience"
-                        android:textColor="#3949AB"
-                        android:textStyle="bold"
-                        android:textSize="15dp"/>
 
-                    <TextView
-                        android:id="@+id/edit_doctor_experiance"
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="5 Years" />
+            <EditText
+                android:id="@+id/doc_experienceET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_book_black"
+                android:drawablePadding="9dp"
+                android:hint="Experience ( in years )"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/black"
+                android:translationY="170dp" />
 
-                    <ImageView
-                        android:id="@+id/edit_experiance"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:onClick="update"/>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+            <EditText
+                android:id="@+id/doc_spec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_medication"
+                android:drawablePadding="9dp"
+                android:hint="Specialization"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/black"
+                android:translationY="170dp" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="Education"
-                        android:textColor="#3949AB"
-                        android:textStyle="bold"
-                        android:textSize="15dp"/>
+            <EditText
+                android:id="@+id/doc_qualify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_book_black_24dp"
+                android:drawablePadding="9dp"
+                android:hint="Qualifications"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/black"
+                android:translationY="170dp" />
 
-                    <TextView
-                        android:id="@+id/edit_doctor_education"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="MBBS,MD (MED)" />
 
-                    <ImageView
-                        android:id="@+id/edit_education"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:onClick="update"/>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+            <Button
+                android:id="@+id/doc_update_details"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:backgroundTint="@android:color/background_dark"
+                android:text="Update"
+                android:translationX="-80dp"
+                android:translationY="170dp" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="Email"
-                        android:textColor="#3949AB"
-                        android:textStyle="bold"
-                        android:textSize="15dp"/>
+            <Button
+                android:id="@+id/doc_profile_page"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@android:color/background_dark"
+                android:text="Profle"
+                android:translationX="-80dp"
+                android:translationY="105dp" />
 
-                    <TextView
-                        android:id="@+id/edit_doctor_email"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="abfj@gmail.com" />
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:visibility="invisible"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="Age"
-                        android:textColor="#3949AB"
-                        android:textStyle="bold"
-                        android:textSize="15dp"/>
-
-                    <TextView
-                        android:id="@+id/edit_doctor_age"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="45" />
-
-                    <ImageView
-                        android:id="@+id/edit_age"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:onClick="update"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="Contact No."
-                        android:textColor="#3949AB"
-                        android:textStyle="bold"
-                        android:textSize="15dp"/>
-
-                    <TextView
-                        android:id="@+id/edit_doctor_contact"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="9137385013" />
-
-                    <ImageView
-                        android:id="@+id/edit_contact"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:onClick="update"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="Address"
-                        android:textColor="#3949AB"
-                        android:textStyle="bold"
-                        android:textSize="15dp"/>
-
-                    <TextView
-                        android:id="@+id/edit_doctor_address"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_weight="2"
-                        android:text="Bhopal" />
-
-                    <ImageView
-                        android:id="@+id/edit_address"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:onClick="update"/>
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/final_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_background"
-                    android:text="Update"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:onClick="update"/>
-
-            </LinearLayout>
         </LinearLayout>
-
 
     </ScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

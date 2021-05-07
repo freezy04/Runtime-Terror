@@ -2,17 +2,14 @@ package com.example.mobidoc.ui.profiles;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
@@ -59,17 +56,11 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
         mName = (TextView) findViewById(R.id.doctor_name);
 
-        /*mShowRosterPlanButton = (Button) findViewById(R.id.show_rosterPlan_button);
-        mShowRosterPlanButton.setOnClickListener(v -> {
-            //Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
-//            alertDialogBox();
 
-
-        });*/
 
         mEditProfileButton = (Button) findViewById(R.id.edit_profile_button);
         mEditProfileButton.setOnClickListener(v -> {
-            //Toast.makeText(Doctor_ProfileActivity.this,"Edit Profile Clicked",Toast.LENGTH_SHORT).show();
+
 
             Intent editProfile_Intent = new Intent(Doctor_ProfileActivity.this, Doctor_EditProfileActivity.class);
 
@@ -87,47 +78,6 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void alertDialogBox() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(Doctor_ProfileActivity.this);
-
-        View view = getLayoutInflater().inflate(R.layout.roster_dialog, null);
-
-        TextView rosterShift = (TextView) view.findViewById(R.id.roster_shift);
-        TextView rosterTimingMorning = (TextView) view.findViewById(R.id.roster_time_morning);
-        TextView rosterTimingEvening = (TextView) view.findViewById(R.id.roster_time_evening);
-        TextView rosterLunchMorning = (TextView) view.findViewById(R.id.roster_lunch_morning);
-        TextView rosterLunchEvening = (TextView) view.findViewById(R.id.roster_lunch_evening);
-
-//        if(shift.equals("Morning")){
-
-            rosterShift.setText(shift);
-
-            rosterTimingMorning.setVisibility(View.VISIBLE);
-            rosterTimingEvening.setVisibility(View.GONE);
-
-            rosterLunchMorning.setVisibility(View.VISIBLE);
-            rosterLunchEvening.setVisibility(View.GONE);
-
-//        }else {
-//
-//            rosterShift.setText(shift);
-//
-//            rosterTimingMorning.setVisibility(View.GONE);
-//            rosterTimingEvening.setVisibility(View.VISIBLE);
-//
-//            rosterLunchMorning.setVisibility(View.GONE);
-//            rosterLunchEvening.setVisibility(View.VISIBLE);
-//
-//        }
-
-        builder.setView(view);
-        builder.setNegativeButton("CANCEL", (dialog, which) -> dialog.dismiss());
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-
-    }
 
 
         public void getDoctorDetails(){
@@ -143,14 +93,14 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
                     for (DataSnapshot ds : snapshot.getChildren()) {
 
                         Doctor doctor = ds.getValue(Doctor.class);
-                        mName.setText(doctor.getFirst_name());
+                        mName.setText("Dr. " + doctor.getFirst_name() + " " + doctor.getLast_name());
                         mSpecialization.setText(doctor.getSpecialization());
                         mExperiance.setText(doctor.getExperience());
                         mEducation.setText(doctor.getQualifications());
                         mEmail.setText(doctor.getEmail());
                         mAge.setText(doctor.getLast_name());
 
-                        Log.d("ProfileDoc", "This is " + doctor.getEmail());
+
 
                     }
                 }
