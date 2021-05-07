@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.AdapterAppointmentList;
-import com.example.mobidoc.adapters.adapterPatient;
 import com.example.mobidoc.models.Appointment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
