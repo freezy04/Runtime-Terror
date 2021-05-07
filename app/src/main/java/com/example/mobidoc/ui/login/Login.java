@@ -156,7 +156,7 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void LoginUser() {
+    public  void LoginUser() {
 
         firebaseAuth = FirebaseAuth.getInstance();
         String Email = User_email.getText().toString();

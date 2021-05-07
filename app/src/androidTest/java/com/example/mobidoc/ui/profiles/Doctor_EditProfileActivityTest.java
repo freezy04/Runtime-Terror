@@ -13,7 +13,7 @@ public class Doctor_EditProfileActivityTest {
     @Rule
     public ActivityScenarioRule<Doctor_EditProfileActivity> activityScenarioRule = new ActivityScenarioRule<>(Doctor_EditProfileActivity.class);
 
-    @Test
+   /* @Test
     public void CheckNoUpdates_UserLoggedIn_isSuccessful(){
         activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.doc_experience.setText("25");
@@ -34,7 +34,7 @@ public class Doctor_EditProfileActivityTest {
         activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
             activity.Profile_page.performClick();
         });
-    }
+    } */
 
     @Test
     public void UpdateDetailsCheckChangedData_UserLoggedIn_isSuccessful(){
