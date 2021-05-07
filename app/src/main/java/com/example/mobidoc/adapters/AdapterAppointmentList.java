@@ -42,11 +42,11 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
         String doctorUID = userList.get(position).getDoctorUid();
         String doctorName = userList.get(position).getDoctor_Name();
         // String userImage = userList.get(position).getImage();
-        String userDoctorName = userList.get(position).getDoctor_Name();
         String userPatientMessage = userList.get(position).getReason_for_appointment();
         String userDate = userList.get(position).getDate_for_appointment();
         String userTime = userList.get(position).getTime_for_appointment();
      //   holder.DoctorName.setText(userDoctorName);
+        holder.DoctorName.setText(doctorName);
         holder.Patientmessage.setText(userPatientMessage);
         holder.mTimeAppointment.setText(userTime);
         holder.mDateAppointment.setText(userDate);
@@ -78,7 +78,7 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
             super(itemView);
 
             mAvatarIv2 = itemView.findViewById(R.id.avatarIv);
-            DoctorName = itemView.findViewWithTag(R.id.name_Tv);
+            DoctorName = itemView.findViewById(R.id.name_Tv);
             mTimeAppointment = itemView.findViewById(R.id.timeTv);
             mDateAppointment = itemView.findViewById(R.id.dateTv);
             Patientmessage = itemView.findViewById(R.id.messageTv);
