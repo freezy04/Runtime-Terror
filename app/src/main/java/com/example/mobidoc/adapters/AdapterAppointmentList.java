@@ -82,7 +82,7 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
             mAvatarIv2 = itemView.findViewById(R.id.avatarIv);
             DoctorName = itemView.findViewById(R.id.name_Tv);
             mTimeAppointment = itemView.findViewById(R.id.timeTv);
-            appointmentCost = itemView.findViewById(R.id.costTv);
+            appointmentCost = itemView.findViewById(R.id.PatientMedicalCost);
             mDateAppointment = itemView.findViewById(R.id.dateTv);
             Patientmessage = itemView.findViewById(R.id.messageTv);
             datetime2 = itemView.findViewById(R.id.SelectDoctor);
