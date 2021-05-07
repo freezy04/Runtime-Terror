@@ -25,11 +25,11 @@ public class Doctor_DashboardTest {
         });
     }
 
-     @Test
+    /* @Test
     public void UserLoggedIn_ClickOnAcceptedAppointments(){
          activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity -> {
              activity.doctor_accepted_appointments.performClick();
          });
-    }
+    } */
 
 }
