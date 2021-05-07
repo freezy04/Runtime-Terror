@@ -30,19 +30,16 @@ public class Doctor_Dashboard extends AppCompatActivity {
         doctor_profile = findViewById(R.id.ll_dotor_profile);
         doctor_profile.setOnClickListener(v -> {
             startActivity(new Intent(Doctor_Dashboard.this, Doctor_ProfileActivity.class));
-            finish();
         });
 
         doctor_pending_appointments = findViewById(R.id.ll_pending_appointments);
         doctor_pending_appointments.setOnClickListener(v -> {
             startActivity(new Intent(Doctor_Dashboard.this, DoctorViewPendingAppointmentsActivity.class));
-            finish();
         });
 
         doctor_accepted_appointments = findViewById(R.id.ll_accepted_appointments);
         doctor_accepted_appointments.setOnClickListener(v -> {
             startActivity(new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class));
-            finish();
         });
 
     }

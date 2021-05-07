@@ -1,4 +1,4 @@
-package com.example.mobidoc;
+package com.example.mobidoc.ui.profiles;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.ui.registration.Patient_Profile;
+import com.example.mobidoc.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Edit_Patient_Profile extends AppCompatActivity {
 
     private static final String TAG = "Edit_Patient_Profile";
+    public int counter = 0;
     TextView patient_fname,patient_lname,patient_age,patient_curr_med,patient_med_hist,patient_allergies,patient_disease_hist;
     Button Update,Profile;
     @Override
@@ -47,13 +48,19 @@ public class Edit_Patient_Profile extends AppCompatActivity {
         updateDetails("currentMedication",patient_curr_med.getText().toString());
         updateDetails("diseaseHistory",patient_disease_hist.getText().toString());
 
-        Toast.makeText(this, "User Information Updated", Toast.LENGTH_LONG).show();
+        if (counter == 0) {
+            Toast.makeText(this, "No Information was Updated", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "User Information was successfully updated", Toast.LENGTH_LONG).show();
+        }
 
     });
 
     Profile = findViewById(R.id.profile_page);
     Profile.setOnClickListener(v -> {
         startActivity(new Intent(Edit_Patient_Profile.this, Patient_Profile.class));
+        finish();
     });
 
 
@@ -63,6 +70,7 @@ public class Edit_Patient_Profile extends AppCompatActivity {
     public void updateDetails(String title , String value){
 
         if(isEdited(value)){
+            counter++;
             UpDateOnFirebaseDetails(title,value);
         }
 

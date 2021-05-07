@@ -1,4 +1,4 @@
-package com.example.mobidoc.ui.registration;
+package com.example.mobidoc.ui.profiles;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.Edit_Patient_Profile;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Patient;
 import com.example.mobidoc.ui.MainActivity;
@@ -49,7 +48,6 @@ public class Patient_Profile extends AppCompatActivity {
         editProfile = findViewById(R.id.edit_profile_button);
         editProfile.setOnClickListener(v -> {
             startActivity(new Intent(Patient_Profile.this, Edit_Patient_Profile.class));
-            finish();
         });
 
 

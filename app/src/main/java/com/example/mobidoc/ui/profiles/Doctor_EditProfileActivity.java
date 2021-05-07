@@ -1,178 +1,131 @@
 package com.example.mobidoc.ui.profiles;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import androidx.appcompat.app.AlertDialog;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
+import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.utils.Utilities;
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import io.paperdb.Paper;
 
 public class Doctor_EditProfileActivity extends AppCompatActivity {
+    public int counter = 0;
+    Button Profile_page , Update_details;
+    private TextView doc_fname, doc_lname,doc_experience,doc_qualifications,doc_special;
 
-    private TextView mName, mEmail, mSpecialization, mExperiance, mAge, mContact, mAddress, mEducation;
-    private Toolbar mToolbar;
-
-    private String name,specialization,experiance,education,email,age,contact,address,update;
-
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Doctor_Details");
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor__edit_profile);
 
-        //Toolbar
-       /* mToolbar = (Toolbar) findViewById(R.id.doctor_editProfile_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Edit Profile");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        NavBar();
+
+        doc_fname = findViewById(R.id.doc_fNameET);
+        doc_lname = findViewById(R.id.doc_lNameET);
+        doc_experience = findViewById(R.id.doc_experienceET);
+        doc_qualifications = findViewById(R.id.doc_qualify);
+        doc_special = findViewById(R.id.doc_spec);
+
+        Update_details = findViewById(R.id.doc_update_details);
+
+        Update_details.setOnClickListener(v -> {
+
+            updateDetails("first_name",doc_fname.getText().toString());
+            updateDetails("last_name",doc_lname.getText().toString());
+            updateDetails("experience",doc_experience.getText().toString());
+            updateDetails("qualifications",doc_qualifications.getText().toString());
+            updateDetails("specialization",doc_special.getText().toString());
+
+            if (counter == 0) {
+                Toast.makeText(this, "No Information was Updated", Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(this, "User Information was successfully updated", Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+        Profile_page = findViewById(R.id.doc_profile_page);
+        Profile_page.setOnClickListener(v -> {
+            startActivity(new Intent(Doctor_EditProfileActivity.this, Doctor_ProfileActivity.class));
+            finish();
+        });
 
 
-        mName = (TextView) findViewById(R.id.edit_doctor_name);
-        mSpecialization = (TextView) findViewById(R.id.edit_doctor_specialization);
-        mExperiance = (TextView) findViewById(R.id.edit_doctor_experiance);
-        mEducation = (TextView) findViewById(R.id.edit_doctor_education);
-        mEmail = (TextView) findViewById(R.id.edit_doctor_email);
-        mAge = (TextView) findViewById(R.id.edit_doctor_age);
-        mContact = (TextView) findViewById(R.id.edit_doctor_contact);
-        mAddress = (TextView) findViewById(R.id.edit_doctor_address);
-
-        name = getIntent().getStringExtra("Name");
-        specialization = getIntent().getStringExtra("Specialization");
-        experiance = getIntent().getStringExtra("Experiance");
-        education = getIntent().getStringExtra("Education");
-        email = getIntent().getStringExtra("Email");
-        age = getIntent().getStringExtra("Age");
-        contact = getIntent().getStringExtra("Contact");
-        address = getIntent().getStringExtra("Address");
-
-        mName.setText(name);
-        mSpecialization.setText(specialization);
-        mExperiance.setText(experiance);
-        mEducation.setText(education);
-        mEmail.setText(email);
-        mAge.setText(age);
-        mContact.setText(contact);
-        mAddress.setText(address);
     }
 
-    public void update(View view){
 
-        switch (view.getId()){
+    public void updateDetails(String title , String value){
 
-            case R.id.edit_name:
-                alertDialog(name,"Name");
-                break;
-
-            case R.id.edit_experiance:
-                alertDialog(experiance,"Experience");
-                break;
-
-            case R.id.edit_education:
-                alertDialog(education,"Education");
-                break;
-            case R.id.edit_address:
-                alertDialog(address,"Address");
-                break;
-            case R.id.edit_age:
-                alertDialog(age,"Age");
-                break;
-            case R.id.edit_contact:
-                alertDialog(contact,"Contact");
-                break;
-
-            case R.id.final_update:
-                updateDoctorProfile();
-                break;
-
-            default:
-                break;
+        if(isEdited(value)){
+            counter++;
+            UpDateOnFirebaseDetails(title,value);
         }
 
     }
+    public void UpDateOnFirebaseDetails(String title , String value){
 
-    private void updateDoctorProfile() {
-
-        String currentUser = mAuth.getCurrentUser().getUid();
-
-        mDatabase.child(currentUser).child("Name").setValue(name);
-        mDatabase.child(currentUser).child("Experiance").setValue(experiance);
-        mDatabase.child(currentUser).child("Education").setValue(education);
-        mDatabase.child(currentUser).child("Address").setValue(address);
-        mDatabase.child(currentUser).child("Contact").setValue(contact);
-        mDatabase.child(currentUser).child("Age").setValue(age);
-
-        startActivity(new Intent(Doctor_EditProfileActivity.this, Doctor_ProfileActivity.class));
-        //yet to implement Doctor_ProfileActivity.class
-
-
+        FirebaseDatabase db = FirebaseDatabase.getInstance();   // get instance of our Firebase Database
+        DatabaseReference ref = db.getReference();              // retrieves the specific Realtime Database
+        DatabaseReference user_ref = ref.child("Doctors");     // specify user type
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String UID = mAuth.getCurrentUser().getUid();
+        user_ref.child(UID).child(title).setValue(value);
 
     }
 
-    private void alertDialog(String text, final String detail){
+    public boolean isEdited(String s){
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        View view = getLayoutInflater().inflate(R.layout.udate_dialog, null);
-
-
-        TextView textView = (TextView) view.findViewById(R.id.update_textView);
-        final EditText editText = (EditText) view.findViewById(R.id.editText);
-
-        textView.setText(detail);
-        editText.setText(text, TextView.BufferType.EDITABLE);
-
-        builder.setView(view);
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton("Update", (dialog, which) -> {
-            dialog.dismiss();
-            update = editText.getText().toString();
-
-            if(detail.equals("Name")){
-                mName.setText(update);
-                name = mName.getText().toString();
-            }
-            else if(detail.equals("Experience")){
-                mExperiance.setText(update);
-                experiance = mExperiance.getText().toString();
-            }
-            else if(detail.equals("Education")){
-                mEducation.setText(update);
-                education = mEducation.getText().toString();
-            }
-            else if(detail.equals("Address")){
-                mAddress.setText(update);
-                address = mAddress.getText().toString();
-            }
-            else if(detail.equals("Age")){
-                mAge.setText(update);
-                age = mAge.getText().toString();
-            }
-            else if(detail.equals("Contact")){
-                mContact.setText(update);
-                contact = mContact.getText().toString();
-            }
-
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.show();
+        if(s.isEmpty()){
+            return false;
+        }
+        return true;
     }
 
+    public void NavBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Your Profile");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.log_out:
+                Paper.book().delete(Utilities.USER_KEY);
+                Paper.book().delete(Utilities.Doctor);
+                startActivity(new Intent(Doctor_EditProfileActivity.this , MainActivity.class));
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
 }

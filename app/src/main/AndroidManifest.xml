@@ -28,8 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity" />
-        <activity android:name=".Edit_Patient_Profile"/>
-        <activity android:name=".ui.registration.Patient_Profile" />
+        <activity android:name=".ui.profiles.Edit_Patient_Profile"/>
+        <activity android:name=".ui.profiles.Patient_Profile" />
         <activity android:name=".ui.dashboards.Doctor_Dashboard" />
         <activity android:name=".ui.registration.DoctorRegisterActivity" />
         <activity android:name=".ui.registration.PatientRegisterActivityTwo" />
