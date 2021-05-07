@@ -41,6 +41,7 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
         String appointmentUID = userList.get(position).getId();
         String doctorUID = userList.get(position).getDoctorUid();
         String doctorName = userList.get(position).getDoctor_Name();
+        String appCost = userList.get(position).getAppointment_Cost();
         // String userImage = userList.get(position).getImage();
         String userPatientMessage = userList.get(position).getReason_for_appointment();
         String userDate = userList.get(position).getDate_for_appointment();
@@ -50,6 +51,7 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
         holder.Patientmessage.setText(userPatientMessage);
         holder.mTimeAppointment.setText(userTime);
         holder.mDateAppointment.setText(userDate);
+        holder.appointmentCost.setText(appCost);
 
 // moving to the  next activity
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,7 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
     class  MyHolder extends RecyclerView.ViewHolder{
 
         ImageView mAvatarIv2;
-        TextView mTimeAppointment, mDateAppointment, DoctorName,Patientmessage;
+        TextView mTimeAppointment, mDateAppointment, DoctorName,Patientmessage, appointmentCost;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,6 +82,7 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
             mAvatarIv2 = itemView.findViewById(R.id.avatarIv);
             DoctorName = itemView.findViewById(R.id.name_Tv);
             mTimeAppointment = itemView.findViewById(R.id.timeTv);
+            appointmentCost = itemView.findViewById(R.id.PatientMedicalCost);
             mDateAppointment = itemView.findViewById(R.id.dateTv);
             Patientmessage = itemView.findViewById(R.id.messageTv);
             datetime2 = itemView.findViewById(R.id.SelectDoctor);

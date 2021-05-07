@@ -188,22 +188,6 @@
             android:translationY="100px" />
 
         <TextView
-            android:id="@+id/showPasswordTW"
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
-            android:layout_marginLeft="320dp"
-            android:layout_marginTop="400dp"
-            android:background="@drawable/show_password"
-            android:textAllCaps="false"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.804"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.408" />
-
-        <TextView
             android:id="@+id/showConfirmPasswordTW"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
@@ -218,7 +202,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.408" />
+        <TextView
+            android:id="@+id/showPasswordTW"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="400dp"
+            android:background="@drawable/show_password"
+            android:textAllCaps="false"
 
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.804"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.408" />
 
 
         <Spinner
