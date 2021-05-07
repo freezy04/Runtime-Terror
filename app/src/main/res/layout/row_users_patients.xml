@@ -43,7 +43,7 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="15sp"
                 android:fontFamily="@font/font_2"
-                android:textColor="@color/navy_blue"/>
+                android:textColor="@color/dark_navy_blue"/>
             <TextView
                 android:id="@+id/patient_surname"
                 android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="Date"
                 android:fontFamily="@font/font_2"
-                android:textColor="@color/black"/>
+                android:textColor="@color/dark_blue"/>
             <TextView
                 android:id="@+id/patient_appointment_date"
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="Date"
                 android:fontFamily="@font/font_2"
-                android:textColor="@color/navy_blue"/>
+                android:textColor="@color/dark_navy_blue"/>
             <TextView
 
                 android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="Time"
                 android:fontFamily="@font/font_2"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/dark_blue"/>
             <TextView
                 android:id="@+id/patient_appointment_time"
                 android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="Time"
                 android:fontFamily="@font/font_2"
-                android:textColor="@color/navy_blue"/>
+                android:textColor="@color/dark_navy_blue"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:text="Message"
                 android:fontFamily="@font/font_2"
-                android:textColor="@android:color/black"/>
+                android:textColor="@color/dark_blue"/>
             <TextView
                 android:id="@+id/patient_appointment_message"
                 android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="Message"
                 android:fontFamily="@font/font_2"
-                android:textColor="@color/navy_blue"/>
+                android:textColor="@color/dark_navy_blue"/>
         </LinearLayout>
 
     </LinearLayout>
