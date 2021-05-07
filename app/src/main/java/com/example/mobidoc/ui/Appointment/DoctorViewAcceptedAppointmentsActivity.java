@@ -1,17 +1,15 @@
 package com.example.mobidoc.ui.Appointment;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.mobidoc.R;
-
-
 import com.example.mobidoc.adapters.adapterPatient;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
