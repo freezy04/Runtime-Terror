@@ -25,7 +25,7 @@ import io.paperdb.Paper;
 public class Doctor_EditProfileActivity extends AppCompatActivity {
     public int counter = 0;
     Button Profile_page , Update_details;
-    private TextView doc_fname, doc_lname,doc_experience,doc_qualifications,doc_special;
+    public TextView doc_fname, doc_lname,doc_experience,doc_qualifications,doc_special;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
