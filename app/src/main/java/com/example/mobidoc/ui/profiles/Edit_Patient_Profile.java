@@ -10,6 +10,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
+import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -99,6 +102,17 @@ public class Edit_Patient_Profile extends AppCompatActivity {
         actionBar.setTitle("Edit Your Profile");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    public void onBackPressed() {
+        startActivity(new Intent(Edit_Patient_Profile.this, Patient_Profile.class));
+        finish();
     }
 
 }

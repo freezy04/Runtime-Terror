@@ -1,6 +1,7 @@
 package com.example.mobidoc.ui.Appointment;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -37,6 +38,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 
+import io.paperdb.Book;
+
 public class Booking extends AppCompatActivity {
 
     TextView mDisplayDate, mDisplayTime;
@@ -57,6 +60,8 @@ public class Booking extends AppCompatActivity {
         mDisplayTime = findViewById(R.id.Time);
         mBook = findViewById(R.id._Book);
         Reason = findViewById(R.id.reason);
+
+        NavBar();
 
         checkUserStatus();
         progressDialog = new ProgressDialog(this);
@@ -247,5 +252,23 @@ public class Booking extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void NavBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Your Profile");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    public void onBackPressed() {
+        startActivity(new Intent(Booking.this, Doctor_List.class));
+        finish();
     }
 }

@@ -79,7 +79,7 @@ NavBar();
     }
     public void NavBar(){
         ActionBar actionBar = getSupportActionBar();
-        Objects.requireNonNull(actionBar).setTitle("DashBoard");
+        Objects.requireNonNull(actionBar).setTitle("Accepted Appointments");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
     }
