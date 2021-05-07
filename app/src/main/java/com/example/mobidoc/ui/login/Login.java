@@ -245,7 +245,7 @@ public class Login extends AppCompatActivity {
 
     public void NavBar(){
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Login");
+        actionBar.setTitle("Home");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
     }

@@ -43,7 +43,7 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.row_users, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.row_users_patients, parent, false);
         return new MyHolder(view);
 
     }
@@ -56,12 +56,14 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
         String patientName = userList.get(position).getPatient_Name();
         String status = userList.get(position).getStatus();
         // String userImage = userList.get(position).getImage();
-        //String userPatientName = userList.get(position).getPatient_Name();
-        //String userPatientMessage = userList.get(position).getPatient_Message();
+        String userPatientName = userList.get(position).getPatient_Name();
+        String userPatientMessage = userList.get(position).getReason_for_appointment();
         String userDate = userList.get(position).getDate_for_appointment();
         String userTime = userList.get(position).getTime_for_appointment();
-        holder.mNameTv2.setText(userTime);
-        holder.mSpecializationTv2.setText(userDate);
+        holder.PatientTime.setText(userTime);
+        holder.PatientDate.setText(userDate);
+        holder.Patientmessage.setText(userPatientMessage );
+        holder.PatientName.setText(userPatientName);
 
 // moving to the  next activity
         holder.itemView.setOnClickListener(v -> {
@@ -153,15 +155,15 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
     class  MyHolder extends RecyclerView.ViewHolder{
 
         ImageView mAvatarIv2;
-        TextView mNameTv2, mSpecializationTv2, PatientName,Patientmessage;
+        TextView PatientTime,PatientDate, PatientName,Patientmessage;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            mAvatarIv2 = itemView.findViewById(R.id.avatarIv);
-            mNameTv2 = itemView.findViewById(R.id.nameTv);
-            mSpecializationTv2 = itemView.findViewById(R.id.Specialization);
-            datetime2 = itemView.findViewById(R.id.SelectDoctor);
+            PatientName = itemView.findViewById(R.id.patient_name);
+            Patientmessage= itemView.findViewById(R.id.patient_appointment_message);
+            PatientTime = itemView.findViewById(R.id.patient_appointment_time);
+            PatientDate = itemView.findViewById(R.id.patient_appointment_date);
         }
     }
 }
