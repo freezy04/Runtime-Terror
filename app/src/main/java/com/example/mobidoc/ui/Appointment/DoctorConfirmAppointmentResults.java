@@ -44,8 +44,6 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
         confirmBTN.setOnClickListener(v -> {
             updateDetails();
-            startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
-            finish();
         });
         BackBTN.setOnClickListener(v -> {
             startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
@@ -82,23 +80,19 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         progressDialog.setMessage("Confirming results...");
     }
 
-    private boolean costValid(String cost) {
-        if (cost.isEmpty()) {
-            appointmentCostET.setError("Appointment cost cannot be empty");
-            return false;
-        }
-//        Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
-//        Pattern upperCase = Pattern.compile("\\p{Upper}");//all uppercase letters
-//        Pattern special = Pattern.compile("\\p{Punct}");//all special characters
-//        Matcher hasLowerCase = lowerCase.matcher(cost);
-//        Matcher hasUpperCase = upperCase.matcher(cost);
-//        Matcher hasSpecial = special.matcher(cost);
-//        if (hasLowerCase.find() || hasUpperCase.find() || hasSpecial.find()) {
-//            appointmentCostET.setError("Appointment cost must contain only numbers");
-//            return false;
-//        }
-        return true;
-    }
+//    private boolean costValid(String cost) {
+//        return !cost.isEmpty();
+////        Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
+////        Pattern upperCase = Pattern.compile("\\p{Upper}");//all uppercase letters
+////        Pattern special = Pattern.compile("\\p{Punct}");//all special characters
+////        Matcher hasLowerCase = lowerCase.matcher(cost);
+////        Matcher hasUpperCase = upperCase.matcher(cost);
+////        Matcher hasSpecial = special.matcher(cost);
+////        if (hasLowerCase.find() || hasUpperCase.find() || hasSpecial.find()) {
+////            appointmentCostET.setError("Appointment cost must contain only numbers");
+////            return false;
+////        }
+//    }
 
     private void updateCost(String cost) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -117,11 +111,7 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
                         break;
                     }
                 }
-                progressDialog.dismiss();
-                Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
-                Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class);
-                startActivity(doctorViewAppointments);
-                finish();
+
             }
 
             @Override
@@ -133,7 +123,6 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
     }
 
     private void confirmUpdates(String medication, String cost) {
-        progressDialog.show();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Patients");
         ref.addValueEventListener(new ValueEventListener() {
@@ -160,10 +149,19 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
     }
 
     private void updateDetails() {
+        progressDialog.show();
         String newMedication = newMedicationET.getText().toString().trim();
         String appointmentCost = appointmentCostET.getText().toString().trim();
-        if (costValid(appointmentCost)) {
+        if (!appointmentCost.isEmpty()) {
             confirmUpdates(newMedication, appointmentCost);
+            progressDialog.dismiss();
+            Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
+            Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class);
+            startActivity(doctorViewAppointments);
+            finish();
+        } else{
+            progressDialog.dismiss();
+            appointmentCostET.setError("Appointment cost cannot be empty");
         }
     }
 

@@ -97,15 +97,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:layout_marginTop="530dp"
+            android:fontFamily="@font/font_2"
             android:gravity="center"
-            android:layout_centerVertical="true"
             android:text="Already have account? Login"
             android:textAlignment="center"
             android:textColor="#8BC34A"
-            android:fontFamily="@font/font_2"
-            android:translationY="160dp" />
+            android:translationY="160dp"
+            android:visibility="invisible" />
 
 
 
