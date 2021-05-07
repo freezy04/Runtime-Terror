@@ -1,6 +1,7 @@
 package com.example.mobidoc.ui.Appointment;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,9 @@ import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.adapterAppointment;
 import com.example.mobidoc.models.Doctor;
 import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.ui.profiles.Edit_Patient_Profile;
+import com.example.mobidoc.ui.profiles.Patient_Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +47,8 @@ public class Doctor_List extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_list);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        NavBar();
 
         recyclerView = findViewById(R.id.users_recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -182,6 +188,24 @@ public class Doctor_List extends AppCompatActivity {
             checkUserStatus();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void NavBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Your Profile");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    public void onBackPressed() {
+        startActivity(new Intent(Doctor_List.this, Patient_Dashboard.class));
+        finish();
     }
 
 }

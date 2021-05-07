@@ -78,7 +78,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
     }
     public void NavBar(){
         ActionBar actionBar = getSupportActionBar();
-        Objects.requireNonNull(actionBar).setTitle("DashBoard");
+        Objects.requireNonNull(actionBar).setTitle("Pending Appointments");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
     }

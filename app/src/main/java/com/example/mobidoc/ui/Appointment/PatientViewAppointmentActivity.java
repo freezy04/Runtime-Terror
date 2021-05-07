@@ -1,15 +1,18 @@
 package com.example.mobidoc.ui.Appointment;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.AdapterAppointmentList;
 import com.example.mobidoc.models.Appointment;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,9 +43,27 @@ public class PatientViewAppointmentActivity extends AppCompatActivity {
         userPatient = new ArrayList<>();
         getAllAppointments();
 
+        NavBar();
+
     }
 
+    public void NavBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Your Profile");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
+
+    public void onBackPressed() {
+        startActivity(new Intent(PatientViewAppointmentActivity.this, Patient_Dashboard.class));
+        finish();
+    }
 
     private void getAllAppointments() {
         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
