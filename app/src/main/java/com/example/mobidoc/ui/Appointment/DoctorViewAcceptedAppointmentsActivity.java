@@ -1,6 +1,7 @@
 package com.example.mobidoc.ui.Appointment;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -33,7 +35,7 @@ public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_view_appointments);
-
+NavBar();
         firebaseAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.users_recyclerView2);
         recyclerView.setHasFixedSize(true);
@@ -73,4 +75,11 @@ public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
             }
         });
     }
+    public void NavBar(){
+        ActionBar actionBar = getSupportActionBar();
+        Objects.requireNonNull(actionBar).setTitle("DashBoard");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
+
 }
