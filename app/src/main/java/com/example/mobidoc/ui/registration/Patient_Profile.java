@@ -15,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobidoc.Edit_Patient_Profile;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Patient;
+import com.example.mobidoc.ui.Appointment.PatientViewAppointmentActivity;
 import com.example.mobidoc.ui.MainActivity;
+import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.example.mobidoc.utils.Utilities;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 import io.paperdb.Paper;
 
@@ -90,7 +94,7 @@ public class Patient_Profile extends AppCompatActivity {
     }
     public void NavBar(){
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Patient Profile");
+        Objects.requireNonNull(actionBar).setTitle("Patient Profile");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
     }
@@ -119,6 +123,11 @@ public class Patient_Profile extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return super.onSupportNavigateUp();
+    }
+
+    public void onBackPressed() {
+        startActivity(new Intent(Patient_Profile.this, Patient_Dashboard.class));
+        finish();
     }
 
     public String CheckNull(String s){
