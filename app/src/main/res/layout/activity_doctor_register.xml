@@ -159,7 +159,6 @@
 
         <Button
             android:id="@+id/registerBTN"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
 
