@@ -145,7 +145,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/font_2"
-
+                android:textSize="17sp"
+                android:textStyle="bold"
                 android:textColorHighlight="@color/dark_blue"
                 app:cornerRadius="40dp"
                 android:translationY="230dp" />
@@ -158,6 +159,8 @@
                 android:text="Profile"
                 android:textColorHighlight="@color/dark_blue"
                 app:cornerRadius="40dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
                 android:translationY="235dp" />
 
         </LinearLayout>

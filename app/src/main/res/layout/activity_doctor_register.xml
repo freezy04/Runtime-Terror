@@ -169,6 +169,8 @@
             android:text="Register"
             android:textColorHighlight="@color/dark_blue"
             app:cornerRadius="40dp"
+            android:textSize="17sp"
+            android:textStyle="bold"
             android:fontFamily="@font/font_2"
             app:iconTint="@color/dark_blue" />
 

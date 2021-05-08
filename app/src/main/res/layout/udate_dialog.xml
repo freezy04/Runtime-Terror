@@ -21,6 +21,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 android:text="Name"
+                android:fontFamily="@font/font_2"
                 android:textStyle="bold"
                 android:gravity="center"/>
             <EditText

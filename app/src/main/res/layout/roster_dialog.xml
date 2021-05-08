@@ -17,9 +17,10 @@
             android:layout_marginBottom="15dp"
             android:gravity="center"
             android:text="Roster Plan"
-            android:textStyle="bold"
+            android:fontFamily="@font/font_2"
+            android:textColor="@color/dark_blue"
             android:textSize="20dp"
-            android:textColor="@color/darkGreen" />
+            android:textStyle="bold" />
 
 
         <LinearLayout
@@ -29,13 +30,14 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Your Shift"
+                android:textColor="@color/navy_blue"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"/>
+                android:fontFamily="@font/font_2"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/roster_shift"
@@ -56,13 +58,14 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Timing"
+                android:textColor="@color/navy_blue"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"/>
+                android:fontFamily="@font/font_2"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/roster_time_morning"
@@ -96,13 +99,14 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Lunch Time"
+                android:textColor="@color/navy_blue"
                 android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"/>
+                android:fontFamily="@font/font_2"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/roster_lunch_morning"

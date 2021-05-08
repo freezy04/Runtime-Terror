@@ -68,7 +68,8 @@
             android:layout_height="wrap_content"
 
             android:layout_centerHorizontal="true"
-
+            android:textSize="17sp"
+            android:textStyle="bold"
             android:fontFamily="@font/font_2"
             android:text="Confirm"
             android:translationY="250dp"
@@ -81,6 +82,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Back"
+            android:textSize="17sp"
+            android:textStyle="bold"
             android:textColorHighlight="@color/dark_blue"
             app:cornerRadius="40dp"
             android:fontFamily="@font/font_2"

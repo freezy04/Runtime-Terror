@@ -178,6 +178,8 @@
 android:text="Update"
                 android:textColorHighlight="@color/dark_blue"
                 app:cornerRadius="40dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
                 android:translationY="250dp" />
 
             <Button
@@ -187,6 +189,8 @@ android:text="Update"
                 android:text="Profile"
                 android:textColorHighlight="@color/dark_blue"
                 app:cornerRadius="40dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
                 android:translationY="250dp" />
 
         </LinearLayout>
