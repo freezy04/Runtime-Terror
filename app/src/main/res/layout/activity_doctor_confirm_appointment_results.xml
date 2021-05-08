@@ -20,7 +20,7 @@
             android:fontFamily="@font/font_2"
 
             android:gravity="center"
-            android:text="WELCOME TO MOBIDOC"
+            android:text="CONFIRM PAYMENT"
             android:textAlignment="center"
             android:textColor="@color/dark_navy_blue"
             android:textSize="30sp" />
@@ -37,7 +37,6 @@
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_medication"
             android:drawablePadding="9dp"
-            android:fontFamily="@font/font_2"
             android:hint="Appointment Cost"
             android:inputType="textPersonName"
             android:maxLines="1"
@@ -56,7 +55,6 @@
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_disease"
             android:drawablePadding="9dp"
-            android:fontFamily="@font/font_2"
             android:hint="New Medication"
             android:inputType="textPersonName"
             android:maxLines="1"
@@ -66,7 +64,6 @@
 
         <Button
             android:id="@+id/confirmBTN"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
 
@@ -74,10 +71,9 @@
 
             android:fontFamily="@font/font_2"
             android:text="Confirm"
-            android:textColorHighlight="@color/dark_blue"
-            android:translationY="300dp"
+            android:translationY="250dp"
             app:cornerRadius="40dp"
-            app:iconTint="@color/dark_blue" />
+             />
         <Button
             android:id="@+id/backBTN"
             android:layout_width="270dp"
@@ -89,7 +85,7 @@
             app:cornerRadius="40dp"
             android:fontFamily="@font/font_2"
             app:iconTint="@color/dark_blue"
-            android:translationY="100dp"
+            android:translationY="50dp"
             />
 
         <TextView
