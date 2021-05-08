@@ -155,8 +155,9 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
                         Toast.makeText(PatientRegisterActivityTwo.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
 
                         /* ---- Dylan 2179115 added this code ----*/
-                        startActivity(new Intent(PatientRegisterActivityTwo.this, Patient_Dashboard.class));
+                        startActivity(new Intent(PatientRegisterActivityTwo.this, Login.class));
                         finish();
+                        Toast.makeText(PatientRegisterActivityTwo.this, "Please Login now", Toast.LENGTH_LONG).show();
                     } else {
                         // If sign in fails, display a message to the user.
                         progressDialog.dismiss();
