@@ -82,19 +82,20 @@
             android:gravity="center"
             android:hint="Reason for the appointment"
             android:inputType="textLongMessage"
+            android:fontFamily="@font/font_2"
             android:textColor="@android:color/black" />
 
         <Button
-            android:layout_width="match_parent"
             android:id="@+id/_Book"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Book"
             android:fontFamily="@font/font_2"
+            android:text="Book"
+
             android:textColorHighlight="@color/dark_blue"
-            app:cornerRadius="40dp"
-            app:iconTint="@color/light_blue"
-            android:background="@android:color/holo_red_light"/>
+            app:cornerRadius="30dp"
+    />
 
     </LinearLayout>
 
