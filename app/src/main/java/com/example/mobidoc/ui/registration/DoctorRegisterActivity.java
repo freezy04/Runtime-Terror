@@ -291,8 +291,9 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
 
                         /* ---- Dylan 2179115 added this code ----*/
                         Paper.book().write(Utilities.Doctor, "Doc");
-                        startActivity(new Intent(DoctorRegisterActivity.this, Doctor_Dashboard.class));
+                        startActivity(new Intent(DoctorRegisterActivity.this, Login.class));
                         finish();
+                        Toast.makeText(DoctorRegisterActivity.this, "Please Login now", Toast.LENGTH_LONG).show();
                     } else {
                         // If sign in fails, display a message to the user.
                         progressDialog.dismiss();

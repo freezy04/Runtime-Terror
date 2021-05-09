@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:textSize="15dp"
-            android:text="Please select your Appointment of choice"
+            android:text="Below is a list of your Appointments"
             android:gravity="center_horizontal"
             android:textColor="@color/light_blue"
             android:fontFamily="@font/font_2"

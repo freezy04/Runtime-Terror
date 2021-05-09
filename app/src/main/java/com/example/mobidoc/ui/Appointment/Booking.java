@@ -140,7 +140,7 @@ public class Booking extends AppCompatActivity {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(Booking.this);
                     dialog.setTitle("Are you sure?");
                     dialog.setMessage("Appointment will await confirmation from the doctor");
-                    dialog.setPositiveButton("Booking", new DialogInterface.OnClickListener() {
+                    dialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String _Date = Sdate.trim();

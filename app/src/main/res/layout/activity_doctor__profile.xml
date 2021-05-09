@@ -32,7 +32,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/recycler">
 
             <TextView
                 android:id="@+id/doctor_name"
@@ -52,7 +55,6 @@
                 android:layout_gravity="center"
                 android:text="Specialization"
                 android:textSize="20dp"
-                android:fontFamily="@font/font_2"
                 android:textColor="@color/black"/>
 
             <LinearLayout
@@ -72,9 +74,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="Experience"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/font_2"
                         android:textStyle="bold" />
 
                     <TextView
@@ -95,12 +99,14 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Education"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/font_2"
                         android:textStyle="bold" />
 
                     <TextView
@@ -121,12 +127,14 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Email"
+                        android:fontFamily="@font/font_2"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -147,13 +155,16 @@
                     android:orientation="horizontal">
 
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
+                        android:fontFamily="@font/font_2"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
                         android:layout_weight="1"
                         android:text="Surname"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+
                         android:textStyle="bold" />
 
                     <TextView

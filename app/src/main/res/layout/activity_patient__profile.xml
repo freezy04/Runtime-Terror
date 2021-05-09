@@ -31,7 +31,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/recycler">
 
             <TextView
                 android:id="@+id/patient_names"
@@ -72,7 +75,9 @@
                         android:layout_weight="0.1"
                         android:text="Gender"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:fontFamily="@font/font_2"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -98,7 +103,9 @@
                         android:layout_weight="0.1"
                         android:text="Age"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:fontFamily="@font/font_2"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -124,7 +131,9 @@
                         android:layout_weight="0.1"
                         android:text="Allergies"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:fontFamily="@font/font_2"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -150,7 +159,9 @@
                         android:layout_weight="0.1"
                         android:text="Disease History"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:fontFamily="@font/font_2"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -176,7 +187,9 @@
                         android:layout_weight="0.1"
                         android:text="Medical History"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:fontFamily="@font/font_2"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -202,7 +215,9 @@
                         android:layout_weight="0.1"
                         android:text="Current Medication"
                         android:textColor="@color/dark_blue"
-                        android:textSize="20dp"
+                        android:fontFamily="@font/font_2"
+                        android:gravity="center_vertical"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                     <TextView
