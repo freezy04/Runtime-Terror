@@ -11,7 +11,7 @@
 - #### Purpose
       -  the purpose of this app is to help doctors see the medical history of their patients without having to search for a patients paper records
       -  the appication will also assist patients to book appointments with various doctors
-      -  MobiDoc will also allow doctors to manage their appointments
+      -  MobiDoc will also allow doctors to manage their appointments by accepting or rejecting a booking request
       -  this means the doctors save more time and focus on the task at hand -- treating an ill person and saving lives
       -  when the patient arrives for a consulation, the doctor can just quickly look up said patient's profile containing their medical history and write up the appropriate treatment
 
