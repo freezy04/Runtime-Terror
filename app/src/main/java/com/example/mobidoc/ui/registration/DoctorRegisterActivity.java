@@ -57,7 +57,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         initializeActivity();
         specializationSpinnerSetUp();
 
-        //Show / Hide Passwords
+        //Show / Hide Passwords TextInputLayouts
         showPasswordTW.setText(" ");
         showPasswordTW.setOnClickListener(v -> toggleShowPassword(passwordET, showPasswordTW));
         showConfirmPasswordTW.setText(" ");
@@ -270,6 +270,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         mAuth.createUserWithEmailAndPassword(doc.getEmail(), password)
                 .addOnCompleteListener(DoctorRegisterActivity.this, task -> {
                     if (task.isSuccessful()) {
+                        //TODO: make func
                         // Sign in success, update UI with the signed-in user's information
                         progressDialog.dismiss();
                         FirebaseUser user = mAuth.getCurrentUser();
