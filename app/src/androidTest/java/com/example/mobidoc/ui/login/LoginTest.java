@@ -8,15 +8,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class LoginTest {
 
     @Rule
     public ActivityScenarioRule<Login> activityScenarioRule = new ActivityScenarioRule<>(Login.class);
-    //This is a unit test
+
     @Test
     public void loginUser_UserDoctorNotLoggedIn_isSuccessful(){
         activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
@@ -118,4 +118,7 @@ public class LoginTest {
 
         });
     }
+
+
+
 }
