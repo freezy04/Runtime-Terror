@@ -40,7 +40,7 @@
                android:id="@+id/textView"
                android:layout_width="match_parent"
                android:layout_height="143dp"
-   android:padding="5dp"
+   android:padding="10dp"
                android:gravity="center_horizontal"
                android:fontFamily="@font/font_2"
                android:text="No Internet Connection detected:"
