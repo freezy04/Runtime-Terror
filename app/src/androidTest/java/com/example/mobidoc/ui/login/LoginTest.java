@@ -16,7 +16,7 @@ public class LoginTest {
 
     @Rule
     public ActivityScenarioRule<Login> activityScenarioRule = new ActivityScenarioRule<>(Login.class);
-
+    //This is a unit test
     @Test
     public void loginUser_UserDoctorNotLoggedIn_isSuccessful(){
         activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
