@@ -31,7 +31,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Booking extends AppCompatActivity {
 
@@ -90,7 +92,7 @@ public class Booking extends AppCompatActivity {
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String Date = month + "/" + dayOfMonth + "/" + year;
+                String Date = month+1 + "/" + dayOfMonth + "/" + year;
                 mDisplayDate.setText(Date);
                 Sdate = Date;
             }
@@ -208,6 +210,12 @@ public class Booking extends AppCompatActivity {
         if(date.getText().toString().isEmpty()){
             valid = false;
             mDisplayDate.setError("select date for appointment");
+        } else  {
+            String s = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault()).format(Calendar.getInstance().getTime());
+            if (s.compareTo(date.getText().toString()) >= 0) {
+                valid = false;
+                mDisplayDate.setError("Too late to book an appointment on this date");
+            }
         }
         if(time.getText().toString().isEmpty()){
             valid = false;
