@@ -1,11 +1,8 @@
 package com.example.mobidoc.ui.registration;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Patterns;
@@ -21,12 +18,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
-import com.example.mobidoc.ui.login.Login;
-import com.example.mobidoc.ui.No_Internet;
 import com.example.mobidoc.R;
-import com.example.mobidoc.utils.Utilities;
 import com.example.mobidoc.models.Doctor;
+import com.example.mobidoc.ui.login.Login;
+import com.example.mobidoc.utils.Utilities;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -53,16 +48,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_register);
 
-        networkAvailabilityCheck();
         initializeActivity();
-        specializationSpinnerSetUp();
-
-        //Show / Hide Passwords TextInputLayouts
-        showPasswordTW.setText(" ");
-        showPasswordTW.setOnClickListener(v -> toggleShowPassword(passwordET, showPasswordTW));
-        showConfirmPasswordTW.setText(" ");
-        showConfirmPasswordTW.setOnClickListener(v -> toggleShowPassword(confirmPasswordET, showConfirmPasswordTW));
-
 
         //if user already has an account switch to login screen
         haveAccountTW.setOnClickListener(v -> {
@@ -71,20 +57,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         });
 
         //validate details
-        registerBTN.setOnClickListener(v -> {
-            String email = emailET.getText().toString().trim();
-            String password = passwordET.getText().toString();//should we trim here?
-            String confirmPassword = confirmPasswordET.getText().toString();
-            String fName = fNameET.getText().toString().trim();
-            String lName = lNameET.getText().toString().trim();
-            String qualifications = qualificationsET.getText().toString().trim();
-            String experience = experienceET.getText().toString().trim();
-
-            if (validateDetails(email, password, confirmPassword, fName, lName, qualifications, experience, true)) {
-                // Check if user is signed in (non-null) and update UI accordingly.
-                registerUser(new Doctor(fName, lName, "Doctor", email, qualifications, experience, specialization), password);
-            }
-        });
+        registerBTN.setOnClickListener(v -> registerUser(true));
 
     }
 
@@ -111,19 +84,19 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         showConfirmPasswordTW = findViewById(R.id.showConfirmPasswordTW);
         haveAccountTW = findViewById(R.id.haveAccountTW);
 
+        //Show / Hide Passwords TextInputLayouts
+        showPasswordTW.setText(" ");
+        showPasswordTW.setOnClickListener(v -> toggleShowPassword(passwordET, showPasswordTW));
+        showConfirmPasswordTW.setText(" ");
+        showConfirmPasswordTW.setOnClickListener(v -> toggleShowPassword(confirmPasswordET, showConfirmPasswordTW));
+
         mAuth = FirebaseAuth.getInstance();//get connection to firebase
 
         //set up progress dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering Doctor...");
-    }
 
-    private void networkAvailabilityCheck() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
-        if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
-            startActivity(new Intent(DoctorRegisterActivity.this, No_Internet.class));
-        }
+        specializationSpinnerSetUp();
     }
 
     private void specializationSpinnerSetUp() {
@@ -265,36 +238,50 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         return email_valid && password_valid && confirm_password_valid && fName_valid && lName_valid && qualifications_valid && experience_valid;
     }
 
-    private void registerUser(Doctor doc, String password) {
+    private void addUserToDB(Doctor doc){
+        progressDialog.dismiss();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Objects.requireNonNull(user).sendEmailVerification()
+                .addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Toast.makeText(DoctorRegisterActivity.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(DoctorRegisterActivity.this, "Verification email failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(doc.getUser_type() + "s");
+        doc.setUid(user.getUid());
+        reference.child(doc.getUid()).setValue(doc);
+        Toast.makeText(DoctorRegisterActivity.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
+
+        /* ---- Dylan 2179115 added this code ----*/
+        Paper.book().write(Utilities.Doctor, "Doc");
+        startActivity(new Intent(DoctorRegisterActivity.this, Login.class));
+        finish();
+        Toast.makeText(DoctorRegisterActivity.this, "Please Login now", Toast.LENGTH_LONG).show();
+    }
+
+    private void registerUser(boolean displayErrors) {
+        String email = emailET.getText().toString().trim();
+        String password = passwordET.getText().toString();//should we trim here?
+        String confirmPassword = confirmPasswordET.getText().toString();
+        String fName = fNameET.getText().toString().trim();
+        String lName = lNameET.getText().toString().trim();
+        String qualifications = qualificationsET.getText().toString().trim();
+        String experience = experienceET.getText().toString().trim();
+
+        if (!validateDetails(email, password, confirmPassword, fName, lName, qualifications, experience, displayErrors)) {
+            return;
+        }
+        Doctor doc = new Doctor(fName, lName, "Doctor", email, qualifications, experience, specialization);
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(doc.getEmail(), password)
                 .addOnCompleteListener(DoctorRegisterActivity.this, task -> {
                     if (task.isSuccessful()) {
-                        //TODO: make func
-                        // Sign in success, update UI with the signed-in user's information
-                        progressDialog.dismiss();
-                        FirebaseUser user = mAuth.getCurrentUser();
-
-                        Objects.requireNonNull(user).sendEmailVerification()
-                                .addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
-                                        Toast.makeText(DoctorRegisterActivity.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(DoctorRegisterActivity.this, "Verification email failed", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference reference = database.getReference(doc.getUser_type() + "s");
-                        doc.setUid(user.getUid());
-                        reference.child(doc.getUid()).setValue(doc);
-                        Toast.makeText(DoctorRegisterActivity.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
-
-                        /* ---- Dylan 2179115 added this code ----*/
-                        Paper.book().write(Utilities.Doctor, "Doc");
-                        startActivity(new Intent(DoctorRegisterActivity.this, Login.class));
-                        finish();
-                        Toast.makeText(DoctorRegisterActivity.this, "Please Login now", Toast.LENGTH_LONG).show();
+                        addUserToDB(doc);
                     } else {
                         // If sign in fails, display a message to the user.
                         progressDialog.dismiss();

@@ -35,7 +35,7 @@ public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_view_appointments);
-NavBar();
+        NavBar();
         firebaseAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.users_recyclerView2);
         recyclerView.setHasFixedSize(true);

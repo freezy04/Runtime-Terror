@@ -96,21 +96,21 @@
             android:textColorHighlight="@color/dark_blue"
             app:cornerRadius="40dp"
             app:iconTint="@color/dark_blue" />
+
         <Button
             android:id="@+id/backBTN"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/font_2"
             android:text="Back"
             android:textColorHighlight="@color/dark_blue"
-            app:cornerRadius="40dp"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:fontFamily="@font/font_2"
-            app:iconTint="@color/dark_blue"
             android:translationY="100dp"
-            />
+            android:visibility="invisible"
+            app:cornerRadius="40dp"
+            app:iconTint="@color/dark_blue" />
 
         <TextView
             android:id="@+id/haveAccountTW"

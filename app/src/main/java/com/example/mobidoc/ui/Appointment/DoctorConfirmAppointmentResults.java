@@ -8,32 +8,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
-import com.example.mobidoc.models.Appointment;
-import com.example.mobidoc.models.Patient;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
     public EditText newMedicationET, appointmentCostET;
     public Button confirmBTN , BackBTN;
-    private TextView headingTW;
     private ProgressDialog progressDialog;
-    private FirebaseAuth mAuth;
-    private String appointmentUID, patientUID, patientName;
+    private String appointmentUID, patientUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +31,8 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
         initializeActivity();
 
-        confirmBTN.setOnClickListener(v -> {
-            updateDetails();
-        });
+        confirmBTN.setOnClickListener(v -> updateDetails());
+
         BackBTN.setOnClickListener(v -> {
             startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
             finish();
@@ -62,16 +50,14 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         //initialize swing elements
         newMedicationET = findViewById(R.id.newMedicationET);
         appointmentCostET = findViewById(R.id.appointmentCostET);
-        headingTW = findViewById(R.id.headingTW);
+        TextView headingTW = findViewById(R.id.headingTW);
         confirmBTN = findViewById(R.id.confirmBTN);
         BackBTN = findViewById(R.id.backBTN);
-
-        mAuth = FirebaseAuth.getInstance();//get connection to firebase
 
         Intent confirmResults = getIntent();
         appointmentUID = confirmResults.getStringExtra("appointmentUID");
         patientUID = confirmResults.getStringExtra("patientUID");
-        patientName = confirmResults.getStringExtra("patientName");
+        String patientName = confirmResults.getStringExtra("patientName");
 
         headingTW.setText(String.format("Appointment with %s", patientName));
 
@@ -94,58 +80,17 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 ////        }
 //    }
 
-    private void updateCost(String cost) {
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference("Appointments");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Appointment app = ds.getValue(Appointment.class);
-                    app.setId(ds.getKey());
-                    if (app.getId().equals(appointmentUID)) {
-                        app.setAppointment_Cost(cost);
-                        Map<String, Object> appointmentUpdate = new HashMap<>();
-                        appointmentUpdate.put(appointmentUID, app);
-                        ref.updateChildren(appointmentUpdate);
-                        break;
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                progressDialog.dismiss();
-                Toast.makeText(DoctorConfirmAppointmentResults.this, "Appointment update failed.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     private void confirmUpdates(String medication, String cost) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference("Patients");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Patient pat = ds.getValue(Patient.class);
-                    if (pat.getUid().equals(patientUID)) {
-                        pat.setCurrentMedication(medication);
-                        Map<String, Object> patientUpdate = new HashMap<>();
-                        patientUpdate.put(patientUID, pat);
-                        ref.updateChildren(patientUpdate);
-                        break;
-                    }
-                }
-                updateCost(cost);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(DoctorConfirmAppointmentResults.this, "Medication update failed.", Toast.LENGTH_SHORT).show();
-            }
-        });
+        DatabaseReference ref = db.getReference("Patients").child(patientUID).child("currentMedication");
+        ref.setValue(medication);
+        ref = db.getReference("Appointments").child(appointmentUID).child("appointment_Cost");
+        ref.setValue(cost);
+        progressDialog.dismiss();
+        Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
+        Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class);
+        startActivity(doctorViewAppointments);
+        finish();
     }
 
     private void updateDetails() {
@@ -154,11 +99,6 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         String appointmentCost = appointmentCostET.getText().toString().trim();
         if (!appointmentCost.isEmpty()) {
             confirmUpdates(newMedication, appointmentCost);
-            progressDialog.dismiss();
-            Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
-            Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class);
-            startActivity(doctorViewAppointments);
-            finish();
         } else{
             progressDialog.dismiss();
             appointmentCostET.setError("Appointment cost cannot be empty");

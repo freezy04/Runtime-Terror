@@ -1,10 +1,7 @@
 package com.example.mobidoc.ui.registration;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Patterns;
@@ -15,9 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mobidoc.ui.login.Login;
-import com.example.mobidoc.ui.No_Internet;
 import com.example.mobidoc.R;
+import com.example.mobidoc.ui.login.Login;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -36,14 +32,7 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_register_one);
 
-        networkAvailabilityCheck();
         initializeActivity();
-
-        //Show / Hide Passwords
-        showPasswordTW.setText(" ");
-        showPasswordTW.setOnClickListener(v -> toggleShowPassword(passwordET, showPasswordTW));
-        showConfirmPasswordTW.setText(" ");
-        showConfirmPasswordTW.setOnClickListener(v -> toggleShowPassword(confirmPasswordET, showConfirmPasswordTW));
 
         //if user already has an account switch to login screen
         haveAccountTW.setOnClickListener(v -> {
@@ -52,20 +41,7 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         });
 
         //validate details
-        nextBTN.setOnClickListener(v -> {
-            if (validateDetails(emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET, true)) {
-                // Check if user is signed in (non-null) and update UI accordingly.
-                Intent patientRegistrationStepTwo = new Intent(PatientRegisterActivityOne.this, PatientRegisterActivityTwo.class);
-                patientRegistrationStepTwo.putExtra("email", emailET.getText().toString().trim());
-                patientRegistrationStepTwo.putExtra("password", passwordET.getText().toString());//should we trim here?
-                patientRegistrationStepTwo.putExtra("fName", fNameET.getText().toString().trim());
-                patientRegistrationStepTwo.putExtra("lName", lNameET.getText().toString().trim());
-                patientRegistrationStepTwo.putExtra("age", ageET.getText().toString().trim());
-                patientRegistrationStepTwo.putExtra("sex", sexET.getText().toString().trim());
-                startActivity(patientRegistrationStepTwo);
-                finish();
-            }
-        });
+        nextBTN.setOnClickListener(v -> moveToNextStep());
 
     }
 
@@ -91,22 +67,11 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         showPasswordTW = findViewById(R.id.showPasswordTW);
         showConfirmPasswordTW = findViewById(R.id.showConfirmPasswordTW);
 
-        Intent patRegIntent = getIntent();
-        if (patRegIntent.getIntExtra("step", 0) != 0) {
-            emailET.setText(patRegIntent.getStringExtra("email"));
-            fNameET.setText(patRegIntent.getStringExtra("fName"));
-            lNameET.setText(patRegIntent.getStringExtra("lName"));
-            ageET.setText(patRegIntent.getStringExtra("age"));
-            sexET.setText(patRegIntent.getStringExtra("sex"));
-        }
-    }
-
-    private void networkAvailabilityCheck() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
-        if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
-            startActivity(new Intent(PatientRegisterActivityOne.this, No_Internet.class));
-        }
+        //Show / Hide Passwords
+        showPasswordTW.setText(" ");
+        showPasswordTW.setOnClickListener(v -> toggleShowPassword(passwordET, showPasswordTW));
+        showConfirmPasswordTW.setText(" ");
+        showConfirmPasswordTW.setOnClickListener(v -> toggleShowPassword(confirmPasswordET, showConfirmPasswordTW));
     }
 
     private boolean validateEmail(String email, boolean displayErrors) {//if email address is not in valid format, displays error
@@ -192,6 +157,20 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         boolean age_valid = validateAge(ageET.getText().toString().trim(), displayErrors);
         boolean sex_valid = fieldNotNull(sexET, displayErrors);
         return email_valid && password_valid && confirm_password_valid && fName_valid && lName_valid && age_valid && sex_valid;
+    }
+
+    private void moveToNextStep() {
+        if (validateDetails(emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET, true)) {
+            // Check if user is signed in (non-null) and update UI accordingly.
+            Intent patientRegistrationStepTwo = new Intent(PatientRegisterActivityOne.this, PatientRegisterActivityTwo.class);
+            patientRegistrationStepTwo.putExtra("email", emailET.getText().toString().trim());
+            patientRegistrationStepTwo.putExtra("password", passwordET.getText().toString());//should we trim here?
+            patientRegistrationStepTwo.putExtra("fName", fNameET.getText().toString().trim());
+            patientRegistrationStepTwo.putExtra("lName", lNameET.getText().toString().trim());
+            patientRegistrationStepTwo.putExtra("age", ageET.getText().toString().trim());
+            patientRegistrationStepTwo.putExtra("sex", sexET.getText().toString().trim());
+            startActivity(patientRegistrationStepTwo);
+            }
     }
 
     private void toggleShowPassword(EditText password, TextView showPassword) {

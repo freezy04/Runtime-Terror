@@ -1,10 +1,7 @@
 package com.example.mobidoc.ui.registration;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Patient;
-import com.example.mobidoc.ui.No_Internet;
-import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.example.mobidoc.ui.login.Login;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,7 +28,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
     private EditText diseaseHistoryET, medicationHistoryET, allergiesET;
     private String email, password, fName, lName, age, sex;
     private TextView haveAccountTW;
-    private Button registerBTN, backBTN;
+    private Button registerBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
@@ -42,7 +37,6 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_register_two);
 
-        networkAvailabilityCheck();
         initializeActivity();
 
         //if user already has an account switch to login screen
@@ -52,27 +46,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         });
 
         //validate details
-        registerBTN.setOnClickListener(v -> {
-            if (validateDetails(diseaseHistoryET, medicationHistoryET, true)) {
-                // Check if user is signed in (non-null) and update UI accordingly.
-                String diseaseHistory = diseaseHistoryET.getText().toString().trim();
-                String medicationHistory = medicationHistoryET.getText().toString().trim();
-                String allergies = allergiesET.getText().toString().trim();
-                Patient pat = new Patient(fName, lName, "Patient", email, age, sex, diseaseHistory, medicationHistory, allergies, "");
-                registerUser(pat, password);
-            }
-        });
-
-        backBTN.setOnClickListener(v -> {
-            Intent backIntent = new Intent(PatientRegisterActivityTwo.this, PatientRegisterActivityOne.class);
-            backIntent.putExtra("step", 1);
-            backIntent.putExtra("email", email);
-            backIntent.putExtra("fName", fName);
-            backIntent.putExtra("lName", lName);
-            backIntent.putExtra("age", age);
-            backIntent.putExtra("sex", sex);
-            startActivity(backIntent);
-        });
+        registerBTN.setOnClickListener(v -> registerUser(true));
     }
 
     private void initializeActivity() {
@@ -89,7 +63,6 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         medicationHistoryET = findViewById(R.id.medicationHistoryET);
         allergiesET = findViewById(R.id.allergiesET);
         registerBTN = findViewById(R.id.registerBTN);
-        backBTN = findViewById(R.id.backBTN);
         haveAccountTW = findViewById(R.id.haveAccountTW);
 
         Intent patientRegistrationStepTwo = getIntent();
@@ -104,14 +77,6 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering Patient...");
-    }
-
-    private void networkAvailabilityCheck() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
-        if (activeNetworkInfo == null || !activeNetworkInfo.isConnected()) {
-            startActivity(new Intent(PatientRegisterActivityTwo.this, No_Internet.class));
-        }
     }
 
     private boolean fieldNotNull(EditText et, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
@@ -130,34 +95,47 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         return dHistory_valid && mHistory_valid;
     }
 
-    private void registerUser(Patient pat, String password) {
+    private void addUserToDB(Patient pat){
+        // Sign in success, update UI with the signed-in user's information
+        progressDialog.dismiss();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Objects.requireNonNull(user).sendEmailVerification()
+                .addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Toast.makeText(PatientRegisterActivityTwo.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(PatientRegisterActivityTwo.this, "Verification email failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(pat.getUser_type() + "s");
+        pat.setUid(user.getUid());
+        reference.child(pat.getUid()).setValue(pat);
+        Toast.makeText(PatientRegisterActivityTwo.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
+
+        /* ---- Dylan 2179115 added this code ----*/
+        Intent i = new Intent(PatientRegisterActivityTwo.this, Login.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finish();
+        Toast.makeText(PatientRegisterActivityTwo.this, "Please Login now", Toast.LENGTH_LONG).show();
+    }
+
+    private void registerUser(boolean displayErrors) {
+        if (!validateDetails(diseaseHistoryET, medicationHistoryET, displayErrors)) {
+            return;
+        }
+        String diseaseHistory = diseaseHistoryET.getText().toString().trim();
+        String medicationHistory = medicationHistoryET.getText().toString().trim();
+        String allergies = allergiesET.getText().toString().trim();
+        Patient pat = new Patient(fName, lName, "Patient", email, age, sex, diseaseHistory, medicationHistory, allergies, "");
         progressDialog.show();
         mAuth.createUserWithEmailAndPassword(pat.getEmail(), password)
                 .addOnCompleteListener(PatientRegisterActivityTwo.this, task -> {
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        progressDialog.dismiss();
-                        FirebaseUser user = mAuth.getCurrentUser();
-
-                        Objects.requireNonNull(user).sendEmailVerification()
-                                .addOnCompleteListener(task1 -> {
-                                    if (task1.isSuccessful()) {
-                                        Toast.makeText(PatientRegisterActivityTwo.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(PatientRegisterActivityTwo.this, "Verification email failed", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference reference = database.getReference(pat.getUser_type() + "s");
-                        pat.setUid(user.getUid());
-                        reference.child(pat.getUid()).setValue(pat);
-                        Toast.makeText(PatientRegisterActivityTwo.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();
-
-                        /* ---- Dylan 2179115 added this code ----*/
-                        startActivity(new Intent(PatientRegisterActivityTwo.this, Login.class));
-                        finish();
-                        Toast.makeText(PatientRegisterActivityTwo.this, "Please Login now", Toast.LENGTH_LONG).show();
+                        addUserToDB(pat);
                     } else {
                         // If sign in fails, display a message to the user.
                         progressDialog.dismiss();
