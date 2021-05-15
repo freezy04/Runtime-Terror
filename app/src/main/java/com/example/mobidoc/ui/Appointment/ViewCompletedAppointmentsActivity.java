@@ -1,17 +1,18 @@
 package com.example.mobidoc.ui.Appointment;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.AdapterAppointmentList;
 import com.example.mobidoc.models.Appointment;
+import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,13 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientViewAppointmentActivity extends AppCompatActivity {
+public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     AdapterAppointmentList AdapterPatient;
     List<Appointment> userPatient;
     FirebaseAuth firebaseAuth;
-
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +40,20 @@ public class PatientViewAppointmentActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.users_recyclerView3);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(PatientViewAppointmentActivity.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(ViewCompletedAppointmentsActivity.this));
         userPatient = new ArrayList<>();
         getAllAppointments();
 
         NavBar();
 
+        Intent viewCompletedApps = getIntent();
+        userType = viewCompletedApps.getStringExtra("userType");
+
     }
 
     public void NavBar(){
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Edit Your Profile");
+        actionBar.setTitle("Completed Appointments");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
     }
@@ -61,8 +65,13 @@ public class PatientViewAppointmentActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        startActivity(new Intent(PatientViewAppointmentActivity.this, Patient_Dashboard.class));
-        finish();
+        if (userType.equals("Doctor")) {
+            startActivity(new Intent(ViewCompletedAppointmentsActivity.this, Doctor_Dashboard.class));
+            finish();
+        }else {
+            startActivity(new Intent(ViewCompletedAppointmentsActivity.this, Patient_Dashboard.class));
+            finish();
+        }
     }
 
     private void getAllAppointments() {
@@ -79,11 +88,17 @@ public class PatientViewAppointmentActivity extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Appointment modelUsers = ds.getValue(Appointment.class);
                     modelUsers.setId(ds.getKey());
-                    if(modelUsers.getPatientUid().equals(fUser.getUid())){
+                    String userUID;
+                    if (userType.equals("Doctor")) {
+                        userUID = modelUsers.getDoctorUid();
+                    } else{
+                        userUID = modelUsers.getPatientUid();
+                    }
+                    if(userUID.equals(fUser.getUid()) && modelUsers.getStatus().equals("completed")){
                         userPatient.add(modelUsers);
                     }
 
-                    AdapterPatient = new AdapterAppointmentList(PatientViewAppointmentActivity.this, userPatient);
+                    AdapterPatient = new AdapterAppointmentList(ViewCompletedAppointmentsActivity.this, userPatient, userType);
                     recyclerView.setAdapter(AdapterPatient);
                 }
             }

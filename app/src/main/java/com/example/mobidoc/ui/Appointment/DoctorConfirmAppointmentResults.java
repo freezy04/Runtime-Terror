@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
-    public EditText newMedicationET, appointmentCostET;
+    public EditText newMedicationET, appointmentCostET, appointmentNotesET;
     public Button confirmBTN , BackBTN;
     private ProgressDialog progressDialog;
     private String appointmentUID, patientUID;
@@ -33,10 +33,10 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
         confirmBTN.setOnClickListener(v -> updateDetails());
 
-        BackBTN.setOnClickListener(v -> {
-            startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
-            finish();
-        });
+//        BackBTN.setOnClickListener(v -> {
+//            startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
+//            finish();
+//        });
 
     }
 
@@ -50,9 +50,10 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         //initialize swing elements
         newMedicationET = findViewById(R.id.newMedicationET);
         appointmentCostET = findViewById(R.id.appointmentCostET);
+        appointmentNotesET = findViewById(R.id.appointmentNotesET);
         TextView headingTW = findViewById(R.id.headingTW);
         confirmBTN = findViewById(R.id.confirmBTN);
-        BackBTN = findViewById(R.id.backBTN);
+//        BackBTN = findViewById(R.id.backBTN);
 
         Intent confirmResults = getIntent();
         appointmentUID = confirmResults.getStringExtra("appointmentUID");
@@ -80,12 +81,16 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 ////        }
 //    }
 
-    private void confirmUpdates(String medication, String cost) {
+    private void confirmUpdates(String medication, String cost, String notes) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Patients").child(patientUID).child("currentMedication");
         ref.setValue(medication);
         ref = db.getReference("Appointments").child(appointmentUID).child("appointment_Cost");
         ref.setValue(cost);
+        ref = db.getReference("Appointments").child(appointmentUID).child("notes");
+        ref.setValue(notes);
+        ref = db.getReference("Appointments").child(appointmentUID).child("status");
+        ref.setValue("completed");
         progressDialog.dismiss();
         Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
         Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class);
@@ -97,8 +102,9 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         progressDialog.show();
         String newMedication = newMedicationET.getText().toString().trim();
         String appointmentCost = appointmentCostET.getText().toString().trim();
+        String notes = appointmentNotesET.getText().toString().trim();
         if (!appointmentCost.isEmpty()) {
-            confirmUpdates(newMedication, appointmentCost);
+            confirmUpdates(newMedication, appointmentCost, notes);
         } else{
             progressDialog.dismiss();
             appointmentCostET.setError("Appointment cost cannot be empty");

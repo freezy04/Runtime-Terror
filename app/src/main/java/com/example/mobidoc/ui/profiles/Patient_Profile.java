@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Patient;
-import com.example.mobidoc.ui.Appointment.PatientViewAppointmentActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.example.mobidoc.utils.Utilities;

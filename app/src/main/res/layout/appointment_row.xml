@@ -113,6 +113,23 @@
                 android:layout_height="wrap_content"
                 android:text="Medical Cost"
                 android:textColor="@color/dark_blue"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:text="Appointment notes"
+                android:textColor="@android:color/black"/>
+            android:textColor="@color/dark_blue"/>
+            <TextView
+                android:id="@+id/appointmentNotesTV"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:text="No notes yet"
+                android:textColor="@color/dark_blue"/>
         </LinearLayout>
 
     </LinearLayout>

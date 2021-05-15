@@ -14,8 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobiDoc">
-        <activity android:name=".ui.Appointment.Patient_Doctor_list"></activity>
-        <activity android:name=".ui.Appointment.PatientViewAppointmentActivity" />
+<!--        <activity android:name=".ui.Appointment.Patient_Doctor_list"/>-->
+        <activity android:name=".ui.Appointment.ViewCompletedAppointmentsActivity" />
         <activity android:name=".ui.Appointment.DoctorViewAcceptedAppointmentsActivity" />
         <activity android:name=".ui.profiles.Doctor_ProfileActivity" /> <!-- <activity android:name=".ui.MainActivity" android:label="Activity Title"  android:theme="@style/AppTheme.NoActionBar"/> -->
         <activity android:name=".ui.profiles.Doctor_EditProfileActivity" />

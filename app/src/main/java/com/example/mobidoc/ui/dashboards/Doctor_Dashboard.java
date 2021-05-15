@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
 import com.example.mobidoc.ui.Appointment.DoctorViewPendingAppointmentsActivity;
+import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
 import com.example.mobidoc.utils.Utilities;
@@ -20,7 +21,7 @@ import com.example.mobidoc.utils.Utilities;
 import io.paperdb.Paper;
 
 public class Doctor_Dashboard extends AppCompatActivity {
-    LinearLayout doctor_profile,doctor_pending_appointments,doctor_patients,doctor_accepted_appointments;
+    LinearLayout doctor_profile,doctor_pending_appointments,doctor_completed_appointments,doctor_accepted_appointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,14 @@ public class Doctor_Dashboard extends AppCompatActivity {
         doctor_accepted_appointments = findViewById(R.id.ll_accepted_appointments);
         doctor_accepted_appointments.setOnClickListener(v -> {
             startActivity(new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class));
+        });
+
+        //view completed appointments temporarily using this layout
+        doctor_completed_appointments = findViewById(R.id.ll_patient_records);
+        doctor_completed_appointments.setOnClickListener(v -> {
+            Intent docViewCompletedApps = new Intent(Doctor_Dashboard.this, ViewCompletedAppointmentsActivity.class);
+            docViewCompletedApps.putExtra("userType", "Doctor");
+            startActivity(docViewCompletedApps);
         });
 
     }

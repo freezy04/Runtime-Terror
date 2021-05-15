@@ -5,14 +5,14 @@ import com.google.firebase.firestore.PropertyName;
 public class Appointment {
 
     private String id, PatientUid, Patient_Name, DoctorUid, Doctor_Name, Date_for_appointment,
-            Time_for_appointment, Reason_for_appointment, Appointment_Cost, status;
+            Time_for_appointment, Reason_for_appointment, Appointment_Cost, status, notes;
 
     public Appointment() {
     }
 
     //without id
     public Appointment(String patientUid, String patient_Name, String doctorUid, String doctor_Name, String date_for_appointment,
-                       String time_for_appointment, String reason_for_appointment, String appointment_Cost, String status) {
+                       String time_for_appointment, String reason_for_appointment, String appointment_Cost, String status, String notes) {
         PatientUid = patientUid;
         Patient_Name = patient_Name;
         DoctorUid = doctorUid;
@@ -22,22 +22,24 @@ public class Appointment {
         Reason_for_appointment = reason_for_appointment;
         Appointment_Cost = appointment_Cost;
         this.status = status;
+        this.notes = notes;
     }
 
-    //with id
-    public Appointment(String id, String patientUid, String patient_Name, String doctorUid, String doctor_Name, String date_for_appointment,
-                       String time_for_appointment, String reason_for_appointment, String appointment_Cost, String status) {
-        this.id = id;
-        PatientUid = patientUid;
-        Patient_Name = patient_Name;
-        DoctorUid = doctorUid;
-        Doctor_Name = doctor_Name;
-        Date_for_appointment = date_for_appointment;
-        Time_for_appointment = time_for_appointment;
-        Reason_for_appointment = reason_for_appointment;
-        Appointment_Cost = appointment_Cost;
-        this.status = status;
-    }
+//    //with id
+//    public Appointment(String id, String patientUid, String patient_Name, String doctorUid, String doctor_Name, String date_for_appointment,
+//                       String time_for_appointment, String reason_for_appointment, String appointment_Cost, String status, String notes) {
+//        this.id = id;
+//        PatientUid = patientUid;
+//        Patient_Name = patient_Name;
+//        DoctorUid = doctorUid;
+//        Doctor_Name = doctor_Name;
+//        Date_for_appointment = date_for_appointment;
+//        Time_for_appointment = time_for_appointment;
+//        Reason_for_appointment = reason_for_appointment;
+//        Appointment_Cost = appointment_Cost;
+//        this.status = status;
+//        this.notes = notes;
+//    }
 
     @PropertyName("id")
     public String getId() {
@@ -137,5 +139,13 @@ public class Appointment {
     @PropertyName("status")
     public void setStatus(String status) {
         this.status = status;
+    }
+    @PropertyName("notes")
+    public String getNotes() {
+        return notes;
+    }
+    @PropertyName("notes")
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

@@ -17,15 +17,17 @@ import com.example.mobidoc.ui.Appointment.DoctorConfirmAppointmentResults;
 
 import java.util.List;
 
-public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppointmentList.MyHolder>{
+public class AdapterAppointmentList extends RecyclerView.Adapter<AdapterAppointmentList.MyHolder> {
     Context context;
     List<Appointment> userList;
     TextView datetime2;
-    public AdapterAppointmentList(Context context, List<Appointment> userList) {
+    private String userType;
+
+    public AdapterAppointmentList(Context context, List<Appointment> userList, String userType) {
         this.context = context;
         this.userList = userList;
+        this.userType = userType;
     }
-
 
 
     @NonNull
@@ -41,17 +43,27 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
         String appointmentUID = userList.get(position).getId();
         String doctorUID = userList.get(position).getDoctorUid();
         String doctorName = userList.get(position).getDoctor_Name();
+        String patientName = userList.get(position).getPatient_Name();
         String appCost = userList.get(position).getAppointment_Cost();
         // String userImage = userList.get(position).getImage();
         String userPatientMessage = userList.get(position).getReason_for_appointment();
         String userDate = userList.get(position).getDate_for_appointment();
         String userTime = userList.get(position).getTime_for_appointment();
-     //   holder.DoctorName.setText(userDoctorName);
-        holder.DoctorName.setText(doctorName);
+        String notes = userList.get(position).getNotes();
+        //   holder.DoctorName.setText(userDoctorName);
+
+        if (userType.equals("Doctor")) {
+            holder.DoctorName.setText(patientName);
+        } else {
+            holder.DoctorName.setText(doctorName);
+        }
+
         holder.Patientmessage.setText(userPatientMessage);
         holder.mTimeAppointment.setText(userTime);
         holder.mDateAppointment.setText(userDate);
         holder.appointmentCost.setText(appCost);
+        holder.appointmentNotes.setText(notes);
+
 
 // moving to the  next activity
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +83,10 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
         return userList.size();
     }
 
-    class  MyHolder extends RecyclerView.ViewHolder{
+    class MyHolder extends RecyclerView.ViewHolder {
 
         ImageView mAvatarIv2;
-        TextView mTimeAppointment, mDateAppointment, DoctorName,Patientmessage, appointmentCost;
+        TextView mTimeAppointment, mDateAppointment, DoctorName, Patientmessage, appointmentCost, appointmentNotes;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +98,7 @@ public class AdapterAppointmentList  extends RecyclerView.Adapter<AdapterAppoint
             mDateAppointment = itemView.findViewById(R.id.dateTv);
             Patientmessage = itemView.findViewById(R.id.messageTv);
             datetime2 = itemView.findViewById(R.id.SelectDoctor);
+            appointmentNotes = itemView.findViewById(R.id.appointmentNotesTV);
         }
     }
 

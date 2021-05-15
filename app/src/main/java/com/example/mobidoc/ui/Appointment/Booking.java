@@ -180,7 +180,7 @@ public class Booking extends AppCompatActivity {
 
         String timestamp = String.valueOf(System.currentTimeMillis());
 
-        Appointment appointment = new Appointment(myUid, myName+" "+myNameL, DoctorUid, Doctor_Name, Date, Time, Reason_for_appointment, "0", "pending");
+        Appointment appointment = new Appointment(myUid, myName+" "+myNameL, DoctorUid, Doctor_Name, Date, Time, Reason_for_appointment, "0", "pending", "");
         databaseReference.child("Appointments").push().setValue(appointment);
 //        HashMap<String, Object> hashMap = new HashMap<>();
 //        hashMap.put("PatientUid", myUid);

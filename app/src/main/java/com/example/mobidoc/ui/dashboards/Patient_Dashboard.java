@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.Appointment.Doctor_List;
-import com.example.mobidoc.ui.Appointment.PatientViewAppointmentActivity;
+import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.profiles.Patient_Profile;
 import com.example.mobidoc.utils.Utilities;
@@ -41,7 +41,9 @@ public class Patient_Dashboard extends AppCompatActivity {
         });
 
         AppointmentList.setOnClickListener(v -> {
-            startActivity(new Intent(Patient_Dashboard.this, PatientViewAppointmentActivity.class));
+            Intent patViewCompletedApps = new Intent(Patient_Dashboard.this, ViewCompletedAppointmentsActivity.class);
+            patViewCompletedApps.putExtra("userType", "Patient");
+            startActivity(patViewCompletedApps);
         });
 
     }
