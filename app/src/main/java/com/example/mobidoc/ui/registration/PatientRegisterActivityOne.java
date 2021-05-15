@@ -23,9 +23,9 @@ import io.paperdb.Paper;
 
 public class PatientRegisterActivityOne extends AppCompatActivity {
 
-    private EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET;
-    private TextView haveAccountTW, showPasswordTW, showConfirmPasswordTW;
-    private Button nextBTN;
+    public EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET;
+    public TextView haveAccountTW, showPasswordTW, showConfirmPasswordTW;
+    public Button nextBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +35,16 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         initializeActivity();
 
         //if user already has an account switch to login screen
-        haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(PatientRegisterActivityOne.this, Login.class));
-            finish();
-        });
+        haveAccountTW.setOnClickListener(v -> switchToLogin());
 
         //validate details
         nextBTN.setOnClickListener(v -> moveToNextStep());
 
+    }
+
+    public void switchToLogin(){
+        startActivity(new Intent(PatientRegisterActivityOne.this, Login.class));
+        finish();
     }
 
     private void initializeActivity() {
@@ -74,17 +76,15 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         showConfirmPasswordTW.setOnClickListener(v -> toggleShowPassword(confirmPasswordET, showConfirmPasswordTW));
     }
 
-    private boolean validateEmail(String email, boolean displayErrors) {//if email address is not in valid format, displays error
+    private boolean validateEmail(String email) {//if email address is not in valid format, displays error
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            if (displayErrors) {
-                emailET.setError("Invalid Email");
-            }
+            emailET.setError("Invalid Email");
             return false;
         }
         return true;
     }
 
-    private boolean validatePassword(String password, boolean displayErrors) {//checks if password is in correct format, if not displays error message
+    private boolean validatePassword(String password) {//checks if password is in correct format, if not displays error message
         //defines patterns and matchers for password security
         Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
         Pattern upperCase = Pattern.compile("\\p{Upper}");//all uppercase letters
@@ -97,40 +97,32 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         //if password has less than 8 or more than 20 characters, does not contain at least one lowercase letter, does not contain at least one uppercase letter,
         //does not contain at least one number or does not contain at least one special character, displays error
         if (password.length() < 8 || password.length() > 20 || !hasLowerCase.find() || !hasUpperCase.find() || !hasNumber.find() || !hasSpecial.find()) {
-            if (displayErrors) {
-                passwordET.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
+            passwordET.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
                         " letter, number and special character");
-            }
             return false;
         }
         return true;
     }
 
-    private boolean validateConfirmPassword(String confirm_password, String password, boolean displayErrors) {
+    private boolean validateConfirmPassword(String confirm_password, String password) {
         if (confirm_password.equals(password)) {
             return true;
         }
-        if (displayErrors) {
-            confirmPasswordET.setError("Passwords must match");
-        }
+        confirmPasswordET.setError("Passwords must match");
         return false;
     }
 
-    private boolean fieldNotNull(EditText et, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
+    private boolean fieldNotNull(EditText et) {//checks if personal information fields are empty, if so displays the appropriate error(s)
         if (et.getText().toString().trim().isEmpty()) {
-            if (displayErrors) {
-                et.setError("Cannot be empty");
-            }
+            et.setError("Cannot be empty");
             return false;
         }
         return true;
     }
 
-    private boolean validateAge(String age, boolean displayErrors) {
+    private boolean validateAge(String age) {
         if (age.isEmpty()) {
-            if (displayErrors) {
-                ageET.setError("Age cannot be empty");
-            }
+            ageET.setError("Age cannot be empty");
             return false;
         }
         Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
@@ -140,27 +132,25 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
         Matcher hasUpperCase = upperCase.matcher(age);
         Matcher hasSpecial = special.matcher(age);
         if (hasLowerCase.find() || hasUpperCase.find() || hasSpecial.find()) {
-            if (displayErrors) {
-                ageET.setError("Please use only numbers to indicate age (in years)");
-            }
+            ageET.setError("Please use only numbers to indicate age (in years)");
             return false;
         }
         return true;
     }
 
-    private boolean validateDetails(EditText emailET, EditText passwordET, EditText confirmPasswordET, EditText fNameET, EditText lNameET, EditText ageET, EditText sexET, boolean displayErrors) {
-        boolean email_valid = validateEmail(emailET.getText().toString().trim(), displayErrors);
-        boolean password_valid = validatePassword(passwordET.getText().toString().trim(), displayErrors);
-        boolean confirm_password_valid = validateConfirmPassword(confirmPasswordET.getText().toString().trim(), passwordET.getText().toString().trim(), displayErrors);
-        boolean fName_valid = fieldNotNull(fNameET, displayErrors);
-        boolean lName_valid = fieldNotNull(lNameET, displayErrors);
-        boolean age_valid = validateAge(ageET.getText().toString().trim(), displayErrors);
-        boolean sex_valid = fieldNotNull(sexET, displayErrors);
+    private boolean validateDetails(EditText emailET, EditText passwordET, EditText confirmPasswordET, EditText fNameET, EditText lNameET, EditText ageET, EditText sexET) {
+        boolean email_valid = validateEmail(emailET.getText().toString().trim());
+        boolean password_valid = validatePassword(passwordET.getText().toString().trim());
+        boolean confirm_password_valid = validateConfirmPassword(confirmPasswordET.getText().toString().trim(), passwordET.getText().toString().trim());
+        boolean fName_valid = fieldNotNull(fNameET);
+        boolean lName_valid = fieldNotNull(lNameET);
+        boolean age_valid = validateAge(ageET.getText().toString().trim());
+        boolean sex_valid = fieldNotNull(sexET);
         return email_valid && password_valid && confirm_password_valid && fName_valid && lName_valid && age_valid && sex_valid;
     }
 
     private void moveToNextStep() {
-        if (validateDetails(emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET, true)) {
+        if (validateDetails(emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET)) {
             // Check if user is signed in (non-null) and update UI accordingly.
             Intent patientRegistrationStepTwo = new Intent(PatientRegisterActivityOne.this, PatientRegisterActivityTwo.class);
             patientRegistrationStepTwo.putExtra("email", emailET.getText().toString().trim());
@@ -173,7 +163,7 @@ public class PatientRegisterActivityOne extends AppCompatActivity {
             }
     }
 
-    private void toggleShowPassword(EditText password, TextView showPassword) {
+    public void toggleShowPassword(EditText password, TextView showPassword) {
         if (showPassword.getText().equals(" ")) {
             showPassword.setText(".");
             password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);

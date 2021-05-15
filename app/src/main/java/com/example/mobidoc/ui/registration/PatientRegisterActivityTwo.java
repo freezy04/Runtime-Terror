@@ -25,10 +25,10 @@ import io.paperdb.Paper;
 
 public class PatientRegisterActivityTwo extends AppCompatActivity {
 
-    private EditText diseaseHistoryET, medicationHistoryET, allergiesET;
-    private String email, password, fName, lName, age, sex;
-    private TextView haveAccountTW;
-    private Button registerBTN;
+    public EditText diseaseHistoryET, medicationHistoryET, allergiesET;
+    public String email, password, fName, lName, age, sex;
+    public TextView haveAccountTW;
+    public Button registerBTN;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
@@ -40,13 +40,15 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         initializeActivity();
 
         //if user already has an account switch to login screen
-        haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(PatientRegisterActivityTwo.this, Login.class));
-            finish();
-        });
+        haveAccountTW.setOnClickListener(v -> switchToLogin());
 
         //validate details
-        registerBTN.setOnClickListener(v -> registerUser(true));
+        registerBTN.setOnClickListener(v -> registerUser());
+    }
+
+    public void switchToLogin(){
+        startActivity(new Intent(PatientRegisterActivityTwo.this, Login.class));
+        finish();
     }
 
     private void initializeActivity() {
@@ -79,19 +81,17 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         progressDialog.setMessage("Registering Patient...");
     }
 
-    private boolean fieldNotNull(EditText et, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
+    private boolean fieldNotNull(EditText et) {//checks if personal information fields are empty, if so displays the appropriate error(s)
         if (et.getText().toString().trim().isEmpty()) {
-            if (displayErrors) {
-                et.setError("Cannot be empty");
-            }
+            et.setError("Cannot be empty");
             return false;
         }
         return true;
     }
 
-    private boolean validateDetails(EditText diseaseHistoryET, EditText medicationHistoryET, boolean displayErrors) {
-        boolean dHistory_valid = fieldNotNull(diseaseHistoryET, displayErrors);
-        boolean mHistory_valid = fieldNotNull(medicationHistoryET, displayErrors);
+    private boolean validateDetails(EditText diseaseHistoryET, EditText medicationHistoryET) {
+        boolean dHistory_valid = fieldNotNull(diseaseHistoryET);
+        boolean mHistory_valid = fieldNotNull(medicationHistoryET);
         return dHistory_valid && mHistory_valid;
     }
 
@@ -123,8 +123,8 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
         Toast.makeText(PatientRegisterActivityTwo.this, "Please Login now", Toast.LENGTH_LONG).show();
     }
 
-    private void registerUser(boolean displayErrors) {
-        if (!validateDetails(diseaseHistoryET, medicationHistoryET, displayErrors)) {
+    private void registerUser() {
+        if (!validateDetails(diseaseHistoryET, medicationHistoryET)) {
             return;
         }
         String diseaseHistory = diseaseHistoryET.getText().toString().trim();

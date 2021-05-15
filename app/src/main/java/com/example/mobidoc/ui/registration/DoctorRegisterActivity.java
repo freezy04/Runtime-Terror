@@ -58,7 +58,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
 
     }
 
-    private void switchToLogin(){
+    public void switchToLogin(){
         startActivity(new Intent(DoctorRegisterActivity.this, Login.class));
         finish();
     }

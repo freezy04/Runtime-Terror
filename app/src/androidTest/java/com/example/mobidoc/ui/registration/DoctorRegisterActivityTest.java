@@ -10,20 +10,6 @@ public class DoctorRegisterActivityTest {
     @Rule
     public ActivityScenarioRule<DoctorRegisterActivity> activityScenarioRule = new ActivityScenarioRule<>(DoctorRegisterActivity.class);
 
-//    @Test
-//    public void Doctor_DoctorNotRegistered_RegistrationSuccessful(){
-//        activityScenarioRule.getScenario().onActivity(activity ->{
-//            assertTrue(activity.validateFName("ffdjgn", false));
-//        });
-//    }
-//
-//    @Test
-//    public void Doctor_DoctorNotRegistered_RegistrationUnsuccessful(){
-//        activityScenarioRule.getScenario().onActivity(activity ->{
-//            assertFalse(activity.validateFName("", false));
-//        });
-//    }
-
     @Test
     public void registerDoctor_DoctorNotRegistered_RegistrationSuccessful(){
         activityScenarioRule.getScenario().onActivity(activity ->{
@@ -41,7 +27,14 @@ public class DoctorRegisterActivityTest {
 
     @Test
     public void registerDoctor_DoctorNotRegistered_RegistrationUnsuccessful(){
-        activityScenarioRule.getScenario().onActivity(activity ->{
+        activityScenarioRule.getScenario().onActivity(activity -> activity.registerBTN.performClick());
+    }
+
+    @Test
+    public void registerDoctor_DoctorNotRegistered_RegistrationUnsuccessfulPasswordMatch(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.passwordET.setText("Adsfsdfsd");
+            activity.experienceET.setText("a!");
             activity.registerBTN.performClick();
         });
     }
@@ -62,18 +55,9 @@ public class DoctorRegisterActivityTest {
         });
     }
 
-//    @Test doesnt work
-//    public void switchToLogin_UserHasAccount_ScreenSwitchesToLogin(){
-//        activityScenarioRule.getScenario().onActivity(activity ->{
-//            activity.haveAccountTW.performClick();
-//        });
-//    }
-
-//    @Test doesnt work
-//    public void back_UserOnRegisterPage_UserOnMainPage(){
-//        activityScenarioRule.getScenario().onActivity(activity ->{
-//            boolean x = activity.onSupportNavigateUp();
-//        });
-//    }
+    @Test
+    public void switchToLogin_UserHasAccount_ScreenSwitchesToLogin(){
+        activityScenarioRule.getScenario().onActivity(DoctorRegisterActivity::switchToLogin);
+    }
 
 }
