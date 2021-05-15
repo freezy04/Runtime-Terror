@@ -51,14 +51,16 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         initializeActivity();
 
         //if user already has an account switch to login screen
-        haveAccountTW.setOnClickListener(v -> {
-            startActivity(new Intent(DoctorRegisterActivity.this, Login.class));
-            finish();
-        });
+        haveAccountTW.setOnClickListener(v -> switchToLogin());
 
         //validate details
-        registerBTN.setOnClickListener(v -> registerUser(true));
+        registerBTN.setOnClickListener(v -> registerUser());
 
+    }
+
+    private void switchToLogin(){
+        startActivity(new Intent(DoctorRegisterActivity.this, Login.class));
+        finish();
     }
 
     private void initializeActivity() {
@@ -133,17 +135,15 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         }
     }
 
-    private boolean validateEmail(String email, boolean displayErrors) {//if email address is not in valid format, displays error
+    private boolean validateEmail(String email) {//if email address is not in valid format, displays error
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            if (displayErrors) {
-                emailET.setError("Invalid Email");
-            }
+            emailET.setError("Invalid Email");
             return false;
         }
         return true;
     }
 
-    private boolean validatePassword(String password, boolean displayErrors) {//checks if password is in correct format, if not displays error message
+    private boolean validatePassword(String password) {//checks if password is in correct format, if not displays error message
         //defines patterns and matchers for password security
         Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
         Pattern upperCase = Pattern.compile("\\p{Upper}");//all uppercase letters
@@ -156,60 +156,32 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         //if password has less than 8 or more than 20 characters, does not contain at least one lowercase letter, does not contain at least one uppercase letter,
         //does not contain at least one number or does not contain at least one special character, displays error
         if (password.length() < 8 || password.length() > 20 || !hasLowerCase.find() || !hasUpperCase.find() || !hasNumber.find() || !hasSpecial.find()) {
-            if (displayErrors) {
-                passwordET.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
+            passwordET.setError("Password must be between 8-20 characters, and must include at least one lowercase letter, uppercase" +
                         " letter, number and special character");
-            }
             return false;
         }
         return true;
     }
 
-    private boolean validateConfirmPassword(String confirm_password, String password, boolean displayErrors) {
+    private boolean validateConfirmPassword(String confirm_password, String password) {
         if (confirm_password.equals(password)) {
             return true;
         }
-        if (displayErrors) {
-            confirmPasswordET.setError("Passwords must match");
-        }
+        confirmPasswordET.setError("Passwords must match");
         return false;
     }
 
-    public boolean validateFName(String fName, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
-        if (fName.isEmpty()) {
-            if (displayErrors) {
-                fNameET.setError("First name cannot be empty");
-            }
+    private boolean fieldNotNull(EditText et) {//checks if personal information fields are empty, if so displays the appropriate error(s)
+        if (et.getText().toString().trim().isEmpty()) {
+            et.setError("Cannot be empty");
             return false;
         }
         return true;
     }
 
-    private boolean validateLName(String lName, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
-        if (lName.isEmpty()) {
-            if (displayErrors) {
-                lNameET.setError("Last name cannot be empty");
-            }
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validateQualifications(String qualifications, boolean displayErrors) {//checks if personal information fields are empty, if so displays the appropriate error(s)
-        if (qualifications.isEmpty()) {
-            if (displayErrors) {
-                qualificationsET.setError("Qualification(s) cannot be empty");
-            }
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validateExperience(String experience, boolean displayErrors) {
+    private boolean validateExperience(String experience) {
         if (experience.isEmpty()) {
-            if (displayErrors) {
-                experienceET.setError("Experience cannot be empty");
-            }
+            experienceET.setError("Experience cannot be empty");
             return false;
         }
         Pattern lowerCase = Pattern.compile("\\p{Lower}");//all lowercase letters
@@ -219,22 +191,20 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         Matcher hasUpperCase = upperCase.matcher(experience);
         Matcher hasSpecial = special.matcher(experience);
         if (hasLowerCase.find() || hasUpperCase.find() || hasSpecial.find()) {
-            if (displayErrors) {
-                experienceET.setError("Please use only numbers to indicate years of experience");
-            }
+            experienceET.setError("Please use only numbers to indicate years of experience");
             return false;
         }
         return true;
     }
 
-    private boolean validateDetails(String email, String password, String confirm_password, String fName, String lName, String qualifications, String experience, boolean displayErrors) {
-        boolean email_valid = validateEmail(email, displayErrors);
-        boolean password_valid = validatePassword(password, displayErrors);
-        boolean confirm_password_valid = validateConfirmPassword(confirm_password, password, displayErrors);
-        boolean fName_valid = validateFName(fName, displayErrors);
-        boolean lName_valid = validateLName(lName, displayErrors);
-        boolean qualifications_valid = validateQualifications(qualifications, displayErrors);
-        boolean experience_valid = validateExperience(experience, displayErrors);
+    private boolean validateDetails(String email, String password, String confirm_password, String experience) {
+        boolean email_valid = validateEmail(email);
+        boolean password_valid = validatePassword(password);
+        boolean confirm_password_valid = validateConfirmPassword(confirm_password, password);
+        boolean fName_valid = fieldNotNull(fNameET);
+        boolean lName_valid = fieldNotNull(lNameET);
+        boolean qualifications_valid = fieldNotNull(qualificationsET);
+        boolean experience_valid = validateExperience(experience);
         return email_valid && password_valid && confirm_password_valid && fName_valid && lName_valid && qualifications_valid && experience_valid;
     }
 
@@ -264,7 +234,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         Toast.makeText(DoctorRegisterActivity.this, "Please Login now", Toast.LENGTH_LONG).show();
     }
 
-    private void registerUser(boolean displayErrors) {
+    private void registerUser() {
         String email = emailET.getText().toString().trim();
         String password = passwordET.getText().toString();//should we trim here?
         String confirmPassword = confirmPasswordET.getText().toString();
@@ -273,7 +243,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
         String qualifications = qualificationsET.getText().toString().trim();
         String experience = experienceET.getText().toString().trim();
 
-        if (!validateDetails(email, password, confirmPassword, fName, lName, qualifications, experience, displayErrors)) {
+        if (!validateDetails(email, password, confirmPassword, experience)) {
             return;
         }
         Doctor doc = new Doctor(fName, lName, "Doctor", email, qualifications, experience, specialization);

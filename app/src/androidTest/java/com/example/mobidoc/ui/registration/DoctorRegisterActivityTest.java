@@ -33,22 +33,31 @@ public class DoctorRegisterActivityTest {
             activity.confirmPasswordET.setText("1Aaaaaa,");
             activity.fNameET.setText("name1");
             activity.lNameET.setText("name2");
-//            activity.qualificationsET.setText("testing123@email.com");
+            activity.qualificationsET.setText("testing123@email.com");
             activity.experienceET.setText("15");
             activity.registerBTN.performClick();
         });
     }
 
-//    @Test
-//    public void registerDoctor_DoctorNotRegistered_RegistrationUnsuccessful(){
-//        activityScenarioRule.getScenario().onActivity(activity ->{
-//            activity.registerBTN.performClick();
-//        });
-//    }
+    @Test
+    public void registerDoctor_DoctorNotRegistered_RegistrationUnsuccessful(){
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.registerBTN.performClick();
+        });
+    }
 
     @Test
     public void showPassword_PasswordHidden_PasswordVisible(){
         activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.showPasswordTW.setText(" ");
+            activity.toggleShowPassword(activity.passwordET, activity.showPasswordTW);
+        });
+    }
+
+    @Test
+    public void showPassword_PasswordVisible_PasswordHidden(){
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.showPasswordTW.setText(".");
             activity.toggleShowPassword(activity.passwordET, activity.showPasswordTW);
         });
     }
