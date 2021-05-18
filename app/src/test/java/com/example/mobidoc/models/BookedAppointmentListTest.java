@@ -11,39 +11,37 @@ import static org.mockito.ArgumentMatchers.anyString;
 public class BookedAppointmentListTest {
     @Test
     public void testEmptyConstructor(){
-        BookedAppointmentList booked =   new BookedAppointmentList();
+
+        BookedAppointmentList book = new BookedAppointmentList();
         String anyString = anyString();
+        book.setDate_for_appointment(anyString);
+        book.setDoctorUid(anyString);
+        book.setPatient_Name(anyString);
+        book.setPatientID(anyString);
+        book.setTime_for_appointment(anyString);
+        book.setPatient_Message(anyString);
+    }
+
+    @Test
+    public void testUidConstructor(){
+        String anyString = anyString();
+        BookedAppointmentList book = new BookedAppointmentList(anyString,anyString,anyString,anyString,anyString,anyString);
+        assertEquals(anyString,book.getDoctorUid());
 
 
-        booked.setDate_for_appointment(anyString);
-        booked.setDoctorUid(anyString);
-        booked.setPatient_Name(anyString);
-        booked.setPatientID(anyString);
-        booked.setTime_for_appointment(anyString);
-        booked.setPatient_Message(anyString);
 
     }
 
     @Test
-    public void testUidConstructorDoctor(){
-        String anyString = anyString();
-        BookedAppointmentList booked = new BookedAppointmentList(anyString,anyString,anyString,anyString,anyString,anyString);
-        assertEquals(anyString,booked.getDoctorUid());
+    public  void testGetters(){
 
-
-
-    }
-
-    @Test
-    public  void Testgetters(){
-
-        BookedAppointmentList booked =   new BookedAppointmentList();
-        booked.getDate_for_appointment();
-        booked.getDoctorUid();
-        booked.getPatient_Name();
-        booked.getPatientID();
-        booked.getTime_for_appointment();
-        booked.getPatient_Message();
+        BookedAppointmentList book =   new BookedAppointmentList();
+        book.getDate_for_appointment();
+        book.getDoctorUid();
+        book.getPatient_Name();
+        book.getPatientID();
+        book.getTime_for_appointment();
+        book.getPatient_Message();
     }
 
 
