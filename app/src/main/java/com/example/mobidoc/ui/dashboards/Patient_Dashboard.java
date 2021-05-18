@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,35 +15,19 @@ import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.profiles.Patient_Profile;
 import com.example.mobidoc.utils.Utilities;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.paperdb.Paper;
 
 
 public class Patient_Dashboard extends AppCompatActivity {
-    LinearLayout BookAppointment,Profile_page,AppointmentList;
+    BottomNavigationView home_nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        BookAppointment = findViewById(R.id.ll_consultation);
-
-        AppointmentList = findViewById(R.id.ll_appointments);
-
-        BookAppointment.setOnClickListener(v -> {
-            startActivity(new Intent(Patient_Dashboard.this, Doctor_List.class));
-        });
-
-        Profile_page = findViewById(R.id.ll_profile);
-        Profile_page.setOnClickListener(v -> {
-            startActivity(new Intent(Patient_Dashboard.this, Patient_Profile.class));
-        });
-
-        AppointmentList.setOnClickListener(v -> {
-            Intent patViewCompletedApps = new Intent(Patient_Dashboard.this, ViewCompletedAppointmentsActivity.class);
-            patViewCompletedApps.putExtra("userType", "Patient");
-            startActivity(patViewCompletedApps);
-        });
+        ClickNavBar();
 
     }
     @Override
@@ -65,6 +48,34 @@ public class Patient_Dashboard extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void ClickNavBar(){
+        home_nav = findViewById(R.id.bottom_navigation);
+        home_nav.setSelectedItemId(R.id.menu_home);
+        home_nav.setOnNavigationItemSelectedListener(item -> {
+            Intent activity;
+            switch(item.getItemId()){
+
+                case R.id.menu_home:
+                    return true;
+                case R.id.menu_appointments:
+                    activity = new Intent(Patient_Dashboard.this, ViewCompletedAppointmentsActivity.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_consultation:
+                    activity = new Intent(Patient_Dashboard.this, Doctor_List.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_profile:
+                    activity = new Intent(Patient_Dashboard.this, Patient_Profile.class);
+                    startActivity(activity);
+                    return true;
+
+            }
+            return true;
+
+        });
     }
 
 }

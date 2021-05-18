@@ -13,6 +13,7 @@ import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.adapterPatient;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,7 @@ public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
     adapterPatient AdapterPatient;
     List<Appointment> userPatient;
     FirebaseAuth firebaseAuth;
+    BottomNavigationView home_nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,4 +93,7 @@ public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
         startActivity(new Intent(DoctorViewAcceptedAppointmentsActivity.this, Doctor_Dashboard.class));
         finish();
     }
+
+
+
 }

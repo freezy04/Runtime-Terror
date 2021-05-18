@@ -14,9 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Patient;
+import com.example.mobidoc.ui.Appointment.Doctor_List;
+import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.example.mobidoc.utils.Utilities;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,13 +32,15 @@ import java.util.Objects;
 import io.paperdb.Paper;
 
 public class Patient_Profile extends AppCompatActivity {
-    TextView patient_names,patient_age,patient_med_hist,patient_allergies,patient_disease_hist,patient_email,patient_curr_med,patient_gender;
+    TextView patient_names, patient_age, patient_med_hist, patient_allergies, patient_disease_hist, patient_email, patient_curr_med, patient_gender;
     Button editProfile;
+    BottomNavigationView home_nav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient__profile);
-        
+
         patient_names = findViewById(R.id.patient_names);
         patient_age = findViewById(R.id.patient_age);
         patient_med_hist = findViewById(R.id.patient_med_hist);
@@ -47,6 +52,7 @@ public class Patient_Profile extends AppCompatActivity {
 
         NavBar();
         getPatientDetails();
+        ClickNavBar();
 
         editProfile = findViewById(R.id.edit_profile_button);
         editProfile.setOnClickListener(v -> {
@@ -56,7 +62,7 @@ public class Patient_Profile extends AppCompatActivity {
 
     }
 
-    public void getPatientDetails(){
+    public void getPatientDetails() {
 
         FirebaseDatabase db = FirebaseDatabase.getInstance();  // get instance of our Firebase Database
         DatabaseReference ref = db.getReference();             // retrieves the specific Realtime Database
@@ -89,7 +95,8 @@ public class Patient_Profile extends AppCompatActivity {
             }
         });
     }
-    public void NavBar(){
+
+    public void NavBar() {
         ActionBar actionBar = getSupportActionBar();
         Objects.requireNonNull(actionBar).setTitle("Patient Profile");
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -99,17 +106,17 @@ public class Patient_Profile extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar,menu);
+        inflater.inflate(R.menu.toolbar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.log_out:
                 Paper.book().delete(Utilities.USER_KEY);
                 Paper.book().delete(Utilities.Doctor);
-                startActivity(new Intent(Patient_Profile.this , MainActivity.class));
+                startActivity(new Intent(Patient_Profile.this, MainActivity.class));
                 finish();
                 break;
         }
@@ -127,12 +134,40 @@ public class Patient_Profile extends AppCompatActivity {
         finish();
     }
 
-    public String CheckNull(String s){
+    public String CheckNull(String s) {
 
-        if(s.isEmpty()){
+        if (s.isEmpty()) {
             return "Not Applicable";
         }
 
         return s;
+    }
+
+    public void ClickNavBar() {
+        home_nav = findViewById(R.id.bottom_navigation);
+        home_nav.setSelectedItemId(R.id.menu_profile);
+        home_nav.setOnNavigationItemSelectedListener(item -> {
+            Intent activity;
+            switch (item.getItemId()) {
+
+                case R.id.menu_home:
+                    activity = new Intent(Patient_Profile.this, Patient_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_appointments:
+                    activity = new Intent(Patient_Profile.this, ViewCompletedAppointmentsActivity.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_consultation:
+                    activity = new Intent(Patient_Profile.this, Doctor_List.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_profile:
+                    return true;
+
+            }
+            return true;
+
+        });
     }
 }

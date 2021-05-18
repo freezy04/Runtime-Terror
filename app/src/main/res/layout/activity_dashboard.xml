@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/SC_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_ui"
     tools:context=".ui.dashboards.Patient_Dashboard">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
 
 
         <TextView
@@ -22,7 +17,6 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/font_2"
             android:gravity="center_horizontal"
-
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Welcome to your Dashboard"
@@ -36,202 +30,19 @@
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints" />
 
-        <ScrollView
 
-            android:id="@+id/scroll2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/textView3">
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
-                android:background="@android:color/transparent"
-                android:columnCount="1"
-                android:columnOrderPreserved="false"
-                android:paddingTop="50dp"
-                android:rowCount="4"
-                app:layout_constraintTop_toBottomOf="@id/textView3"
-                tools:ignore="MissingConstraints">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#00FFFFFF"
-
-                    android:layout_columnWeight="2"
-                    android:layout_margin="12dp"
-                    app:cardCornerRadius="20dp"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nab_bar" />
 
 
 
-                    >
-
-                    <LinearLayout
-                        android:id="@+id/ll_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-
-                        android:padding="16dp"
-                        android:background="@drawable/recycler">
-
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="87dp"
-                            android:gravity="left"
-                            android:src="@drawable/ic_user_profile" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Profile"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/font_2"/>
 
 
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_row= "1"
-                    android:layout_margin="12dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="30dp"
-                    app:cardBackgroundColor="#00FFFFFF"
-                    >
-
-                    <LinearLayout
-                        android:id="@+id/ll_consultation"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:background="@drawable/recycler">
-
-                        <ImageView
-                            android:gravity = "left"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:src ="@drawable/ic_calendar"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:id="@+id/BookAppointment"
-                            android:text="Book Consultation"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/font_2"/>
-
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_row= "2"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="12dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="30dp"
-                    app:cardBackgroundColor="#00FFFFFF"
-                    >
-
-                    <LinearLayout
-                        android:id="@+id/ll_appointments"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:background="@drawable/recycler">
-
-                        <ImageView
-                            android:gravity = "left"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:src ="@drawable/ic_userprofile"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:id="@+id/ViewAppointment"
-                            android:text="View Appointments"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/font_2"/>
-
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="12dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="30dp"
-                    android:layout_row= "3"
-                    android:layout_marginBottom="40dp"
-                    app:cardBackgroundColor="#00FFFFFF"
-                    >
-
-
-
-                    <LinearLayout
-                        android:id="@+id/ll_settings"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_row="0"
-                        android:layout_column="0"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:background="@drawable/recycler">
-
-                        <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:gravity="left"
-                            android:src="@drawable/ic_settings" />
-
-                        <TextView
-                            android:id="@+id/ViewSettings"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:text="Settings"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/font_2"/>
-
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-            </GridLayout>
-
-        </ScrollView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

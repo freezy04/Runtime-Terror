@@ -1,12 +1,5 @@
 package com.example.mobidoc.ui.Appointment;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,13 +8,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.adapterAppointment;
 import com.example.mobidoc.models.Doctor;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
-import com.example.mobidoc.ui.profiles.Edit_Patient_Profile;
 import com.example.mobidoc.ui.profiles.Patient_Profile;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +39,7 @@ public class Doctor_List extends AppCompatActivity {
     adapterAppointment AdapterAppointment;
     List<Doctor> userDoctor;
     FirebaseAuth firebaseAuth;
+    BottomNavigationView home_nav;
 
 
     @Override
@@ -49,6 +50,7 @@ public class Doctor_List extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         NavBar();
+        ClickNavBar();
 
         recyclerView = findViewById(R.id.users_recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -192,7 +194,7 @@ public class Doctor_List extends AppCompatActivity {
 
     public void NavBar(){
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Edit Your Profile");
+        actionBar.setTitle("Patient Book Appointment");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
     }
@@ -206,6 +208,35 @@ public class Doctor_List extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(Doctor_List.this, Patient_Dashboard.class));
         finish();
+    }
+
+    public void ClickNavBar() {
+        home_nav = findViewById(R.id.bottom_navigation);
+        home_nav.setSelectedItemId(R.id.menu_consultation);
+        home_nav.setOnNavigationItemSelectedListener(item -> {
+            Intent activity;
+
+            switch (item.getItemId()) {
+
+                case R.id.menu_home:
+                    activity = new Intent(Doctor_List.this, Patient_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_appointments:
+                    activity = new Intent(Doctor_List.this, ViewCompletedAppointmentsActivity.class);
+                    startActivity(activity);
+                    break;
+                case R.id.menu_consultation:
+                    return true;
+                case R.id.menu_profile:
+                    activity = new Intent(Doctor_List.this, Patient_Profile.class);
+                    startActivity(activity);
+                    return true;
+
+            }
+            return true;
+
+        });
     }
 
 }

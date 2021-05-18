@@ -23,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.ui.profiles.Patient_Profile;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -44,6 +46,7 @@ public class Booking extends AppCompatActivity {
     String Sdate, Stime, myUid, myName, myNameL,reason_for_appointment, DoctorUid, DoctorName;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
+    BottomNavigationView home_nav;
     int hour, Minute;
 
     @Override
@@ -57,6 +60,7 @@ public class Booking extends AppCompatActivity {
         Reason = findViewById(R.id.reason);
 
         NavBar();
+        ClickNavBar();
 
         checkUserStatus();
         progressDialog = new ProgressDialog(this);
@@ -270,5 +274,34 @@ public class Booking extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(Booking.this, Doctor_List.class));
         finish();
+    }
+
+    public void ClickNavBar() {
+        home_nav = findViewById(R.id.bottom_navigation);
+        home_nav.setSelectedItemId(R.id.menu_consultation);
+        home_nav.setOnNavigationItemSelectedListener(item -> {
+            Intent activity;
+
+            switch (item.getItemId()) {
+
+                case R.id.menu_home:
+                    activity = new Intent(Booking.this, Patient_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_appointments:
+                    activity = new Intent(Booking.this, DoctorViewAcceptedAppointmentsActivity.class);
+                    startActivity(activity);
+                    break;
+                case R.id.menu_consultation:
+                    return true;
+                case R.id.menu_profile:
+                    activity = new Intent(Booking.this, Patient_Profile.class);
+                    startActivity(activity);
+                    return true;
+
+            }
+            return true;
+
+        });
     }
 }
