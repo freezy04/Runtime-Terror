@@ -224,6 +224,7 @@ public class Doctor_List extends AppCompatActivity {
                     return true;
                 case R.id.menu_appointments:
                     activity = new Intent(Doctor_List.this, ViewCompletedAppointmentsActivity.class);
+                    activity.putExtra("userType", "Patient");
                     startActivity(activity);
                     break;
                 case R.id.menu_consultation:

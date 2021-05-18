@@ -61,6 +61,7 @@ public class Patient_Dashboard extends AppCompatActivity {
                     return true;
                 case R.id.menu_appointments:
                     activity = new Intent(Patient_Dashboard.this, ViewCompletedAppointmentsActivity.class);
+                    activity.putExtra("userType", "Patient");
                     startActivity(activity);
                     return true;
                 case R.id.menu_consultation:

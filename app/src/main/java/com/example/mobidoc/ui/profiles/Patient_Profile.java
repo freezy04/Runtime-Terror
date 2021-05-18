@@ -156,6 +156,7 @@ public class Patient_Profile extends AppCompatActivity {
                     return true;
                 case R.id.menu_appointments:
                     activity = new Intent(Patient_Profile.this, ViewCompletedAppointmentsActivity.class);
+                    activity.putExtra("userType", "Patient");
                     startActivity(activity);
                     return true;
                 case R.id.menu_consultation:
