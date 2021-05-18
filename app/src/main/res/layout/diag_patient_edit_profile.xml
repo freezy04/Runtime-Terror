@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:text="Edit Patient Profile"
+        android:textAlignment="center"
+        android:textColor="@color/dark_navy_blue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:hint="You cannot change your Email Address for Security Purposes "
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/holo_red_light"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:translationY="120dp" />
+
+
+
+        <EditText
+            android:id="@+id/fNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawablePadding="9dp"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:translationY="170dp" />
+
+        <EditText
+            android:id="@+id/lNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawablePadding="9dp"
+            android:hint="Surname"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:translationY="170dp" />
+
+
+        <EditText
+            android:id="@+id/ageET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_num"
+            android:drawablePadding="9dp"
+            android:hint="Age"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:translationY="170dp" />
+
+
+        <EditText
+            android:id="@+id/medicationHistoryET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_medication"
+            android:drawablePadding="9dp"
+            android:hint="Medication History"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:translationY="170dp" />
+
+        <EditText
+            android:id="@+id/diseaseHistoryET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_disease"
+            android:drawablePadding="9dp"
+            android:hint="Disease History"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:translationY="170dp" />
+
+        <EditText
+            android:id="@+id/allergiesET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_allergies"
+            android:drawablePadding="9dp"
+            android:hint="Allergies"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:translationY="170dp" />
+
+        <EditText
+            android:id="@+id/newMedicationET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_medication"
+            android:drawablePadding="9dp"
+            android:hint="Current Medication"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:translationY="170dp" />
+
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/background_dark"
+            android:text="Update"
+            android:translationY="170dp" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
