@@ -161,7 +161,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
                     activity = new Intent(Doctor_ProfileActivity.this, Doctor_Dashboard.class);
                     startActivity(activity);
                     return true;
-                case R.id.nav_patientrecords:
+                case R.id.nav_pateintrecords:
                     activity = new Intent(Doctor_ProfileActivity.this, Doctor_Dashboard.class);
                     startActivity(activity);
                     return true;
@@ -171,12 +171,12 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
                     startActivity(activity);
                     return true;
 
-                case R.id.nav_pendingappointments:
+                case R.id.nav_pendingappointments2:
                     activity = new Intent(Doctor_ProfileActivity.this, DoctorViewPendingAppointmentsActivity.class);
                     startActivity(activity);
                     return true;
 
-                case R.id.nav_accpetedappointments:
+                case R.id.nav_acceptedappointments2:
 
                     activity = new Intent(Doctor_ProfileActivity.this, DoctorViewAcceptedAppointmentsActivity.class);
 

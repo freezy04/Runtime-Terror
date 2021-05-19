@@ -99,12 +99,12 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
     public void ClickNavBar(){
         // BottomNavigationView home_nav;
         home_nav = findViewById(R.id.bottom_navigation2);
-        home_nav.setSelectedItemId(R.id.nav_pendingappointments);
+        home_nav.setSelectedItemId(R.id.nav_pendingappointments2);
         home_nav.setOnNavigationItemSelectedListener(item -> {
             Intent activity;
             switch(item.getItemId()){
 
-                case R.id.nav_pendingappointments:
+                case R.id.nav_pendingappointments2:
                     activity = new Intent(DoctorViewPendingAppointmentsActivity.this, DoctorViewPendingAppointmentsActivity.class);
                     startActivity(activity);
                     return true;
@@ -112,7 +112,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
                     activity = new Intent(DoctorViewPendingAppointmentsActivity.this,Doctor_Dashboard.class);
                     startActivity(activity);
                     return true;
-                case R.id.nav_patientrecords:
+                case R.id.nav_pateintrecords:
                     activity = new Intent(DoctorViewPendingAppointmentsActivity.this,Doctor_Dashboard.class);
                     startActivity(activity);
                     return true;
@@ -122,7 +122,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
                     startActivity(activity);
                     return true;
 
-                case R.id.nav_accpetedappointments:
+                case R.id.nav_acceptedappointments2:
                     activity = new Intent(DoctorViewPendingAppointmentsActivity.this, DoctorViewAcceptedAppointmentsActivity.class);
 
                     activity.putExtra("userType", "Doctor");
