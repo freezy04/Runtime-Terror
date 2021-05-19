@@ -14,10 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Doctor;
+import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
 import com.example.mobidoc.ui.Appointment.DoctorViewPendingAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.utils.Utilities;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +35,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
     private Button mShowRosterPlanButton, mEditProfileButton;
 
     private String name, specialization, experiance, education, email, age, contact, address, shift;
-
+    BottomNavigationView home_nav;
     private DatabaseReference mDoctorDatabase = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
@@ -52,6 +54,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         NavBar();
 
         getDoctorDetails();
+        ClickNavBar();
 
 
         mName = (TextView) findViewById(R.id.doctor_name);
@@ -146,5 +149,46 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(Doctor_ProfileActivity.this, Doctor_Dashboard.class));
         finish();
+    }
+    public void ClickNavBar() {
+        home_nav = findViewById(R.id.bottom_navigation2);
+        home_nav.setSelectedItemId(R.id.nav_profile2);
+        home_nav.setOnNavigationItemSelectedListener(item -> {
+            Intent activity;
+            switch (item.getItemId()) {
+
+                case R.id.nav_home2:
+                    activity = new Intent(Doctor_ProfileActivity.this, Doctor_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.nav_patientrecords:
+                    activity = new Intent(Doctor_ProfileActivity.this, Doctor_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+
+                case R.id.nav_profile2:
+                    activity = new Intent(Doctor_ProfileActivity.this, Doctor_ProfileActivity.class);
+                    startActivity(activity);
+                    return true;
+
+                case R.id.nav_pendingappointments:
+                    activity = new Intent(Doctor_ProfileActivity.this, DoctorViewPendingAppointmentsActivity.class);
+                    startActivity(activity);
+                    return true;
+
+                case R.id.nav_accpetedappointments:
+
+                    activity = new Intent(Doctor_ProfileActivity.this, DoctorViewAcceptedAppointmentsActivity.class);
+
+                    //activity.putExtra("userType", "Doctor");
+                    startActivity(activity);
+
+                    //  activity = new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class);
+                    // startActivity(activity);
+                    return true;
+            }
+            return true;
+
+        });
     }
 }

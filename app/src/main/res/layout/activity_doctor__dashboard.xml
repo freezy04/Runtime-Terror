@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,212 +9,38 @@
     tools:context=".ui.dashboards.Doctor_Dashboard">
 
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
 
-=
-
-      <TextView
-          android:id="@+id/textView3"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_marginTop="20dp"
-          android:fontFamily="@font/font_2"
-          android:gravity="center_horizontal"
-
-          android:paddingLeft="20dp"
-          android:paddingRight="20dp"
-          android:text="Welcome to your Dashboard  Doctor"
-          android:textColor="@color/white"
-          android:textSize="30dp"
-          android:textStyle="bold"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintVertical_bias="0.0"
-          tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/font_2"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Welcome to your Dashboard"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
 
 
-    <ScrollView
-        android:id="@+id/scroll"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textView3"
-        tools:ignore="MissingConstraints">
-      <GridLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:alignmentMode="alignMargins"
-          android:background="@android:color/transparent"
-          android:columnCount="1"
-          android:columnOrderPreserved="false"
-          android:foregroundGravity="center_horizontal"
-          android:paddingTop="50dp"
-          android:rowCount="4"
-          app:layout_constraintTop_toBottomOf="@id/textView3"
-          tools:ignore="MissingConstraints">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_nav" />
 
-          <androidx.cardview.widget.CardView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_rowWeight="1"
-              android:layout_columnWeight="1"
-              android:layout_margin="12dp"
-              app:cardCornerRadius="20dp"
-              app:cardElevation="30dp"
-              app:cardBackgroundColor="#00FFFFFF"
-              >
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-              <LinearLayout
-                  android:id="@+id/ll_dotor_profile"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:orientation="vertical"
-                  android:padding="16dp"
-                  android:background="@drawable/recycler">
-
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src ="@drawable/ic_docprofile"/>
-
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="Profile"
-                      android:textColor="@color/black"
-                      android:textSize="18sp"
-                      android:fontFamily="@font/font_2"/>
-
-
-              </LinearLayout>
-
-          </androidx.cardview.widget.CardView>
-
-          <androidx.cardview.widget.CardView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_rowWeight="1"
-              android:layout_columnWeight="1"
-              android:layout_margin="12dp"
-              app:cardCornerRadius="12dp"
-              app:cardElevation="30dp"
-              app:cardBackgroundColor="#00FFFFFF"
-              >
-
-              <LinearLayout
-                  android:id="@+id/ll_patient_records"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:orientation="vertical"
-                  android:padding="16dp"
-                  android:background="@drawable/recycler">
-
-                  <ImageView
-                      android:layout_width="80dp"
-                      android:layout_height="80dp"
-                      android:src ="@drawable/ic_patient"/>
-
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="Patient Records"
-                      android:textColor="@color/black"
-                      android:textSize="18sp"
-                      android:fontFamily="@font/font_2"/>
-
-
-              </LinearLayout>
-
-          </androidx.cardview.widget.CardView>
-
-          <androidx.cardview.widget.CardView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_rowWeight="1"
-              android:layout_columnWeight="1"
-              android:layout_margin="12dp"
-              app:cardCornerRadius="12dp"
-              app:cardElevation="30dp"
-              app:cardBackgroundColor="#00FFFFFF"
-              >
-
-              <LinearLayout
-                  android:id="@+id/ll_pending_appointments"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:orientation="vertical"
-                  android:padding="16dp"
-                  android:background="@drawable/recycler">
-
-                  <ImageView
-                      android:layout_width="80dp"
-                      android:layout_height="80dp"
-                      android:src ="@drawable/ic_calendar"/>
-
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:fontFamily="@font/font_2"
-                      android:text="Pending Appointments"
-                      android:textColor="@color/black"
-                      android:textSize="18sp" />
-
-
-              </LinearLayout>
-
-          </androidx.cardview.widget.CardView>
-
-
-          <androidx.cardview.widget.CardView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_rowWeight="1"
-              android:layout_columnWeight="1"
-              android:layout_margin="12dp"
-              app:cardCornerRadius="12dp"
-              app:cardElevation="30dp"
-              app:cardBackgroundColor="#00FFFFFF"
-              android:layout_marginBottom="40dp"
-              >
-
-              <LinearLayout
-                  android:id="@+id/ll_accepted_appointments"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:gravity="center"
-                  android:orientation="vertical"
-                  android:padding="16dp"
-                  android:background="@drawable/recycler">
-
-                  <ImageView
-                      android:layout_width="80dp"
-                      android:layout_height="80dp"
-                      android:src ="@drawable/ic_accepted_appointments"/>
-
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:fontFamily="@font/font_2"
-                      android:text="Accepted Appointments"
-                      android:textColor="@color/black"
-                      android:textSize="18sp" />
-
-
-              </LinearLayout>
-
-          </androidx.cardview.widget.CardView>
-
-
-      </GridLayout>
-    </ScrollView>
-  </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
