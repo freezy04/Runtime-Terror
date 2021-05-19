@@ -27,9 +27,6 @@ public class BookedAppointmentListTest {
         String anyString = anyString();
         BookedAppointmentList book = new BookedAppointmentList(anyString,anyString,anyString,anyString,anyString,anyString);
         assertEquals(anyString,book.getDoctorUid());
-
-
-
     }
 
     @Test
