@@ -1,9 +1,9 @@
 package com.example.mobidoc.ui.dashboards;
 
 public class Doctor_DashboardTest {
-
+//Testing
 //    @Rule
-//    public ActivityScenarioRule<Doctor_Dashboard> activityScenarioRule = new ActivityScenarioRule<>(Doctor_Dashboard.class);
+//   public ActivityScenarioRule<Doctor_Dashboard> activityScenarioRule = new ActivityScenarioRule<>(Doctor_Dashboard.class);
 
 
 //    @Before
