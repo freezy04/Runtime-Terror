@@ -136,7 +136,7 @@ public class Patient_Profile extends AppCompatActivity {
 
     public String CheckNull(String s) {
 
-        if (s.isEmpty()) {
+        if (s == null || s.isEmpty()) {
             return "Not Applicable";
         }
 
