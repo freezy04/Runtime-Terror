@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home2"
+        android:title="Home"
+        android:icon="@drawable/ic_action_home"/>
+
+    <item android:id="@+id/nav_pendingappointments2"
+        android:title="Pending Appointments"
+        android:icon="@drawable/ic_action_pendingappointments"/>
+
+    <item android:id="@+id/nav_acceptedappointments2"
+        android:title="Accepted Appointments"
+        android:icon="@drawable/ic_action_acceptedappointments"/>
+
+    <item android:id="@+id/nav_pateintrecords"
+        android:title="Patient Records"
+        android:icon="@drawable/ic_action_patientrecords"/>
+
+    <item android:id="@+id/nav_profile2"
+        android:title="Profile"
+        android:icon="@drawable/ic_action_profile"/>
+
+</menu>

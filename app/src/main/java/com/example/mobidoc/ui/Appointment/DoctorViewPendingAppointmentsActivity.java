@@ -13,6 +13,8 @@ import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.adapterPatient;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
+import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
     adapterPatient AdapterPatient;
     List<Appointment> userPatient;
     FirebaseAuth firebaseAuth;
+    BottomNavigationView home_nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(DoctorViewPendingAppointmentsActivity.this));
         userPatient = new ArrayList<>();
         getAllUsers();
+        ClickNavBar();
     }
 
 
@@ -92,4 +96,48 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
         startActivity(new Intent(DoctorViewPendingAppointmentsActivity.this, Doctor_Dashboard.class));
         finish();
     }
+    public void ClickNavBar(){
+        // BottomNavigationView home_nav;
+        home_nav = findViewById(R.id.bottom_navigation2);
+        home_nav.setSelectedItemId(R.id.nav_pendingappointments2);
+        home_nav.setOnNavigationItemSelectedListener(item -> {
+            Intent activity;
+            switch(item.getItemId()){
+
+                case R.id.nav_pendingappointments2:
+                    activity = new Intent(DoctorViewPendingAppointmentsActivity.this, DoctorViewPendingAppointmentsActivity.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.nav_home2:
+                    activity = new Intent(DoctorViewPendingAppointmentsActivity.this,Doctor_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.nav_pateintrecords:
+                    activity = new Intent(DoctorViewPendingAppointmentsActivity.this,Doctor_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+
+                case R.id.nav_profile2:
+                    activity = new Intent(DoctorViewPendingAppointmentsActivity.this, Doctor_ProfileActivity.class);
+                    startActivity(activity);
+                    return true;
+
+                case R.id.nav_acceptedappointments2:
+                    activity = new Intent(DoctorViewPendingAppointmentsActivity.this, DoctorViewAcceptedAppointmentsActivity.class);
+
+                    activity.putExtra("userType", "Doctor");
+                    startActivity(activity);
+
+                    //  activity = new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class);
+                    // startActivity(activity);
+                    return true;
+
+
+
+            }
+            return true;
+
+        });
+    }
+
 }
