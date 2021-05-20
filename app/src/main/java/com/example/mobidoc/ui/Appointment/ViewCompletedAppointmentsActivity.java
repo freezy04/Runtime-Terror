@@ -101,6 +101,7 @@ public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
                     if(userUID.equals(fUser.getUid()) && (modelUsers.getStatus().equals("completed")
                             || modelUsers.getStatus().equals("rejected"))){
                         userPatient.add(modelUsers);
+
                     }
 
                     AdapterPatient = new AdapterAppointmentList(ViewCompletedAppointmentsActivity.this, userPatient, userType);

@@ -117,6 +117,7 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
                     if (ds.getKey().equals(appointmentUID)) {
                         ds.getRef().child("status").setValue("rejected");
                         break;
+
                     }
                 }
                 Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();

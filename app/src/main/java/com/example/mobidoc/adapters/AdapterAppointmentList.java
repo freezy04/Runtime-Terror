@@ -61,6 +61,7 @@ public class AdapterAppointmentList extends RecyclerView.Adapter<AdapterAppointm
         if (userList.get(position).getStatus().equals("rejected")){
             holder.mTimeAppointment.setText("REJECTED");
             holder.mDateAppointment.setText("REJECTED");
+
         }
 
         holder.Patientmessage.setText(userPatientMessage);
