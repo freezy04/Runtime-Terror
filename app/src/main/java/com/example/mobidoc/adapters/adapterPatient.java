@@ -115,7 +115,7 @@ public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolde
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     if (ds.getKey().equals(appointmentUID)) {
-                        ds.getRef().removeValue();
+                        ds.getRef().child("status").setValue("rejected");
                         break;
                     }
                 }

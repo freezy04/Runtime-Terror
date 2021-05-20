@@ -98,7 +98,8 @@ public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
                     } else{
                         userUID = modelUsers.getPatientUid();
                     }
-                    if(userUID.equals(fUser.getUid()) && modelUsers.getStatus().equals("completed")){
+                    if(userUID.equals(fUser.getUid()) && (modelUsers.getStatus().equals("completed")
+                            || modelUsers.getStatus().equals("rejected"))){
                         userPatient.add(modelUsers);
                     }
 
