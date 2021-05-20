@@ -28,49 +28,47 @@ public class Utilities {
         }
 
 
-        public static String getUID(){
-                FirebaseUser user = getCurrentUser();
-                return user.getUid();
-        }
-
-        public static void returnDoctor(String UID, String USER_TYPE){
-
-
-                FirebaseDatabase db = FirebaseDatabase.getInstance();
-                DatabaseReference ref = db.getReference();
-                DatabaseReference user_ref = ref.child(USER_TYPE); //Doctor or Patient
-
-
-                user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                //Doctor D = new Doctor();
-
-                                for ( DataSnapshot ds : snapshot.getChildren()) {
-                                        com.example.mobidoc.models.Doctor doctor = ds.getValue(Doctor.class);
-                                        //creates an instance of doctor and assigns the firebase data to it's respective columns
-                                        Log.d("TestingApp","This is " + ds.getValue());
-                                        Log.d("TestingApp","This is " +  doctor.getEmail());
-                                        Log.d("TestingApp","This is " + doctor.getLast_name());
-                                        Log.d("TestingApp","This is " + doctor.getUser_type());
-                                        Log.d("TestingApp","This is " + doctor.getFirst_name());
-
-
-
-                                }
-
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                });
-
-
-        }
-
-
+//        public static String getUID(){
+//                FirebaseUser user = getCurrentUser();
+//                return user.getUid();
+//        }
+//
+//        public static void returnDoctor(String UID, String USER_TYPE){
+//
+//
+//                FirebaseDatabase db = FirebaseDatabase.getInstance();
+//                DatabaseReference ref = db.getReference();
+//                DatabaseReference user_ref = ref.child(USER_TYPE); //Doctor or Patient
+//
+//
+//                user_ref.orderByKey().equalTo(UID).addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                //Doctor D = new Doctor();
+//
+//                                for ( DataSnapshot ds : snapshot.getChildren()) {
+//                                        com.example.mobidoc.models.Doctor doctor = ds.getValue(Doctor.class);
+//                                        //creates an instance of doctor and assigns the firebase data to it's respective columns
+//                                        Log.d("TestingApp","This is " + ds.getValue());
+//                                        Log.d("TestingApp","This is " +  doctor.getEmail());
+//                                        Log.d("TestingApp","This is " + doctor.getLast_name());
+//                                        Log.d("TestingApp","This is " + doctor.getUser_type());
+//                                        Log.d("TestingApp","This is " + doctor.getFirst_name());
+//
+//
+//
+//                                }
+//
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                });
+//
+//
+//        }
 
 }

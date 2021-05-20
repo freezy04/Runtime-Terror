@@ -24,6 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -67,7 +70,21 @@ public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
                     if(modelUsers.getDoctorUid().equals(fUser.getUid()) && modelUsers.getStatus().equals("accepted")){
                         userPatient.add(modelUsers);
                     }
-
+                    Collections.sort(userPatient, new Comparator<Appointment>() {
+                        @Override
+                        public int compare(Appointment o1, Appointment o2) {
+                                return o1.getDate_for_appointment().compareTo(o2.getDate_for_appointment());
+                        }
+                    });
+                    Collections.sort(userPatient, new Comparator<Appointment>() {
+                        @Override
+                        public int compare(Appointment o1, Appointment o2) {
+                            if(o1.getDate_for_appointment().equals(o2.getDate_for_appointment())){
+                                return o1.getTime_for_appointment().compareTo(o2.getTime_for_appointment());
+                            }
+                            return 0;
+                        }
+                    });
                     AdapterPatient = new adapterPatient(DoctorViewAcceptedAppointmentsActivity.this, userPatient);
                     recyclerView.setAdapter(AdapterPatient);
                 }
