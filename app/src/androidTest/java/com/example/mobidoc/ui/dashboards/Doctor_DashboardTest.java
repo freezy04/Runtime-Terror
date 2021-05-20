@@ -1,13 +1,9 @@
 package com.example.mobidoc.ui.dashboards;
 
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-
-import org.junit.Rule;
-
 public class Doctor_DashboardTest {
 
-    @Rule
-    public ActivityScenarioRule<Doctor_Dashboard> activityScenarioRule = new ActivityScenarioRule<>(Doctor_Dashboard.class);
+//    @Rule
+//    public ActivityScenarioRule<Doctor_Dashboard> activityScenarioRule = new ActivityScenarioRule<>(Doctor_Dashboard.class);
 
 
 //    @Before
