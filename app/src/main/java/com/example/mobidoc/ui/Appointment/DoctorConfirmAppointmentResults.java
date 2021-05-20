@@ -20,7 +20,7 @@ import java.util.Objects;
 public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
     public EditText newMedicationET, appointmentCostET, appointmentNotesET;
-    public Button confirmBTN , BackBTN;
+    public Button confirmBTN;
     private ProgressDialog progressDialog;
     private String appointmentUID, patientUID;
 
@@ -32,11 +32,6 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         initializeActivity();
 
         confirmBTN.setOnClickListener(v -> updateDetails());
-
-//        BackBTN.setOnClickListener(v -> {
-//            startActivity(new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class));
-//            finish();
-//        });
 
     }
 
@@ -53,7 +48,6 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         appointmentNotesET = findViewById(R.id.appointmentNotesET);
         TextView headingTW = findViewById(R.id.headingTW);
         confirmBTN = findViewById(R.id.confirmBTN);
-//        BackBTN = findViewById(R.id.backBTN);
 
         Intent confirmResults = getIntent();
         appointmentUID = confirmResults.getStringExtra("appointmentUID");
