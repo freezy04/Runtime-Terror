@@ -14,7 +14,6 @@ import com.example.mobidoc.adapters.AdapterAppointmentList;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
-import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
 import com.example.mobidoc.ui.profiles.Patient_Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +48,7 @@ public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
         getAllAppointments();
 
         NavBar();
+        ClickNavBar();
 
         Intent viewCompletedApps = getIntent();
         userType = viewCompletedApps.getStringExtra("userType");
@@ -113,6 +113,34 @@ public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+    }
+
+    public void ClickNavBar() {
+        home_nav = findViewById(R.id.bottom_navigation);
+        home_nav.setSelectedItemId(R.id.menu_appointments);
+        home_nav.setOnNavigationItemSelectedListener(item -> {
+            Intent activity;
+            switch (item.getItemId()) {
+
+                case R.id.menu_home:
+                    activity = new Intent(ViewCompletedAppointmentsActivity.this, Patient_Dashboard.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_appointments:
+                    return true;
+                case R.id.menu_consultation:
+                    activity = new Intent(ViewCompletedAppointmentsActivity.this, Doctor_List.class);
+                    startActivity(activity);
+                    return true;
+                case R.id.menu_profile:
+                    activity = new Intent(ViewCompletedAppointmentsActivity.this,Patient_Profile.class);
+                    startActivity(activity);
+                    return true;
+
+            }
+            return true;
+
         });
     }
 
