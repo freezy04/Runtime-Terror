@@ -81,7 +81,6 @@
 
             android:padding="10dp"
             android:hint="Reason for the appointment"
-            android:inputType="textLongMessage"
             android:textColor="@android:color/black" />
 
         <Button
