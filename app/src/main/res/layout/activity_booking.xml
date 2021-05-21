@@ -52,7 +52,7 @@
         <TextView
             android:id="@+id/Date"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="40dp"
         android:hint="Date"
             android:gravity="center"
@@ -62,7 +62,7 @@
 
         <TextView
             android:id="@+id/Time"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="40dp"
             android:background="@drawable/recycler"
             android:maxLines="1"
@@ -73,11 +73,13 @@
 
         <EditText
             android:id="@+id/reason"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/recycler"
             android:gravity="center"
+
+            android:padding="10dp"
             android:hint="Reason for the appointment"
             android:inputType="textLongMessage"
             android:textColor="@android:color/black" />
