@@ -1,10 +1,10 @@
 package com.example.mobidoc.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Appointment;
-import com.example.mobidoc.ui.Appointment.DoctorConfirmAppointmentResults;
 
 import java.util.List;
 
@@ -105,6 +104,8 @@ public class AdapterAppointmentList extends RecyclerView.Adapter<AdapterAppointm
             Patientmessage = itemView.findViewById(R.id.messageTv);
             datetime2 = itemView.findViewById(R.id.SelectDoctor);
             appointmentNotes = itemView.findViewById(R.id.appointmentNotesTV);
+            Button prog = itemView.findViewById(R.id.btn_edit_patient);
+
         }
     }
 

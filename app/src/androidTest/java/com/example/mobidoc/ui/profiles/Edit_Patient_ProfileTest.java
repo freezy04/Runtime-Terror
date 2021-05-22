@@ -14,22 +14,7 @@ public class Edit_Patient_ProfileTest {
     @Rule
     public ActivityScenarioRule<Edit_Patient_Profile> activityScenarioRule = new ActivityScenarioRule<>(Edit_Patient_Profile.class);
 
-      @Test
-    public void CheckNoUpdates_UserLoggedIn_isSuccessful(){
-        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
-            activity.patient_age.setText("25");
-            activity.Update.performClick();
-        });
-    }
-
-    @Test
-    public void CheckNoUpdates_UserLoggedIn_isUnSuccessful(){
-        activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
-            activity.patient_age.setText("");
-            activity.Update.performClick();
-        });
-    }
-
+//test
     @Test
     public void GoToProfile_UserLoggedIn_onClickGoToProfile(){
         activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{

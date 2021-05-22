@@ -93,6 +93,13 @@
                 android:text="Message"
                 android:layout_marginRight="40dp"
                 android:textColor="@color/dark_navy_blue"/>
+
+            <Button
+                android:id="@+id/btn_edit_patient"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Prognosis"/>
+
         </LinearLayout>
 
     </LinearLayout>
