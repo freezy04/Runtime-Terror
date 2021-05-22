@@ -14,7 +14,7 @@ public class Edit_Patient_ProfileTest {
     @Rule
     public ActivityScenarioRule<Edit_Patient_Profile> activityScenarioRule = new ActivityScenarioRule<>(Edit_Patient_Profile.class);
 
-
+//test
     @Test
     public void GoToProfile_UserLoggedIn_onClickGoToProfile(){
         activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{

@@ -13,6 +13,7 @@ public class Doctor_EditProfileActivityTest {
     @Rule
     public ActivityScenarioRule<Doctor_EditProfileActivity> activityScenarioRule = new ActivityScenarioRule<>(Doctor_EditProfileActivity.class);
 
+    //test
     @Test
     public void GoToProfile_UserLoggedIn_onClickGoToProfile(){
         activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED).onActivity(activity ->{
