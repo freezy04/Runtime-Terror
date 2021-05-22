@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.Appointment.DoctorConfirmAppointmentResults;
-import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +27,12 @@ import java.util.List;
 import java.util.Map;
 
 
-public class adapterPatient  extends RecyclerView.Adapter<adapterPatient.MyHolder>{
+public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder>{
     Context context;
     List<Appointment> userList;
     TextView datetime2;
 
-       public adapterPatient(Context context, List<Appointment> userList) {
+       public AdapterPatient(Context context, List<Appointment> userList) {
         this.context = context;
         this.userList = userList;
     }

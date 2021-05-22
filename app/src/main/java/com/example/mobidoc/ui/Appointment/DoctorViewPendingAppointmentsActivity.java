@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobidoc.R;
-import com.example.mobidoc.adapters.adapterPatient;
+import com.example.mobidoc.adapters.AdapterPatient;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
@@ -30,7 +30,7 @@ import java.util.Objects;
 public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    adapterPatient AdapterPatient;
+    com.example.mobidoc.adapters.AdapterPatient AdapterPatient;
     List<Appointment> userPatient;
     FirebaseAuth firebaseAuth;
     BottomNavigationView home_nav;
@@ -69,7 +69,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
                         userPatient.add(modelUsers);
                     }
 
-                    AdapterPatient = new adapterPatient(DoctorViewPendingAppointmentsActivity.this, userPatient);
+                    AdapterPatient = new AdapterPatient(DoctorViewPendingAppointmentsActivity.this, userPatient);
                     recyclerView.setAdapter(AdapterPatient);
                 }
             }
