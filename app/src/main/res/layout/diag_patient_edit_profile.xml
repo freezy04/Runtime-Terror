@@ -11,6 +11,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:paddingTop="20dp"
+        android:fontFamily="@font/font_2"
         android:text="Edit Patient Profile"
         android:textAlignment="center"
         android:textColor="@color/dark_navy_blue"
@@ -40,7 +41,9 @@
             android:hint="You cannot change your Email Address for Security Purposes "
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/holo_red_light"
-            android:textSize="20dp"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:fontFamily="@font/font_2"
             android:textStyle="bold"
             android:translationY="120dp" />
 
@@ -162,12 +165,17 @@
 
 
         <Button
-            android:layout_width="100dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@android:color/background_dark"
+            android:backgroundTint="@color/dark_navy_blue"
             android:text="Update"
-            android:translationY="170dp" />
+            android:translationY="170dp"
+            android:textSize="17sp"
+            app:cornerRadius="40dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/font_2"
+            android:textStyle="bold"/>
 
 
     </LinearLayout>
