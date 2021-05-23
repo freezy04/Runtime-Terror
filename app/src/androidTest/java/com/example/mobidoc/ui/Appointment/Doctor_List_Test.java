@@ -1,11 +1,9 @@
 package com.example.mobidoc.ui.Appointment;
 
-import androidx.lifecycle.Lifecycle;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.mobidoc.adapters.AdapterPatient;
+import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.adapterAppointment;
-import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.models.Doctor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,4 +53,33 @@ public class Doctor_List_Test {
            activity.searchForUsers("77gDrYtgw8RPF7tqfI9TBWzXCGo1", "");
         });
     }
+
+    @Test
+    public void clickOnNavBar_profile() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.onNavBarItemClicked(R.id.menu_profile);
+        });
+    }
+
+    @Test
+    public void clickOnNavBar_home() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.onNavBarItemClicked(R.id.menu_home);
+        });
+    }
+
+    @Test
+    public void clickOnNavBar_appointments() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.onNavBarItemClicked(R.id.menu_appointments);
+        });
+    }
+
+    @Test
+    public void clickOnNavBar_consultation() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.onNavBarItemClicked(R.id.menu_consultation);
+        });
+    }
+
 }

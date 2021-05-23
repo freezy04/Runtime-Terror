@@ -31,8 +31,14 @@ import io.paperdb.Paper;
 
 public class Doctor_ProfileActivity extends AppCompatActivity {
 
-    private TextView mName, mEmail, mSpecialization, mExperiance, mAge, mContact, mAddress, mEducation;
-    private Button mShowRosterPlanButton, mEditProfileButton;
+    private TextView mName;
+    private TextView mEmail;
+    private TextView mSpecialization;
+    private TextView mExperiance;
+    private TextView mAge;
+    private TextView mContact;
+    private TextView mEducation;
+    private Button mEditProfileButton;
 
     private String name, specialization, experiance, education, email, age, contact, address, shift;
     BottomNavigationView home_nav;
@@ -51,9 +57,10 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         mAge = (TextView) findViewById(R.id.doctor_age);
         mContact = (TextView) findViewById(R.id.doctor_contact);
 
-        NavBar();
 
-        getDoctorDetails();
+
+        NavBar();
+        getDoctorDetails(mAuth.getCurrentUser().getUid());
         ClickNavBar();
 
 
@@ -83,13 +90,13 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
 
 
-        public void getDoctorDetails(){
+        public void getDoctorDetails(String uid){
 
             FirebaseDatabase db = FirebaseDatabase.getInstance();  // get instance of our Firebase Database
             DatabaseReference ref = db.getReference();             // retrieves the specific Realtime Database
             DatabaseReference user_ref = ref.child("Doctors");
 
-            user_ref.orderByKey().equalTo(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            user_ref.orderByKey().equalTo(uid).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -114,6 +121,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
                 }
             });
         }
+
     public void NavBar(){
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Doctor Profile");
@@ -153,9 +161,12 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
     public void ClickNavBar() {
         home_nav = findViewById(R.id.bottom_navigation2);
         home_nav.setSelectedItemId(R.id.nav_profile2);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
+        home_nav.setOnNavigationItemSelectedListener(item -> ClickOnNavBar(item.getItemId()));
+    }
+
+    public boolean ClickOnNavBar(int itemId) {
             Intent activity;
-            switch (item.getItemId()) {
+            switch (itemId) {
 
                 case R.id.nav_home2:
                     activity = new Intent(Doctor_ProfileActivity.this, Doctor_Dashboard.class);
@@ -189,6 +200,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
             }
             return true;
 
-        });
-    }
+        }
+
+
 }
