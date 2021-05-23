@@ -38,6 +38,7 @@ public class Doctor_List_Test {
             List<Doctor> doctors = new ArrayList<>();
 
             adapterAppointment adapterPatient = new adapterAppointment(activity, doctors);
+            adapterPatient.holderItemClicked("77gDrYtgw8RPF7tqfI9TBWzXCGo1", "sadasdf");
         });
     }
 
