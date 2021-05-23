@@ -3,6 +3,7 @@ package com.example.mobidoc.ui.Appointment;
 import androidx.lifecycle.Lifecycle;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
+import com.example.mobidoc.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -68,6 +69,13 @@ public class BookingTest {
         public void checkUserStatus(){
                 activityScenarioRule.getScenario().onActivity(activity ->
                         activity.checkStatus("77gDrYtgw8RPF7tqfI9TBWzXCGo1"));
+        }
+
+        @Test
+        public void clickHomeNavBarItem(){
+                activityScenarioRule.getScenario().onActivity(activity -> {
+                        activity.onNavBarItemClicked(R.id.menu_home);
+                });
         }
 }
 
