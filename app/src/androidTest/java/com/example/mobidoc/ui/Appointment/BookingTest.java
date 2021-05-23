@@ -63,5 +63,11 @@ public class BookingTest {
         public void Booking_BookingUnsucceful(){
             activityScenarioRule.getScenario().onActivity(activity -> activity.mBook.performClick());
         }
+
+        @Test
+        public void checkUserStatus(){
+                activityScenarioRule.getScenario().onActivity(activity ->
+                        activity.checkUserStatus("77gDrYtgw8RPF7tqfI9TBWzXCGo1"));
+        }
 }
 
