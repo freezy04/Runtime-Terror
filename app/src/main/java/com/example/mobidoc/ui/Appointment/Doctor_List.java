@@ -81,7 +81,7 @@ public class Doctor_List extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Doctor modelUsers = ds.getValue(Doctor.class);
 
-                    if(!modelUsers.getUid().equals(fUser.getUid())){
+                    if(!modelUsers.getUid().equals(uid)){
                         userDoctor.add(modelUsers);
                     }
 
