@@ -63,7 +63,13 @@ public class Doctor_List extends AppCompatActivity {
     private void getAllUsers() {
 
         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fUser != null){
+            getAllUsers(fUser.getUid());
+        }
 
+    }
+
+    public void getAllUsers(String uid){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Doctors");
 
         ref.addValueEventListener(new ValueEventListener() {
