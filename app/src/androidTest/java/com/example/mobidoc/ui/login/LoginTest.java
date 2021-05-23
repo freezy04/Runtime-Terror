@@ -14,6 +14,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class LoginTest {
 
+    //test
     @Rule
     public ActivityScenarioRule<Login> activityScenarioRule = new ActivityScenarioRule<>(Login.class);
 

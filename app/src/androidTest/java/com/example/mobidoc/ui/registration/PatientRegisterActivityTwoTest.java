@@ -5,6 +5,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import org.junit.Rule;
 import org.junit.Test;
 
+//test
 public class PatientRegisterActivityTwoTest {
 
     @Rule

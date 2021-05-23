@@ -23,6 +23,7 @@ import io.paperdb.Paper;
 
 public class PatientRegisterActivityOne extends AppCompatActivity {
 
+    //test
     public EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, ageET, sexET;
     public TextView haveAccountTW, showPasswordTW, showConfirmPasswordTW;
     public Button nextBTN;
