@@ -63,7 +63,13 @@ public class Doctor_List extends AppCompatActivity {
     private void getAllUsers() {
 
         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fUser != null){
+            getAllUsers(fUser.getUid());
+        }
 
+    }
+
+    public void getAllUsers(String uid){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Doctors");
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -75,7 +81,7 @@ public class Doctor_List extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Doctor modelUsers = ds.getValue(Doctor.class);
 
-                    if(!modelUsers.getUid().equals(fUser.getUid())){
+                    if(!modelUsers.getUid().equals(uid)){
                         userDoctor.add(modelUsers);
                     }
 
@@ -96,7 +102,13 @@ public class Doctor_List extends AppCompatActivity {
     private void searchUsers(final String newText) {
 
         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fUser != null){
+            searchForUsers(fUser.getUid(), newText);
+        }
 
+    }
+
+    public void searchForUsers(String uid, String newText){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Doctors");
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -109,7 +121,7 @@ public class Doctor_List extends AppCompatActivity {
 
                     Doctor modelUsers = ds.getValue(Doctor.class);
 
-                    if(!modelUsers.getUid().equals(fUser.getUid())){
+                    if(!modelUsers.getUid().equals(uid)){
 
                         if(modelUsers.getFirst_name().toLowerCase().contains(newText.toLowerCase())  || modelUsers.getEmail().toLowerCase().contains(newText.toLowerCase())){
                             userDoctor.add(modelUsers);

@@ -1,5 +1,8 @@
 package com.example.mobidoc.models;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -9,6 +12,8 @@ import static org.mockito.ArgumentMatchers.anyString;
 
 @RunWith(JUnit4.class)
 public class BookedAppointmentListTest {
+
+
     @Test
     public void testEmptyConstructor(){
 
