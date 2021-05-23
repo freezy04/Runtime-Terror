@@ -2,7 +2,6 @@ package com.example.mobidoc.ui.Appointment;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.adapterAppointment;
 import com.example.mobidoc.models.Doctor;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,32 +53,5 @@ public class Doctor_List_Test {
         });
     }
 
-    @Test
-    public void clickOnNavBar_profile() {
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked(R.id.menu_profile);
-        });
-    }
-
-    @Test
-    public void clickOnNavBar_home() {
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked(R.id.menu_home);
-        });
-    }
-
-    @Test
-    public void clickOnNavBar_appointments() {
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked(R.id.menu_appointments);
-        });
-    }
-
-    @Test
-    public void clickOnNavBar_consultation() {
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked(R.id.menu_consultation);
-        });
-    }
 
 }
