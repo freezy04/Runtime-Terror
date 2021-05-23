@@ -57,18 +57,17 @@ public class AdapterAppointmentList extends RecyclerView.Adapter<AdapterAppointm
             holder.DoctorName.setText(doctorName);
         }
 
-        if (userList.get(position).getStatus().equals("rejected")){
-            holder.mTimeAppointment.setText("REJECTED");
-            holder.mDateAppointment.setText("REJECTED");
-
-        }
-
         holder.Patientmessage.setText(userPatientMessage);
         holder.mTimeAppointment.setText(userTime);
         holder.mDateAppointment.setText(userDate);
         holder.appointmentCost.setText(appCost);
         holder.appointmentNotes.setText(notes);
 
+        if (userList.get(position).getStatus().equals("rejected")){
+            holder.mTimeAppointment.setText("REJECTED");
+            holder.mDateAppointment.setText("REJECTED");
+
+        }
 
 // moving to the  next activity
         holder.itemView.setOnClickListener(new View.OnClickListener() {
