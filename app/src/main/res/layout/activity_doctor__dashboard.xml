@@ -9,7 +9,6 @@
     tools:context=".ui.dashboards.Doctor_Dashboard">
 
 
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -20,7 +19,7 @@
         android:gravity="center_horizontal"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="Welcome to your Dashboard"
+        android:text="Welcome Home"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -32,6 +31,18 @@
         tools:ignore="MissingConstraints" />
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/font_2"
+        android:gravity="center"
+        android:text="view UPCOMING APPOINTMENTS"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation2"
@@ -42,5 +53,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_nar" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="170dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+           >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+
+                    <view
+                        android:id="@+id/users_recycler"
+                        class="androidx.recyclerview.widget.RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="450dp"
+                        android:layout_marginLeft="10dp"
+                        android:padding="5dp"
+                        android:paddingTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/recycler"
+
+                        />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
