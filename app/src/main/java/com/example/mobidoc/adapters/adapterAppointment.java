@@ -55,15 +55,16 @@ public class adapterAppointment extends RecyclerView.Adapter<adapterAppointment.
 
         //}
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Booking.class);
-                intent.putExtra("hisUid", hisUID);
-                intent.putExtra("hisName",userName);
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+           holderItemClicked(hisUID, userName);
         });
+    }
+
+    public void holderItemClicked(String hisUID, String userName){
+        Intent intent = new Intent(context, Booking.class);
+        intent.putExtra("hisUid", hisUID);
+        intent.putExtra("hisName",userName);
+        context.startActivity(intent);
     }
 
     @Override
