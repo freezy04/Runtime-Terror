@@ -67,7 +67,7 @@ public class BookingTest {
         @Test
         public void checkUserStatus(){
                 activityScenarioRule.getScenario().onActivity(activity ->
-                        activity.checkUserStatus("77gDrYtgw8RPF7tqfI9TBWzXCGo1"));
+                        activity.checkStatus("77gDrYtgw8RPF7tqfI9TBWzXCGo1"));
         }
 }
 
