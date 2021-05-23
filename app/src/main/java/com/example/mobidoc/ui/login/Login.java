@@ -141,6 +141,7 @@ public class Login extends AppCompatActivity {
 
 
     public void toggle_password(EditText password) {
+
         if (show_password_visibility.getText().equals(" ")) {
             show_password_visibility.setText(".");
             password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
