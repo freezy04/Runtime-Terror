@@ -36,5 +36,12 @@ public class Edit_Patient_ProfileTest {
         });
     }
 
+    @Test
+    public void updateDetails() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.updateDetails("OIU0JFoE8ceLlx5qjKtn1fg5OiO2", "first_name", "Bruno");
+        });
+    }
+
 
 }
