@@ -59,7 +59,7 @@
             android:inputType="textPersonName"
             android:maxLines="1"
             android:textColor="@android:color/black"
-            android:translationY="400dp" />
+            android:translationY="220dp" />
 
         <EditText
             android:id="@+id/newMedicationET"
@@ -89,7 +89,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/font_2"
             android:text="Confirm"
-            android:translationY="250dp"
+            android:translationY="290dp"
             app:cornerRadius="40dp"
              />
 
@@ -103,6 +103,7 @@
             android:textColorHighlight="@color/dark_blue"
             android:textSize="17sp"
             android:textStyle="bold"
+            android:layout_marginTop="20dp"
             android:translationY="50dp"
             android:visibility="invisible"
             app:cornerRadius="40dp"

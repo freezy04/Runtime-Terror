@@ -35,7 +35,7 @@
             android:textSize="15dp"
             android:text="Below is a list of your Appointments"
             android:gravity="center_horizontal"
-            android:textColor="@color/light_blue"
+            android:textColor="@color/white"
             android:fontFamily="@font/font_2"
             />
         <view
