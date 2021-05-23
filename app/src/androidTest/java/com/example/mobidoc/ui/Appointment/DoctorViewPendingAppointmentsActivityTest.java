@@ -22,7 +22,7 @@ public class DoctorViewPendingAppointmentsActivityTest{
     @Before
     public void loginUser(){
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword("correctemail","correctpasswor");
+        FirebaseAuth.getInstance().signInWithEmailAndPassword("Why2@gmail.com","Why2@54321");
     }
     @Test
     public void test_in_user_acceptance_criteria(){

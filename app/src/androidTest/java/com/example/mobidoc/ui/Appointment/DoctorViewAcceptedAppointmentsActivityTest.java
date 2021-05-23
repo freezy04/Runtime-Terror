@@ -22,14 +22,14 @@ public class DoctorViewAcceptedAppointmentsActivityTest{
     @Before
     public void loginUser(){
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword("correctemail","correctpasswor");
+        FirebaseAuth.getInstance().signInWithEmailAndPassword("Why2@gmail.com","Why2@54321");
     }
     @Test
     public void test_in_user_acceptance_criteria(){
         //   activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED);
 
         activityScenarioRule.getScenario().onActivity(activity ->{
-            //activity.onCreate(new Bundle());
+            //activity.onCreate( new Bundle());
             List<Appointment> patients = new ArrayList<>();
 
             AdapterPatient adapterPatient = new AdapterPatient(activity, patients);
