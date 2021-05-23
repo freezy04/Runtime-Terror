@@ -78,14 +78,21 @@ public class Doctor_EditProfileActivity extends AppCompatActivity {
 
     }
     public void UpDateOnFirebaseDetails(String title , String value){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+        if(mAuth != null){
+            String UID = mAuth.getCurrentUser().getUid();
+            updateDetails(UID, title, value);
+        }
+
+    }
+
+    public void updateDetails(String uid, String title, String value){
         FirebaseDatabase db = FirebaseDatabase.getInstance();   // get instance of our Firebase Database
         DatabaseReference ref = db.getReference();              // retrieves the specific Realtime Database
         DatabaseReference user_ref = ref.child("Doctors");     // specify user type
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String UID = mAuth.getCurrentUser().getUid();
-        user_ref.child(UID).child(title).setValue(value);
 
+        user_ref.child(uid).child(title).setValue(value);
     }
 
     public boolean isEdited(String s){

@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity {
     // ********************************************************************************************************************************************************** //
 
     // sets up a Dialog that enables user to type in their registered email for requesting a new link that resets their passwords
-    private void Show_ForgotPassword_ProgressDialog() {
+    public void Show_ForgotPassword_ProgressDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Reset Password");
 

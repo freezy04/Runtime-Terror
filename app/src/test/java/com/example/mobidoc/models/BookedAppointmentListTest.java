@@ -1,16 +1,10 @@
 package com.example.mobidoc.models;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 
-@RunWith(JUnit4.class)
 public class BookedAppointmentListTest {
 
 
@@ -38,8 +32,8 @@ public class BookedAppointmentListTest {
 
     @Test
     public  void testGetters(){
-
-        BookedAppointmentList book =   new BookedAppointmentList();
+        String anyString = anyString();
+        BookedAppointmentList book = new BookedAppointmentList(anyString,anyString,anyString,anyString,anyString,anyString);
         book.getDate_for_appointment();
         book.getDoctorUid();
         book.getPatient_Name();
