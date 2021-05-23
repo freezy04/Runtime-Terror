@@ -19,10 +19,6 @@ public class Patient_DashboardTest {
     public ActivityScenarioRule<Patient_Dashboard> activityScenarioRule = new ActivityScenarioRule<>(Patient_Dashboard.class);
 
 
-    @Before
-    public void LoginUser(){
-        FirebaseAuth.getInstance().signInWithEmailAndPassword("iv@email.com","Password1!");
-    }
     @Test
     public void testInUserAcceptanceCriteria(){
         activityScenarioRule.getScenario().onActivity(activity -> {
