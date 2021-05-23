@@ -283,29 +283,33 @@ public class Booking extends AppCompatActivity {
     public void ClickNavBar() {
         home_nav = findViewById(R.id.bottom_navigation);
         home_nav.setSelectedItemId(R.id.menu_consultation);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
-            Intent activity;
+        home_nav.setOnNavigationItemSelectedListener(item -> onNavBarItemClicked(item.getItemId()));
+    }
 
-            switch (item.getItemId()) {
+    public boolean onNavBarItemClicked(int itemId){
+        Intent activity;
 
-                case R.id.menu_home:
-                    activity = new Intent(Booking.this, Patient_Dashboard.class);
-                    startActivity(activity);
-                    return true;
-                case R.id.menu_appointments:
-                    activity = new Intent(Booking.this, DoctorViewAcceptedAppointmentsActivity.class);
-                    startActivity(activity);
-                    break;
-                case R.id.menu_consultation:
-                    return true;
-                case R.id.menu_profile:
-                    activity = new Intent(Booking.this, Patient_Profile.class);
-                    startActivity(activity);
-                    return true;
+        switch (itemId) {
 
-            }
-            return true;
+            case R.id.menu_home:
+                activity = new Intent(Booking.this, Patient_Dashboard.class);
+                startActivity(activity);
+                return true;
 
-        });
+            case R.id.menu_appointments:
+                activity = new Intent(Booking.this, DoctorViewAcceptedAppointmentsActivity.class);
+                startActivity(activity);
+                break;
+
+            case R.id.menu_consultation:
+                return true;
+
+            case R.id.menu_profile:
+                activity = new Intent(Booking.this, Patient_Profile.class);
+                startActivity(activity);
+                return true;
+
+        }
+        return true;
     }
 }
