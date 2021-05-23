@@ -12,6 +12,7 @@ public class BookedAppointmentListTest {
     @Test
     public void testEmptyConstructor(){
 
+
         BookedAppointmentList book = new BookedAppointmentList();
         String anyString = anyString();
         book.setDate_for_appointment(anyString);
@@ -24,6 +25,7 @@ public class BookedAppointmentListTest {
 
     @Test
     public void testUidConstructor(){
+
         String anyString = anyString();
         BookedAppointmentList book = new BookedAppointmentList(anyString,anyString,anyString,anyString,anyString,anyString);
         assertEquals(anyString,book.getDoctorUid());
@@ -40,6 +42,5 @@ public class BookedAppointmentListTest {
         book.getTime_for_appointment();
         book.getPatient_Message();
     }
-
 
 }

@@ -136,7 +136,7 @@ public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder
         } else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle("Would you like to confirm this appointment?");
-            dialog.setMessage(patientName + " will not know that you rejected the request.");
+            //dialog.setMessage(patientName + " will not know that you rejected the request.");
             dialog.setPositiveButton("Accept", (dialog1, which) -> {
                 acceptAppointment(appointmentUID);
             });
