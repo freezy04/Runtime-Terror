@@ -41,4 +41,17 @@ public class Doctor_List_Test {
         });
     }
 
+    @Test
+    public void getAllUsers(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+           activity.getAllUsers("77gDrYtgw8RPF7tqfI9TBWzXCGo1");
+        });
+    }
+
+    @Test
+    public void searchForUsers(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+           activity.searchForUsers("77gDrYtgw8RPF7tqfI9TBWzXCGo1", "");
+        });
+    }
 }
