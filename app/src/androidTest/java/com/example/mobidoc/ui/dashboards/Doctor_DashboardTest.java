@@ -30,7 +30,7 @@ public class Doctor_DashboardTest {
 
     @Before
     public void loginUser(){
-        FirebaseAuth.getInstance().signInWithEmailAndPassword("email","password");
+        FirebaseAuth.getInstance().signInWithEmailAndPassword("rr@email.com","Password1!");
     }
     @Test
     public void testInUserAcceptanceCriteria(){
