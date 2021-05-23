@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
@@ -20,19 +21,11 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Paper.init(this);
-        Thread splash = new Thread(){
-            @Override
-            public void run() {
-                try {
-                    sleep(3000/4);
-                    RememberMe();
-                    finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        splash.start();
+        new Handler(getMainLooper()).postDelayed(() -> {
+            RememberMe();
+            finish();
+        }, 3000);
+
         getSupportActionBar().hide(); // hiding ActionBar  on splash Screen
 
     }
