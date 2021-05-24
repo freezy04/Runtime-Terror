@@ -1,12 +1,12 @@
   # Mobile Patient Tracker
 - #### Product Scope 
-      - develop a mobile application for viewing and managing patient data.
+      - develop a mobile application for viewing and managing patient data
       - data comprises of, patient name, disease history, medication administered, date of arrival, date of appointment, consultation and treatment cost, etc
       - once the data is saved onto the system it will be stored for the doctor's perusal
        
 - #### Function
       - the doctors should be able to log in to the platform and enter relevant information about their patient
-      - the doctors should be able to continually upgrade the system by entering the latest medical data of their patients
+      - the doctors should be able to upgrade the system continually by entering the latest medical data of their patients
       - the doctors are able to accept or reject a booking request made by a patient
       
 - #### Purpose
