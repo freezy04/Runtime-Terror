@@ -50,12 +50,15 @@ public class Patient_Dashboard extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void ClickNavBar(){
+    public void ClickNavBar() {
         home_nav = findViewById(R.id.bottom_navigation);
         home_nav.setSelectedItemId(R.id.menu_home);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
+        home_nav.setOnNavigationItemSelectedListener(item -> ClickOnNavBar(item.getItemId()));
+    }
+
+    public boolean ClickOnNavBar(int itemId){
             Intent activity;
-            switch(item.getItemId()){
+            switch(itemId){
 
                 case R.id.menu_home:
                     return true;
@@ -76,7 +79,7 @@ public class Patient_Dashboard extends AppCompatActivity {
             }
             return true;
 
-        });
-    }
+        }
+
 
 }

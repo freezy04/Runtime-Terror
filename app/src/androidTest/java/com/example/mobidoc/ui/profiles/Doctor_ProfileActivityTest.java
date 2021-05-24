@@ -1,28 +1,23 @@
-package com.example.mobidoc.ui.dashboards;
+package com.example.mobidoc.ui.profiles;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.example.mobidoc.R;
-import com.example.mobidoc.adapters.adapterPatientUpcoming;
-import com.example.mobidoc.models.Appointment;
-import com.google.firebase.auth.FirebaseAuth;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.*;
 
-public class Patient_DashboardTest {
+public class Doctor_ProfileActivityTest {
+
     @Rule
-    public ActivityScenarioRule<Patient_Dashboard> activityScenarioRule = new ActivityScenarioRule<>(Patient_Dashboard.class);
-
+    public ActivityScenarioRule<Doctor_ProfileActivity> activityScenarioRule = new ActivityScenarioRule<>(Doctor_ProfileActivity.class);
 
     @Test
-    public void testInUserAcceptanceCriteria(){
+    public void getDoctorDetails() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-//
+           activity.getDoctorDetails("JAKLyVL37YV3PM0HZoUa8EhFWth2");
         });
     }
 

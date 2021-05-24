@@ -10,9 +10,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
-import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
-import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
-import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -79,14 +76,21 @@ public class Edit_Patient_Profile extends AppCompatActivity {
 
     }
     public void UpDateOnFirebaseDetails(String title , String value){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+        if(mAuth != null){
+            String UID = mAuth.getCurrentUser().getUid();
+            updateDetails(UID, title, value);
+        }
+
+    }
+
+    public void updateDetails(String uid, String title, String value){
         FirebaseDatabase db = FirebaseDatabase.getInstance();   // get instance of our Firebase Database
         DatabaseReference ref = db.getReference();              // retrieves the specific Realtime Database
         DatabaseReference user_ref = ref.child("Patients");     // specify user type
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String UID = mAuth.getCurrentUser().getUid();
-        user_ref.child(UID).child(title).setValue(value);
 
+        user_ref.child(uid).child(title).setValue(value);
     }
 
     public boolean isEdited(String s){

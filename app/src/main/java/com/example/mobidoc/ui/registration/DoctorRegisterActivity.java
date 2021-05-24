@@ -35,6 +35,7 @@ import io.paperdb.Paper;
 
 public class DoctorRegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    //test
     public EditText emailET, passwordET, confirmPasswordET, fNameET, lNameET, qualificationsET, experienceET;
     public Spinner specializationSPN;
     private String specialization;
