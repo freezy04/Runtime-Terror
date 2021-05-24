@@ -7,6 +7,7 @@ import com.example.mobidoc.R;
 import org.junit.Rule;
 import org.junit.Test;
 
+//work please :(
 public class Doctor_ProfileActivityTest {
 
     @Rule
