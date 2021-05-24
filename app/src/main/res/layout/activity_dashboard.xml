@@ -36,14 +36,16 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="80dp"
             >
 
             <view
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:id="@+id/users_recyclerView"
                 class="androidx.recyclerview.widget.RecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="600dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="150dp"
                 android:layout_marginRight="10dp"
