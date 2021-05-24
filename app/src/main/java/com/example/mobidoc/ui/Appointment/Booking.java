@@ -300,8 +300,10 @@ public class Booking extends AppCompatActivity {
                 return true;
 
             case R.id.menu_appointments:
-                activity = new Intent(Booking.this, DoctorViewAcceptedAppointmentsActivity.class);
+                activity = new Intent(Booking.this, ViewCompletedAppointmentsActivity.class);
+                activity.putExtra("userType", "Patient");
                 startActivity(activity);
+
                 break;
 
             case R.id.menu_consultation:

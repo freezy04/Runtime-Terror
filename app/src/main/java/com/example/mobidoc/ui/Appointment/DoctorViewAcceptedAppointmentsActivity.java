@@ -140,9 +140,8 @@ public class DoctorViewAcceptedAppointmentsActivity extends AppCompatActivity {
 
                 case R.id.nav_acceptedappointments2:
 
-                    activity = new Intent(DoctorViewAcceptedAppointmentsActivity.this, DoctorViewAcceptedAppointmentsActivity.class);
-
-                    //activity.putExtra("userType", "Doctor");
+                    activity = new Intent(DoctorViewAcceptedAppointmentsActivity.this, ViewCompletedAppointmentsActivity.class);
+                    activity.putExtra("userType", "Doctor");
                     startActivity(activity);
 
                     //  activity = new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class);

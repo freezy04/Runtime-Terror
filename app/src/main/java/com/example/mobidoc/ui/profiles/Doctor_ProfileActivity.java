@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.models.Doctor;
-import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
 import com.example.mobidoc.ui.Appointment.DoctorViewPendingAppointmentsActivity;
+import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.utils.Utilities;
@@ -189,9 +189,8 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
                 case R.id.nav_acceptedappointments2:
 
-                    activity = new Intent(Doctor_ProfileActivity.this, DoctorViewAcceptedAppointmentsActivity.class);
-
-                    //activity.putExtra("userType", "Doctor");
+                    activity = new Intent(Doctor_ProfileActivity.this, ViewCompletedAppointmentsActivity.class);
+                    activity.putExtra("userType", "Doctor");
                     startActivity(activity);
 
                     //  activity = new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class);

@@ -87,8 +87,9 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         ref.setValue("completed");
         progressDialog.dismiss();
         Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
-        Intent doctorViewAppointments = new Intent(DoctorConfirmAppointmentResults.this, DoctorViewAcceptedAppointmentsActivity.class);
-        startActivity(doctorViewAppointments);
+        Intent activity = new Intent(DoctorConfirmAppointmentResults.this, ViewCompletedAppointmentsActivity.class);
+        activity.putExtra("userType", "Doctor");
+        startActivity(activity);
         finish();
     }
 
