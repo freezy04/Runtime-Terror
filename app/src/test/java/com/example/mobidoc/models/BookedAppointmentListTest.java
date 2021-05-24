@@ -11,6 +11,7 @@ public class BookedAppointmentListTest {
     public void testEmptyConstructor(){
 
 
+
         BookedAppointmentList book = new BookedAppointmentList();
         String anyString = anyString();
         book.setDate_for_appointment(anyString);
