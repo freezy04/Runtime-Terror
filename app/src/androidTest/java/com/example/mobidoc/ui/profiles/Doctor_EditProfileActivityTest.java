@@ -38,7 +38,7 @@ public class Doctor_EditProfileActivityTest {
     @Test
     public void updateDetails() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-           activity.updateDetails("JAKLyVL37YV3PM0HZoUa8EhFWth2", "title", "value");
+           activity.updateDetails("JAKLyVL37YV3PM0HZoUa8EhFWth2", "first_name", "Michael");
         });
     }
 }

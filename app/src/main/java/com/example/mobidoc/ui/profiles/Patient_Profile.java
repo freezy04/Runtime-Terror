@@ -51,7 +51,8 @@ public class Patient_Profile extends AppCompatActivity {
         patient_gender = findViewById(R.id.patient_sex);
 
         NavBar();
-        getPatientDetails();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        getPatientDetails(mAuth.getCurrentUser().getUid());
         ClickNavBar();
 
         editProfile = findViewById(R.id.edit_profile_button);
@@ -62,14 +63,14 @@ public class Patient_Profile extends AppCompatActivity {
 
     }
 
-    public void getPatientDetails() {
+    public void getPatientDetails(String uid) {
 
         FirebaseDatabase db = FirebaseDatabase.getInstance();  // get instance of our Firebase Database
         DatabaseReference ref = db.getReference();             // retrieves the specific Realtime Database
         DatabaseReference user_ref = ref.child("Patients");     // specify user type
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        user_ref.orderByKey().equalTo(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+
+        user_ref.orderByKey().equalTo(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -146,9 +147,13 @@ public class Patient_Profile extends AppCompatActivity {
     public void ClickNavBar() {
         home_nav = findViewById(R.id.bottom_navigation);
         home_nav.setSelectedItemId(R.id.menu_profile);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
+        home_nav.setOnNavigationItemSelectedListener(item -> onNavBarItemClicked(item.getItemId()));
+    }
+
+    public boolean onNavBarItemClicked(int itemId){
+
             Intent activity;
-            switch (item.getItemId()) {
+            switch (itemId) {
 
                 case R.id.menu_home:
                     activity = new Intent(Patient_Profile.this, Patient_Dashboard.class);
@@ -169,6 +174,5 @@ public class Patient_Profile extends AppCompatActivity {
             }
             return true;
 
-        });
-    }
+        }
 }

@@ -25,6 +25,7 @@ import io.paperdb.Paper;
 
 public class PatientRegisterActivityTwo extends AppCompatActivity {
 
+    //test
     public EditText diseaseHistoryET, medicationHistoryET, allergiesET;
     public String email, password, fName, lName, age, sex;
     public TextView haveAccountTW;

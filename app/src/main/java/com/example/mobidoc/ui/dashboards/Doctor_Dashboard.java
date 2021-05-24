@@ -5,23 +5,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobidoc.R;
-import com.example.mobidoc.adapters.AdapterAppointmentList;
-//import com.example.mobidoc.adapters.adapterPatient;
 import com.example.mobidoc.adapters.adapterPatientUpcoming;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
 import com.example.mobidoc.ui.Appointment.DoctorViewPendingAppointmentsActivity;
-import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
 import com.example.mobidoc.utils.Utilities;
@@ -40,6 +34,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import io.paperdb.Paper;
+
+//import com.example.mobidoc.adapters.adapterPatient;
 
 public class Doctor_Dashboard extends AppCompatActivity {
     // LinearLayout doctor_profile,doctor_pending_appointments,doctor_completed_appointments,doctor_accepted_appointments;
@@ -126,11 +122,16 @@ public class Doctor_Dashboard extends AppCompatActivity {
     }
 
     public void ClickNavBar() {
+
         home_nav = findViewById(R.id.bottom_navigation2);
         home_nav.setSelectedItemId(R.id.nav_home2);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
+        home_nav.setOnNavigationItemSelectedListener(item -> ClickOnNavBar(item.getItemId()));
+
+    }
+
+    public boolean ClickOnNavBar(int itemId){
             Intent activity;
-            switch (item.getItemId()) {
+            switch (itemId) {
 
                 case R.id.nav_home2:
                     return true;
@@ -148,21 +149,16 @@ public class Doctor_Dashboard extends AppCompatActivity {
                     return true;
 
                 case R.id.nav_acceptedappointments2:
-
                     activity = new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class);
-
-                    //activity.putExtra("userType", "Doctor");
                     startActivity(activity);
 
-                    //  activity = new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class);
-                    // startActivity(activity);
                     return true;
 
             }
             return true;
 
-        });
+        }
     }
-}
+
 
 

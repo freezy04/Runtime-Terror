@@ -1,11 +1,8 @@
 package com.example.mobidoc.ui.Appointment;
 
-import androidx.lifecycle.Lifecycle;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.mobidoc.adapters.AdapterPatient;
 import com.example.mobidoc.adapters.adapterAppointment;
-import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.models.Doctor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,4 +52,6 @@ public class Doctor_List_Test {
            activity.searchForUsers("77gDrYtgw8RPF7tqfI9TBWzXCGo1", "");
         });
     }
+
+
 }

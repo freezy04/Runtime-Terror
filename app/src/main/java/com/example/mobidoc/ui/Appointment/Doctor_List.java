@@ -225,31 +225,34 @@ public class Doctor_List extends AppCompatActivity {
     public void ClickNavBar() {
         home_nav = findViewById(R.id.bottom_navigation);
         home_nav.setSelectedItemId(R.id.menu_consultation);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
-            Intent activity;
+        home_nav.setOnNavigationItemSelectedListener(item -> onNavBarItemClicked(item.getItemId()));
+    }
 
-            switch (item.getItemId()) {
+    public boolean onNavBarItemClicked(int itemId){
+        Intent activity;
 
-                case R.id.menu_home:
-                    activity = new Intent(Doctor_List.this, Patient_Dashboard.class);
-                    startActivity(activity);
-                    return true;
-                case R.id.menu_appointments:
-                    activity = new Intent(Doctor_List.this, ViewCompletedAppointmentsActivity.class);
-                    activity.putExtra("userType", "Patient");
-                    startActivity(activity);
-                    break;
-                case R.id.menu_consultation:
-                    return true;
-                case R.id.menu_profile:
-                    activity = new Intent(Doctor_List.this, Patient_Profile.class);
-                    startActivity(activity);
-                    return true;
+        switch (itemId) {
 
-            }
-            return true;
+            case R.id.menu_home:
+                activity = new Intent(Doctor_List.this, Patient_Dashboard.class);
+                startActivity(activity);
+                return true;
 
-        });
+            case R.id.menu_appointments:
+                activity = new Intent(Doctor_List.this, ViewCompletedAppointmentsActivity.class);
+                startActivity(activity);
+                break;
+
+            case R.id.menu_consultation:
+                return true;
+
+            case R.id.menu_profile:
+                activity = new Intent(Doctor_List.this, Patient_Profile.class);
+                startActivity(activity);
+                return true;
+
+        }
+        return true;
     }
 
 }
