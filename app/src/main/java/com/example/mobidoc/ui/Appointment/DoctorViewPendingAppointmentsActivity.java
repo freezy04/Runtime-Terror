@@ -123,8 +123,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.nav_acceptedappointments2:
-                    activity = new Intent(DoctorViewPendingAppointmentsActivity.this, DoctorViewAcceptedAppointmentsActivity.class);
-
+                    activity = new Intent(DoctorViewPendingAppointmentsActivity.this, ViewCompletedAppointmentsActivity.class);
                     activity.putExtra("userType", "Doctor");
                     startActivity(activity);
 

@@ -7,9 +7,9 @@ import static org.mockito.ArgumentMatchers.anyString;
 
 public class BookedAppointmentListTest {
 
-
     @Test
     public void testEmptyConstructor(){
+
 
 
         BookedAppointmentList book = new BookedAppointmentList();

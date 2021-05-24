@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.adapterPatientUpcoming;
 import com.example.mobidoc.models.Appointment;
-import com.example.mobidoc.ui.Appointment.DoctorViewAcceptedAppointmentsActivity;
 import com.example.mobidoc.ui.Appointment.DoctorViewPendingAppointmentsActivity;
+import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;
 import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
 import com.example.mobidoc.utils.Utilities;
@@ -149,7 +149,8 @@ public class Doctor_Dashboard extends AppCompatActivity {
                     return true;
 
                 case R.id.nav_acceptedappointments2:
-                    activity = new Intent(Doctor_Dashboard.this, DoctorViewAcceptedAppointmentsActivity.class);
+                    activity = new Intent(Doctor_Dashboard.this, ViewCompletedAppointmentsActivity.class);
+                    activity.putExtra("userType", "Doctor");
                     startActivity(activity);
 
                     return true;
