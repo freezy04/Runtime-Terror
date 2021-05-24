@@ -2,6 +2,7 @@ package com.example.mobidoc.ui.Appointment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -14,6 +15,7 @@ import com.example.mobidoc.adapters.AdapterAppointmentList;
 import com.example.mobidoc.models.Appointment;
 import com.example.mobidoc.ui.dashboards.Doctor_Dashboard;
 import com.example.mobidoc.ui.dashboards.Patient_Dashboard;
+import com.example.mobidoc.ui.profiles.Doctor_ProfileActivity;
 import com.example.mobidoc.ui.profiles.Patient_Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +36,7 @@ public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
     List<Appointment> userPatient;
     FirebaseAuth firebaseAuth;
     private String userType;
-    BottomNavigationView home_nav;
+    BottomNavigationView home_nav_doc, home_nav_pat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,11 @@ public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
         userPatient = new ArrayList<>();
         getAllAppointments();
 
-        NavBar();
-        ClickNavBar();
-
         Intent viewCompletedApps = getIntent();
         userType = viewCompletedApps.getStringExtra("userType");
 
+        NavBar();
+        ClickNavBar();
     }
 
     public void NavBar(){
@@ -122,31 +123,65 @@ public class ViewCompletedAppointmentsActivity extends AppCompatActivity {
     }
 
     public void ClickNavBar() {
-        home_nav = findViewById(R.id.bottom_navigation);
-        home_nav.setSelectedItemId(R.id.menu_appointments);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
-            Intent activity;
-            switch (item.getItemId()) {
+        home_nav_doc = findViewById(R.id.bottom_navigation2);
+        home_nav_pat = findViewById(R.id.bottom_navigation);
+        if (userType.equals("Doctor")) {
+            home_nav_pat.setVisibility(View.GONE);
+            home_nav_doc.setSelectedItemId(R.id.nav_acceptedappointments2);
+            home_nav_doc.setOnNavigationItemSelectedListener(item -> {
+                Intent activity;
+                switch (item.getItemId()) {
 
-                case R.id.menu_home:
-                    activity = new Intent(ViewCompletedAppointmentsActivity.this, Patient_Dashboard.class);
-                    startActivity(activity);
-                    return true;
-                case R.id.menu_appointments:
-                    return true;
-                case R.id.menu_consultation:
-                    activity = new Intent(ViewCompletedAppointmentsActivity.this, Doctor_List.class);
-                    startActivity(activity);
-                    return true;
-                case R.id.menu_profile:
-                    activity = new Intent(ViewCompletedAppointmentsActivity.this,Patient_Profile.class);
-                    startActivity(activity);
-                    return true;
+                    case R.id.nav_home2:
+                    case R.id.nav_pateintrecords:
+                        activity = new Intent(ViewCompletedAppointmentsActivity.this, Doctor_Dashboard.class);
+                        startActivity(activity);
+                        return true;
 
-            }
-            return true;
+                    case R.id.nav_profile2:
+                        activity = new Intent(ViewCompletedAppointmentsActivity.this, Doctor_ProfileActivity.class);
+                        startActivity(activity);
+                        return true;
 
-        });
+                    case R.id.nav_pendingappointments2:
+                        activity = new Intent(ViewCompletedAppointmentsActivity.this, DoctorViewPendingAppointmentsActivity.class);
+                        startActivity(activity);
+                        return true;
+
+                    case R.id.nav_acceptedappointments2:
+
+                        return true;
+
+                }
+                return true;
+            });
+        } else {
+            home_nav_doc.setVisibility(View.GONE);
+            home_nav_pat.setSelectedItemId(R.id.menu_appointments);
+            home_nav_pat.setOnNavigationItemSelectedListener(item -> {
+                Intent activity;
+                switch (item.getItemId()) {
+
+                    case R.id.menu_home:
+                        activity = new Intent(ViewCompletedAppointmentsActivity.this, Patient_Dashboard.class);
+                        startActivity(activity);
+                        return true;
+                    case R.id.menu_appointments:
+                        return true;
+                    case R.id.menu_consultation:
+                        activity = new Intent(ViewCompletedAppointmentsActivity.this, Doctor_List.class);
+                        startActivity(activity);
+                        return true;
+                    case R.id.menu_profile:
+                        activity = new Intent(ViewCompletedAppointmentsActivity.this,Patient_Profile.class);
+                        startActivity(activity);
+                        return true;
+
+                }
+                return true;
+
+            });
+        }
     }
 
 
