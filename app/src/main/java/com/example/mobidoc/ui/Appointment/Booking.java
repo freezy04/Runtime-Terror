@@ -240,29 +240,25 @@ public class Booking extends AppCompatActivity {
         if (user != null) {
             // mProfile.setText(user.getEmail());
             myUid = user.getUid();
-            checkStatus(myUid);
-        }
-    }
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference userRef = database.getReference("Patients");
 
-    public void checkStatus(String uid){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference userRef = database.getReference("Patients");
-
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    if(ds.child("uid").getValue().equals(uid)){
-                        myName = ds.child("first_name").getValue().toString();
-                        myNameL = ds.child("last_name").getValue().toString();
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot ds : snapshot.getChildren()){
+                        if(ds.child("uid").getValue().equals(myUid)){
+                            myName = ds.child("first_name").getValue().toString();
+                            myNameL = ds.child("last_name").getValue().toString();
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
     }
 
     public void NavBar(){
