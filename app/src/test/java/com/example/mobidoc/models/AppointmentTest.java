@@ -1,10 +1,13 @@
 package com.example.mobidoc.models;
 
 import org.junit.Test;
-
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 
+
+@RunWith(JUnit4.class)
 public class AppointmentTest {
 
     @Test
@@ -33,6 +36,7 @@ public class AppointmentTest {
 
     @Test
     public void testGetters(){
+
         Appointment app = new Appointment();
         app.getId();
         app.getPatientUid();
