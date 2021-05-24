@@ -5,7 +5,7 @@
       - once the data is saved onto the system it will be stored for the doctor's perusal
        
 - #### Function
-      - the doctors should be able to log onto the platform and enter relevant information about their patient
+      - the doctors should be able to log in to the platform and enter relevant information about their patient
       - the doctors should be able to continually upgrade the system by entering the latest medical data of their patients
       - the doctors are able to accept or reject a booking request made by a patient
       
