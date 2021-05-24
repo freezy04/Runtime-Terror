@@ -7,7 +7,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 
 public class BookedAppointmentListTest {
 
-
     @Test
     public void testEmptyConstructor(){
 
