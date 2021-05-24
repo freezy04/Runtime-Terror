@@ -313,4 +313,8 @@ public class Booking extends AppCompatActivity {
         }
         return true;
     }
+
+    public void checkStatus(String s) {
+
+    }
 }

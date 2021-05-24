@@ -1,6 +1,5 @@
 package com.example.mobidoc.ui.Appointment;
 
-import androidx.lifecycle.Lifecycle;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.example.mobidoc.R;
@@ -10,9 +9,6 @@ import com.google.firebase.auth.FirebaseUser;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 
 public class BookingTest {
 
@@ -73,11 +69,11 @@ public class BookingTest {
                 activityScenarioRule.getScenario().onActivity(activity -> activity.mBook.performClick());
         }
 
-        @Test
-        public void checkUserStatus() {
-                activityScenarioRule.getScenario().onActivity(activity ->
-                        activity.checkStatus("77gDrYtgw8RPF7tqfI9TBWzXCGo1"));
-        }
+//        @Test
+//        public void checkUserStatus() {
+//                activityScenarioRule.getScenario().onActivity(activity ->
+//                        activity.checkStatus("77gDrYtgw8RPF7tqfI9TBWzXCGo1"));
+//        }
 
         @Test
         public void clickHomeNavBarItem() {
