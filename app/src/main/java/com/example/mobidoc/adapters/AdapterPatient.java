@@ -1,5 +1,6 @@
 package com.example.mobidoc.adapters;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,11 +29,11 @@ import java.util.Map;
 
 
 public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder>{
-    Context context;
+    Activity context;
     List<Appointment> userList;
     TextView datetime2;
 
-       public AdapterPatient(Context context, List<Appointment> userList) {
+       public AdapterPatient(Activity context, List<Appointment> userList) {
         this.context = context;
         this.userList = userList;
     }
