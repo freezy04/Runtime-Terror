@@ -149,7 +149,7 @@ public class Booking extends AppCompatActivity {
 
 
                             reason_for_appointment = Reason.getText().toString();
-                            BookAppointment(DoctorUid, _Date, _Time, DoctorName, reason_for_appointment);
+                            BookAppointment_(DoctorUid, _Date, _Time, DoctorName, reason_for_appointment);
                         }
                     });
                     dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -178,7 +178,10 @@ public class Booking extends AppCompatActivity {
         picker.show();
     }
 
-    private void BookAppointment(String DoctorUid, String Date, String Time, String Doctor_Name, String Reason_for_appointment) {
+    private void BookAppointment_(String DoctorUid, String Date, String Time, String Doctor_Name, String Reason_for_appointment) {
+        BookAppointment(DoctorUid, Date, Time, DoctorName, reason_for_appointment);
+    }
+    public void BookAppointment(String DoctorUid, String Date, String Time, String Doctor_Name, String Reason_for_appointment) {
         progressDialog.show();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
