@@ -35,7 +35,10 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 
     }
 
-    private void initializeActivity() {
+    private void initializeActivity(){
+        initializeActivity_();
+    }
+    public void initializeActivity_() {
         //set up action bar
         ActionBar actionBar = getSupportActionBar();
         Objects.requireNonNull(actionBar).setTitle("Confirm Appointment Results");
@@ -76,6 +79,10 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 //    }
 
     private void confirmUpdates(String medication, String cost, String notes) {
+        confirmUpdates_(medication,cost,notes);
+    }
+
+    public void confirmUpdates_(String medication, String cost, String notes) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Patients").child(patientUID).child("currentMedication");
         ref.setValue(medication);
@@ -94,6 +101,10 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
     }
 
     private void updateDetails() {
+        updateDetails_();
+    }
+
+    public void updateDetails_() {
         progressDialog.show();
         String newMedication = newMedicationET.getText().toString().trim();
         String appointmentCost = appointmentCostET.getText().toString().trim();
