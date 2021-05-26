@@ -1,5 +1,8 @@
 package com.example.mobidoc.ui.Appointment;
 
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.example.mobidoc.R;
@@ -39,6 +42,25 @@ public class Doctor_List_Test {
             adapterPatient.holderItemClicked("77gDrYtgw8RPF7tqfI9TBWzXCGo1", "sadasdf");
         });
     }
+
+    @Test
+    public void onBackPressed() {
+
+        activityScenarioRule.getScenario().onActivity(activity -> {
+
+            activity.onSupportNavigateUp();
+            activity.onBackPressed();
+
+        });
+    }
+
+    @Test
+    public void Checkuser(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.checkUserStatus();
+        });
+    }
+
 
     @Test
     public void getAllUsers(){

@@ -185,7 +185,7 @@ public class Doctor_List extends AppCompatActivity {
     }
 
 
-    private void checkUserStatus(){
+    public void checkUserStatus(){
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user != null){
             // mProfile.setText(user.getEmail());
