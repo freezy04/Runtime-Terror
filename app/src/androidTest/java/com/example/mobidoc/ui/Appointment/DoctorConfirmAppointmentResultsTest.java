@@ -14,12 +14,12 @@ public class DoctorConfirmAppointmentResultsTest {
     @Rule
     public ActivityScenarioRule<DoctorConfirmAppointmentResults> activityScenarioRule = new ActivityScenarioRule<>(DoctorConfirmAppointmentResults.class);
 
-    @Before
-    public void loginUser() {
-
-        FirebaseAuth.getInstance().signInWithEmailAndPassword("Test2@gmail.com", "Freezy@04");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    }
+//    @Before
+//    public void loginUser() {
+//
+//        FirebaseAuth.getInstance().signInWithEmailAndPassword("Test2@gmail.com", "Freezy@04");
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//    }
 
     @Test
     public void updateDetails_UpdatesConfirmed_UpdateUnsuccessful(){
@@ -47,11 +47,11 @@ public class DoctorConfirmAppointmentResultsTest {
         });
     }
 
-    @Test
-    public void onSupportNavigateUpTest(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-           activity.onSupportNavigateUp();
-        });
-    }
+//    @Test
+//    public void onSupportNavigateUpTest(){
+//        activityScenarioRule.getScenario().onActivity(activity -> {
+//           activity.onSupportNavigateUp();
+//        });
+//    }
 
 }
