@@ -33,7 +33,24 @@ public class BookingTest {
         public void DiplayDate_Booking_BookingUnsucceful() {
                 activityScenarioRule.getScenario().onActivity(activity -> activity.mDisplayDate.performClick());
         }
+        @Test
+        public void onDateSet(){
+                activityScenarioRule.getScenario().onActivity(activity -> {
+                   activity.onDateSetListener.onDateSet(null,2021,10,1);
+                });
+        }
 
+
+        @Test
+        public void onBackPressed() {
+
+                activityScenarioRule.getScenario().onActivity(activity -> {
+
+                        activity.onSupportNavigateUp();
+                        activity.onBackPressed();
+
+                });
+        }
         @Test
         public void BookingAppointment(){
                 activityScenarioRule.getScenario().onActivity(activity -> {
