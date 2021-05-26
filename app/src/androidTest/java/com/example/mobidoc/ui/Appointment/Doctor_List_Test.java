@@ -30,18 +30,18 @@ public class Doctor_List_Test {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
-    @Test
-    public void test_in_user_acceptance_criteria() {
-        //   activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED);
-
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            //activity.onCreate(new Bundle());
-            List<Doctor> doctors = new ArrayList<>();
-
-            adapterAppointment adapterPatient = new adapterAppointment(activity, doctors);
-            adapterPatient.holderItemClicked("77gDrYtgw8RPF7tqfI9TBWzXCGo1", "sadasdf");
-        });
-    }
+//    @Test
+//    public void test_in_user_acceptance_criteria() {
+//        //   activityScenarioRule.getScenario().moveToState(Lifecycle.State.CREATED);
+//
+//        activityScenarioRule.getScenario().onActivity(activity -> {
+//            //activity.onCreate(new Bundle());
+//            List<Doctor> doctors = new ArrayList<>();
+//
+//            adapterAppointment adapterPatient = new adapterAppointment(activity, doctors);
+//            adapterPatient.holderItemClicked("77gDrYtgw8RPF7tqfI9TBWzXCGo1", "sadasdf");
+//        });
+//    }
 
     @Test
     public void onBackPressed() {
@@ -76,12 +76,12 @@ public class Doctor_List_Test {
         });
     }
 
-    @Test
-    public void NavBar_(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.NavBar();
-        });
-    }
+//    @Test
+//    public void NavBar_(){
+//        activityScenarioRule.getScenario().onActivity(activity -> {
+//            activity.NavBar();
+//        });
+//    }
 
     @Test
     public void clickHomeNavBarItem() {
