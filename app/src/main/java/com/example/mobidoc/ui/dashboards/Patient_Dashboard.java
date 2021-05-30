@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobidoc.R;
 import com.example.mobidoc.adapters.AdapterPatientAccepted;
-import com.example.mobidoc.adapters.adapterAppointment;
-import com.example.mobidoc.adapters.adapterPatientUpcoming;
 import com.example.mobidoc.models.Appointment;
-import com.example.mobidoc.models.Doctor;
 import com.example.mobidoc.ui.Appointment.Doctor_List;
 import com.example.mobidoc.ui.Appointment.ViewCompletedAppointmentsActivity;
 import com.example.mobidoc.ui.MainActivity;

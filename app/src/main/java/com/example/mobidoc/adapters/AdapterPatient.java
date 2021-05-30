@@ -66,87 +66,87 @@ public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder
         holder.PatientName.setText(userPatientName);
 
 // moving to the  next activity
-        holder.itemView.setOnClickListener(v -> {
-            appointmentClicked(appointmentUID, patientUID, patientName, status);
-         });
+//        holder.itemView.setOnClickListener(v -> {
+//            appointmentClicked(appointmentUID, patientUID, patientName, status);
+//         });
     }
 
-    private void goToConfirmResultsScreen(String appointmentUID, String patientUID, String patientName) {
-        Intent intent = new Intent(context, DoctorConfirmAppointmentResults.class);
-        intent.putExtra("appointmentUID", appointmentUID);
-        intent.putExtra("patientUID", patientUID);
-        intent.putExtra("patientName", patientName);
-        context.startActivity(intent);
-    }
+//    private void goToConfirmResultsScreen(String appointmentUID, String patientUID, String patientName) {
+//        Intent intent = new Intent(context, DoctorConfirmAppointmentResults.class);
+//        intent.putExtra("appointmentUID", appointmentUID);
+//        intent.putExtra("patientUID", patientUID);
+//        intent.putExtra("patientName", patientName);
+//        context.startActivity(intent);
+//    }
 
-    private void acceptAppointment(String appointmentUID) {
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference("Appointments");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Appointment app = ds.getValue(Appointment.class);
-                    app.setId(ds.getKey());
-                    if (app.getId().equals(appointmentUID)) {
-                        app.setStatus("accepted");
-                        Map<String, Object> appointmentUpdate = new HashMap<>();
-                        appointmentUpdate.put(appointmentUID, app);
-                        ref.updateChildren(appointmentUpdate);
-                        break;
-                    }
-                }
-                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                notifyDataSetChanged();//refresh activity
-            }
+//    private void acceptAppointment(String appointmentUID) {
+//        FirebaseDatabase db = FirebaseDatabase.getInstance();
+//        DatabaseReference ref = db.getReference("Appointments");
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot ds : snapshot.getChildren()) {
+//                    Appointment app = ds.getValue(Appointment.class);
+//                    app.setId(ds.getKey());
+//                    if (app.getId().equals(appointmentUID)) {
+//                        app.setStatus("accepted");
+//                        Map<String, Object> appointmentUpdate = new HashMap<>();
+//                        appointmentUpdate.put(appointmentUID, app);
+//                        ref.updateChildren(appointmentUpdate);
+//                        break;
+//                    }
+//                }
+//                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+//                notifyDataSetChanged();//refresh activity
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(context, "Accept failed.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(context, "Accept failed.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void rejectAppointment(String appointmentUID) {
+//        FirebaseDatabase db = FirebaseDatabase.getInstance();
+//        DatabaseReference ref = db.getReference("Appointments");
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot ds : snapshot.getChildren()) {
+//                    if (ds.getKey().equals(appointmentUID)) {
+//                        ds.getRef().child("status").setValue("rejected");
+//                        break;
+//
+//                    }
+//                }
+//                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+//                notifyDataSetChanged();//refresh activity
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(context, "Rejection failed.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
-    private void rejectAppointment(String appointmentUID) {
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference("Appointments");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    if (ds.getKey().equals(appointmentUID)) {
-                        ds.getRef().child("status").setValue("rejected");
-                        break;
-
-                    }
-                }
-                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                notifyDataSetChanged();//refresh activity
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(context, "Rejection failed.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void appointmentClicked(String appointmentUID, String patientUID, String patientName, String status) {
-        if (status.equals("accepted")) {
-            goToConfirmResultsScreen(appointmentUID, patientUID, patientName);
-        } else {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle("Would you like to confirm this appointment?");
-            //dialog.setMessage(patientName + " will not know that you rejected the request.");
-            dialog.setPositiveButton("Accept", (dialog1, which) -> {
-                acceptAppointment(appointmentUID);
-            });
-            dialog.setNegativeButton("Reject", (dialog12, which) -> {
-                rejectAppointment(appointmentUID);
-            });
-            dialog.create().show();
-        }
-    }
+//    private void appointmentClicked(String appointmentUID, String patientUID, String patientName, String status) {
+//        if (status.equals("accepted")) {
+//            goToConfirmResultsScreen(appointmentUID, patientUID, patientName);
+//        } else {
+//            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+//            dialog.setTitle("Would you like to confirm this appointment?");
+//            //dialog.setMessage(patientName + " will not know that you rejected the request.");
+//            dialog.setPositiveButton("Accept", (dialog1, which) -> {
+//                acceptAppointment(appointmentUID);
+//            });
+//            dialog.setNegativeButton("Reject", (dialog12, which) -> {
+//                rejectAppointment(appointmentUID);
+//            });
+//            dialog.create().show();
+//        }
+//    }
 
     @Override
     public int getItemCount() {
