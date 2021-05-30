@@ -9,16 +9,16 @@ public class Doctor {
 
     public Doctor(){}
 
-    public Doctor(String uid, String first_name, String last_name, String user_type, String email, String qualifications, String experience, String specialization) {//with uid
-        this.uid = uid;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.user_type = user_type;
-        this.email = email;
-        this.qualifications = qualifications;
-        this.experience = experience;
-        this.specialization = specialization;
-    }
+//    public Doctor(String uid, String first_name, String last_name, String user_type, String email, String qualifications, String experience, String specialization) {//with uid
+//        this.uid = uid;
+//        this.first_name = first_name;
+//        this.last_name = last_name;
+//        this.user_type = user_type;
+//        this.email = email;
+//        this.qualifications = qualifications;
+//        this.experience = experience;
+//        this.specialization = specialization;
+//    }
 
     public Doctor(String first_name, String last_name, String user_type, String email, String qualifications, String experience, String specialization) {//without uid
         this.first_name = first_name;
@@ -55,10 +55,10 @@ public class Doctor {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
-    @PropertyName("user_type")
-    public String getUser_type() {
-        return user_type;
-    }
+//    @PropertyName("user_type")
+//    public String getUser_type() {
+//        return user_type;
+//    }
     @PropertyName("user_type")
     public void setUser_type(String user_type) {
         this.user_type = user_type;

@@ -9,18 +9,19 @@ import static org.mockito.ArgumentMatchers.anyString;
 
 public class PatientTest {
 
-    @Test
-    public void testUIDConstructor(){
-        String s = anyString();
-        Patient pat = new Patient(s,s,s,s,s,s,s,s,s,s,s);
-        assertEquals(s, pat.getUid());
-    }
+//    @Test
+//    public void testUIDConstructor(){
+//        String s = anyString();
+//        Patient pat = new Patient(s,s,s,s,s,s,s,s,s,s,s);
+//        assertEquals(s, pat.getUid());
+//    }
 
     @Test
     public void testNonUIDConstructor(){
         String s = anyString();
         Patient pat = new Patient(s,s,s,s,s,s,s,s,s,s);
         assertEquals(s, pat.getFirst_name());
+        assertEquals(s, pat.getUid());
     }
 
     @Test
@@ -46,7 +47,7 @@ public class PatientTest {
         pat.getUid();
         pat.getFirst_name();
         pat.getLast_name();
-        pat.getUser_type();
+//        pat.getUser_type();
         pat.getEmail();
         pat.getAge();
         pat.getSex();

@@ -111,7 +111,7 @@ public class PatientRegisterActivityTwo extends AppCompatActivity {
                 });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(pat.getUser_type() + "s");
+        DatabaseReference reference = database.getReference("Patients");
         pat.setUid(user.getUid());
         reference.child(pat.getUid()).setValue(pat);
         Toast.makeText(PatientRegisterActivityTwo.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();

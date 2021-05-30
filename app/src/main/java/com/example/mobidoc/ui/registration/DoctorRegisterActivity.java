@@ -223,7 +223,7 @@ public class DoctorRegisterActivity extends AppCompatActivity implements Adapter
                 });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(doc.getUser_type() + "s");
+        DatabaseReference reference = database.getReference( "Doctors");
         doc.setUid(user.getUid());
         reference.child(doc.getUid()).setValue(doc);
         Toast.makeText(DoctorRegisterActivity.this, "Registered...\n" + user.getEmail(), Toast.LENGTH_SHORT).show();

@@ -5,8 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 
-
-
 public class AppointmentTest {
 
     @Test
@@ -35,7 +33,6 @@ public class AppointmentTest {
 
     @Test
     public void testGetters(){
-
         Appointment app = new Appointment();
         app.getId();
         app.getPatientUid();

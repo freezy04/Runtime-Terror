@@ -8,20 +8,20 @@ public class Patient {
 
     public Patient(){}
 
-    public Patient(String uid, String first_name, String last_name, String user_type, String email, String age,
-                   String sex, String diseaseHistory, String medicationHistory, String allergies, String currentMedication) {//with uid
-        this.uid = uid;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.user_type = user_type;
-        this.email = email;
-        this.age = age;
-        this.sex = sex;
-        this.diseaseHistory = diseaseHistory;
-        this.medicationHistory = medicationHistory;
-        this.allergies = allergies;
-        this.currentMedication = currentMedication;
-    }
+//    public Patient(String uid, String first_name, String last_name, String user_type, String email, String age,
+//                   String sex, String diseaseHistory, String medicationHistory, String allergies, String currentMedication) {//with uid
+//        this.uid = uid;
+//        this.first_name = first_name;
+//        this.last_name = last_name;
+//        this.user_type = user_type;
+//        this.email = email;
+//        this.age = age;
+//        this.sex = sex;
+//        this.diseaseHistory = diseaseHistory;
+//        this.medicationHistory = medicationHistory;
+//        this.allergies = allergies;
+//        this.currentMedication = currentMedication;
+//    }
 
     public Patient(String first_name, String last_name, String user_type, String email, String age,
                    String sex, String diseaseHistory, String medicationHistory, String allergies, String currentMedication) {//without uid
@@ -61,10 +61,10 @@ public class Patient {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
-    @PropertyName("user_type")
-    public String getUser_type() {
-        return user_type;
-    }
+//    @PropertyName("user_type")
+//    public String getUser_type() {
+//        return user_type;
+//    }
     @PropertyName("user_type")
     public void setUser_type(String user_type) {
         this.user_type = user_type;
