@@ -63,7 +63,7 @@ public class Doctor_List_Test {
 
 
     @Test
-    public void getAllUsers(){
+    public void getAllUsers_Doctor_list(){
         activityScenarioRule.getScenario().onActivity(activity -> {
            activity.getAllUsers("77gDrYtgw8RPF7tqfI9TBWzXCGo1");
         });

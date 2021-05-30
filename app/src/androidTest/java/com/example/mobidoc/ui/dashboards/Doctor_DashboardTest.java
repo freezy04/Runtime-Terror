@@ -35,9 +35,9 @@ public class Doctor_DashboardTest {
     }
 
     @Test
-    public void getAllUsers(){
+    public void getAllUsers_(){
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.getAllUsers("2e0Igj5IEDQOfEIcX8AXc6kPCrI3");
+            activity.getAllUsers("ucc6dJnoVKNu3mGdaC9DsICy9No1");
         });
     }
 
