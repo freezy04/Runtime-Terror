@@ -58,8 +58,17 @@ public class Doctor_Dashboard extends AppCompatActivity {
         ClickNavBar();
 
     }
+
     private void getAllUsers() {
+
         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fUser != null){
+            getAllUsers(fUser.getUid());
+        }
+
+    }
+
+    public void getAllUsers(String uid) {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Appointments");
 
@@ -72,7 +81,7 @@ public class Doctor_Dashboard extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Appointment  modelUsers = ds.getValue(Appointment.class);
                     modelUsers.setId(ds.getKey());
-                    if(modelUsers.getDoctorUid().equals(fUser.getUid()) && modelUsers.getStatus().equals("accepted")){
+                    if(modelUsers.getDoctorUid().equals(uid) && modelUsers.getStatus().equals("accepted")){
                         userPatient.add(modelUsers);
                     }
                     Collections.sort(userPatient, new Comparator<Appointment>() {
