@@ -51,34 +51,34 @@ public class BookingTest {
 
                });
        }
-       @Test
-       public void BookingAppointment(){
-               activityScenarioRule.getScenario().onActivity(activity -> {
-                  activity.BookAppointment("2e0Igj5IEDQOfEIcX8AXc6kPCrI3","6/1/2021","13:31","Starzie","leg problem" );
-               });
-       }
+//        @Test
+//        public void BookingAppointment(){
+//                activityScenarioRule.getScenario().onActivity(activity -> {
+//                   activity.BookAppointment("2e0Igj5IEDQOfEIcX8AXc6kPCrI3","6/1/2021","13:31","Starzie","leg problem" );
+//                });
+//        }
 
 
-       @Test
-       public void Booking_BookingSuccessful() {
-               activityScenarioRule.getScenario().onActivity(activity -> {
-                       activity.mDisplayDate.setText("6/1/2021");
-                      activity.mDisplayTime.setText("13:32");
-                       activity.Reason.setText("rgkgnkjgsn");
-                       activity.mBook.performClick();
-               });
-       }
+//        @Test
+//        public void Booking_BookingSuccessful() {
+//                activityScenarioRule.getScenario().onActivity(activity -> {
+//                        activity.mDisplayDate.setText("6/1/2021");
+//                       activity.mDisplayTime.setText("13:32");
+//                        activity.Reason.setText("rgkgnkjgsn");
+//                        activity.mBook.performClick();
+//                });
+//        }
 
 
-       @Test
-       public void Booking_InvalidDetails_BookingUnsuccessful() {
-               activityScenarioRule.getScenario().onActivity(activity -> {
-                       activity.mDisplayDate.setText("06/01/2021");
-                       activity.mDisplayTime.setText("13:32");
-                       activity.Reason.setText("rgkgnkjgsn");
-                       activity.mBook.performClick();
-               });
-       }
+//        @Test
+//        public void Booking_InvalidDetails_BookingUnsuccessful() {
+//                activityScenarioRule.getScenario().onActivity(activity -> {
+//                        activity.mDisplayDate.setText("06/01/2021");
+//                        activity.mDisplayTime.setText("13:32");
+//                        activity.Reason.setText("rgkgnkjgsn");
+//                        activity.mBook.performClick();
+//                });
+//        }
 
 
        @Test
