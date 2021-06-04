@@ -24,7 +24,7 @@
   - Android Studio 4.1.3 (recommended)
   - Built-in Android Studio emulator or an android device to run the app. The android device needs to have the setting in developer mode with USB debugging enabled USB cable.
 
-# Programmimg languages
+# Programming languages
 - Java
 
 # Build and Run
