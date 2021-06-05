@@ -1,40 +1,40 @@
-language: android
-jdk: oraclejdk8
+# language: android
+# jdk: oraclejdk8
 
-env:
-  global:
-    - ANDROID_TARGET=android-22
-    - ANDROID_ABI=armeabi-v7a
+# env:
+#   global:
+#     - ANDROID_TARGET=android-22
+#     - ANDROID_ABI=armeabi-v7a
     
-if: branch = master
+# if: branch = master
 
-android:
-  components:
-    - tools #
-    - tools
-    - platform-tools
-    - build-tools-28.0.3
-    - android-26
-    - add-on
-    - extra
-    - $ANDROID_TARGET
-    - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
+# android:
+#   components:
+#     - tools #
+#     - tools
+#     - platform-tools
+#     - build-tools-28.0.3
+#     - android-26
+#     - add-on
+#     - extra
+#     - $ANDROID_TARGET
+#     - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 
-licenses:
-  - 'android-sdk-license-.+'
+# licenses:
+#   - 'android-sdk-license-.+'
 
-before_install:
-  - yes | sdkmanager "platforms;android-27"
-  - chmod +x gradlew
+# before_install:
+#   - yes | sdkmanager "platforms;android-27"
+#   - chmod +x gradlew
 
-script:
-  - ./gradlew build jacocoTestReport assembleAndroidTest
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
-  - ./gradlew connectedCheck
+# script:
+#   - ./gradlew build jacocoTestReport assembleAndroidTest
+#   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+#   - emulator -avd test -no-skin -no-audio -no-window &
+#   - android-wait-for-emulator
+#   - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
+#   - ./gradlew connectedCheck
 
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+# after_success:
+#   - bash <(curl -s https://codecov.io/bash)
