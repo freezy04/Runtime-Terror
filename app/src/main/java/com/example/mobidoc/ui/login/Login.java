@@ -112,7 +112,20 @@ public class Login extends AppCompatActivity {
             }
             else
             {
-                BeginResettingPassword(GetEmail);
+
+                progressdialogforgotpassword.setMessage("Sending Email...");
+                progressdialogforgotpassword.show(); // Shows action Bar
+                firebaseAuth.sendPasswordResetEmail(GetEmail).addOnCompleteListener(task -> {
+                    progressdialogforgotpassword.dismiss();
+                    if (task.isSuccessful()) {
+                        Toast.makeText(Login.this, "Email Sent", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(Login.this, "Failed...", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(e -> {
+                    progressdialogforgotpassword.dismiss();
+                    Toast.makeText(Login.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // Show an error if everything failed
+                });
 
             }
         }).setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
@@ -121,23 +134,25 @@ public class Login extends AppCompatActivity {
 
     }
 
-    // Function show underlying  progress of sending email to the device and show whether an email was sent or not
-    private void BeginResettingPassword(String getemaIl) {
 
-        progressdialogforgotpassword.setMessage("Sending Email...");
-        progressdialogforgotpassword.show(); // Shows action Bar
-        firebaseAuth.sendPasswordResetEmail(getemaIl).addOnCompleteListener(task -> {
-            progressdialogforgotpassword.dismiss();
-            if (task.isSuccessful()) {
-                Toast.makeText(Login.this, "Email Sent", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(Login.this, "Failed...", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(e -> {
-            progressdialogforgotpassword.dismiss();
-            Toast.makeText(Login.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // Show an error if everything failed
-        });
-    }
+    // Function show underlying  progress of sending email to the device and show whether an email was sent or not
+    //public void BeginResettingPassword(String  getemaIl) {
+
+
+//        progressdialogforgotpassword.setMessage("Sending Email...");
+//        progressdialogforgotpassword.show(); // Shows action Bar
+//        firebaseAuth.sendPasswordResetEmail(getemaIl).addOnCompleteListener(task -> {
+//            progressdialogforgotpassword.dismiss();
+//            if (task.isSuccessful()) {
+//                Toast.makeText(Login.this, "Email Sent", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(Login.this, "Failed...", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(e -> {
+//            progressdialogforgotpassword.dismiss();
+//            Toast.makeText(Login.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show(); // Show an error if everything failed
+//        });
+    //}
 
 
     public void toggle_password(EditText password) {

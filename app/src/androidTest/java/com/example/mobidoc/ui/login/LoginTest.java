@@ -128,5 +128,12 @@ public class LoginTest {
            activity.LoginUserAs("77gDrYtgw8RPF7tqfI9TBWzXCGo1");
         });
     }
+    @Test
+    public void forgotPasswordTest()
+    {
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.Show_ForgotPassword_ProgressDialog();
+        });
+    }
 
 }
