@@ -43,5 +43,12 @@ public class Edit_Patient_ProfileTest {
        });
    }
 
+   @Test
+    public void ClickOnUpdateDetailsButton(){
+       activityScenarioRule.getScenario().onActivity(activity -> {
+           activity.Update.performClick();
+       });
+   }
+
 
 }
