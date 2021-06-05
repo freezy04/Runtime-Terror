@@ -122,11 +122,11 @@ public class LoginTest {
         });
     }
 ////
-////    @Test
-////    public void loginUserAs() {
-////        activityScenarioRule.getScenario().onActivity(activity ->{
-////           activity.LoginUserAs("77gDrYtgw8RPF7tqfI9TBWzXCGo1");
-////        });
-////    }
+    @Test
+    public void loginUserAs() {
+        activityScenarioRule.getScenario().onActivity(activity ->{
+           activity.LoginUserAs("77gDrYtgw8RPF7tqfI9TBWzXCGo1");
+        });
+    }
 
 }
