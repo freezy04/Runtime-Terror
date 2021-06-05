@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -25,18 +25,18 @@ jobs:
       
     - name: Build with Gradle
       run: ./gradlew build
-
-    - name: SetUp emulator
+      
+    - name: Instrumentation Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 28
-        script: ./gradlew connectedCheck
-      
-    - name : Run Unit Tests
-      run: bash ./gradlew connectedAndroidTest --stacktrace
+        api-level: 29
+        script: ./gradlew connectedAndroidTest
       
     - name: Upload test report
       uses: actions/upload-artifact@v2
       with:
         name: unit_test_report
         path: app/build/reports/androidTests/connected/flavors/debugAndroidTest
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
