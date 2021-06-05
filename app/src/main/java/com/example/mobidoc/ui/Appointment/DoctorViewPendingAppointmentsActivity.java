@@ -61,7 +61,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
 
     }
 
-    private void getAllUsers(String uid) {
+    public void getAllUsers(String uid) {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Appointments");
 
