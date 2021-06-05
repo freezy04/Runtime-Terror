@@ -45,30 +45,30 @@ public class DoctorViewPendingAppointmentTest {
     @Test
     public void clickHomeNavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked_(R.id.menu_home);
+            activity.onNavBarItemClicked_(R.id.nav_home2);
         });
     }
 
     @Test
     public void clickAppointmentNavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked_(R.id.menu_appointments);
+            activity.onNavBarItemClicked_(R.id.nav_pendingappointments2);
         });
 
     }
 
     @Test
-    public void clickConsultationNavBarItem() {
+    public void nav_profileNavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked_(R.id.menu_consultation);
+            activity.onNavBarItemClicked_(R.id.nav_profile2);
         });
 
     }
 
     @Test
-    public void clickProfileNavBarItem() {
+    public void clicknav_acceptedappointments_NavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.onNavBarItemClicked_(R.id.menu_profile);
+            activity.onNavBarItemClicked_(R.id.nav_acceptedappointments2);
         });
     }
 }
