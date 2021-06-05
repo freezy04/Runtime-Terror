@@ -27,7 +27,7 @@ jobs:
       run: ./gradlew build
       
     - name : Run Unit Tests
-      run: bash ./gradlew connectedAndroidTest
+      run: bash ./gradlew connectedAndroidTest --stacktrace
       
     - name: Upload test report
       uses: actions/upload-artifact@v2
