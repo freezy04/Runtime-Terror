@@ -1,4 +1,4 @@
-name: Android GA CI
+name: Android CI
 
 on:
   push:
@@ -29,8 +29,8 @@ jobs:
     - name : Run Unit Tests
       run: bash ./gradlew test --stacktrace
       
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: always()
+    - name: Upload test report
+      uses: actions/upload-artifact@v2
       with:
-        files: test-results/**/*.xml
+        name: unit_test_report
+        path: app/build/reports/tests/testDebugUnitTest/
