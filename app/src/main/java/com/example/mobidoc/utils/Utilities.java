@@ -22,10 +22,10 @@ public class Utilities {
 
         private static FirebaseAuth mAuth;
 
-        public static FirebaseUser getCurrentUser(){
-                mAuth = FirebaseAuth.getInstance();
-                return mAuth.getCurrentUser();
-        }
+//        public static FirebaseUser getCurrentUser(){
+//                mAuth = FirebaseAuth.getInstance();
+//                return mAuth.getCurrentUser();
+//        }
 
 
 //        public static String getUID(){

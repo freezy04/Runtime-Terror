@@ -34,12 +34,12 @@ public class Doctor_DashboardTest {
         });
     }
 
-    @Test
-    public void getAllUsers_(){
-        activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.getAllUsers("ucc6dJnoVKNu3mGdaC9DsICy9No1");
-        });
-    }
+   // @Test
+   // public void getAllUsers_(){
+   //     activityScenarioRule.getScenario().onActivity(activity -> {
+     //       activity.getAllUsers("ucc6dJnoVKNu3mGdaC9DsICy9No1");
+     //   });
+   // }
 
     @Test
     public void clickHomeNavBarItem() {

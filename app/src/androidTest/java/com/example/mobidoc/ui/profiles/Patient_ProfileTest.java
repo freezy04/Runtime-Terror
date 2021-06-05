@@ -49,4 +49,18 @@ public class Patient_ProfileTest {
            activity.getPatientDetails("OIU0JFoE8ceLlx5qjKtn1fg5OiO2");
        });
    }
+
+   @Test
+   public void DataFromFirebaseIsEmpty(){
+       activityScenarioRule.getScenario().onActivity(activity -> {
+           activity.CheckNull(null);
+       });
+   }
+
+   @Test
+   public void EditProfileButtonTest(){
+       activityScenarioRule.getScenario().onActivity(activity -> {
+           activity.editProfile.performClick();
+       });
+   }
 }

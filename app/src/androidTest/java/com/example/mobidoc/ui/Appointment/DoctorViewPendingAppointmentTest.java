@@ -64,6 +64,13 @@ public class DoctorViewPendingAppointmentTest {
         });
 
     }
+    
+    @Test
+    public void clickPaNavBarItem() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.onNavBarItemClicked_(R.id.nav_pateintrecords);
+        });
+    }
 
     @Test
     public void clicknav_acceptedappointments_NavBarItem() {
