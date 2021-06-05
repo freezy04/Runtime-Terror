@@ -36,7 +36,7 @@ public class DoctorViewPendingAppointmentTest {
     }
 
     @Test
-    public void getAllUsers_Doctor_list() {
+    public void getAllUsers() {
         activityScenarioRule.getScenario().onActivity(activity -> {
             activity.getAllUsers("2e0Igj5IEDQOfEIcX8AXc6kPCrI3");
         });
