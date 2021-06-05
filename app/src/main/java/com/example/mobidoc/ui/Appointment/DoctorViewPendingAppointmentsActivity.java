@@ -51,8 +51,17 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
 
 
 
+
     private void getAllUsers() {
+
         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fUser != null){
+            getAllUsers(fUser.getUid());
+        }
+
+    }
+
+    private void getAllUsers(String uid) {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Appointments");
 
@@ -65,7 +74,7 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
                 for(DataSnapshot ds: snapshot.getChildren()){
                     Appointment  modelUsers = ds.getValue(Appointment.class);
                     modelUsers.setId(ds.getKey());
-                    if(modelUsers.getDoctorUid().equals(fUser.getUid()) && modelUsers.getStatus().equals("pending")){
+                    if(modelUsers.getDoctorUid().equals(uid) && modelUsers.getStatus().equals("pending")){
                         userPatient.add(modelUsers);
                     }
 
@@ -96,13 +105,17 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
         startActivity(new Intent(DoctorViewPendingAppointmentsActivity.this, Doctor_Dashboard.class));
         finish();
     }
-    public void ClickNavBar(){
-        // BottomNavigationView home_nav;
+
+
+    public void ClickNavBar() {
         home_nav = findViewById(R.id.bottom_navigation2);
         home_nav.setSelectedItemId(R.id.nav_pendingappointments2);
-        home_nav.setOnNavigationItemSelectedListener(item -> {
-            Intent activity;
-            switch(item.getItemId()){
+        home_nav.setOnNavigationItemSelectedListener(item -> onNavBarItemClicked_(item.getItemId()));
+    }
+
+    public boolean onNavBarItemClicked_(int itemID){
+        Intent activity;
+            switch(itemID){
 
                 case R.id.nav_pendingappointments2:
                     activity = new Intent(DoctorViewPendingAppointmentsActivity.this, DoctorViewPendingAppointmentsActivity.class);
@@ -135,8 +148,6 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
 
             }
             return true;
-
-        });
     }
 
 }
