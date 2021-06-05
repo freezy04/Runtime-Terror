@@ -26,7 +26,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: SetUp emulator
+    - name: Set Up emulator
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 28
