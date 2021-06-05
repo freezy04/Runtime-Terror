@@ -14,7 +14,7 @@ public class DoctorViewPendingAppointmentTest {
 
 
     @Rule
-    public ActivityScenarioRule<Doctor_List> activityScenarioRule = new ActivityScenarioRule<>(Doctor_List.class);
+    public ActivityScenarioRule<DoctorViewPendingAppointmentsActivity> activityScenarioRule = new ActivityScenarioRule<>(DoctorViewPendingAppointmentsActivity.java);
 
     @Before
     public void loginUser() {
