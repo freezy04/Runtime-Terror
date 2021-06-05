@@ -33,12 +33,12 @@ public class DoctorConfirmAppointmentResultsTest {
     });
     }
 //  consult
-   @Test
-   public void ConfirmUpdateTest(){
-       activityScenarioRule.getScenario().onActivity(activity -> {
-           activity.confirmUpdates_("panado","50","1 per day");
-       });
-   }
+// //    @Test
+//    public void ConfirmUpdateTest(){
+//        activityScenarioRule.getScenario().onActivity(activity -> {
+//            activity.confirmUpdates_("panado","50","1 per day");
+//        });
+//    }
 
     @Test
     public void updateDetails_Unsecceful(){
