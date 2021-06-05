@@ -121,7 +121,7 @@ public class LoginTest {
 
         });
     }
-////
+
     @Test
     public void loginUserAs() {
         activityScenarioRule.getScenario().onActivity(activity ->{
