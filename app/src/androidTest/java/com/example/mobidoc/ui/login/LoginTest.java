@@ -123,10 +123,27 @@ public class LoginTest {
     }
 
     @Test
+    public void CheckRememberMeSendUserDoctor(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+           activity.CheckSendRememberUser("Mike");
+        });
+    }
+
+    @Test
+    public void CheckRememberMeSendUserPatient(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.CheckSendRememberUser(null);
+        });
+    }
+
+
+    @Test
     public void loginUserAs() {
         activityScenarioRule.getScenario().onActivity(activity ->{
            activity.LoginUserAs("77gDrYtgw8RPF7tqfI9TBWzXCGo1");
         });
     }
+
+
 
 }

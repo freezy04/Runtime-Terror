@@ -262,17 +262,20 @@ public class Login extends AppCompatActivity {
         String Doctor = Paper.book().read(Utilities.Doctor);
 
         if (User_key != null) {
+            CheckSendRememberUser(Doctor);
+        }
+    }
 
-            if (Doctor != null) {
-                //user is a doctor
-                startActivity(new Intent(Login.this, Doctor_Dashboard.class));
-                finish();
-            }
-            else {
-                //user is a patient
-                startActivity(new Intent(Login.this, Patient_Dashboard.class));
-                finish();
-            }
+    public void CheckSendRememberUser(String Doctor){
+        if (Doctor != null) {
+            //user is a doctor
+            startActivity(new Intent(Login.this, Doctor_Dashboard.class));
+            finish();
+        }
+        else {
+            //user is a patient
+            startActivity(new Intent(Login.this, Patient_Dashboard.class));
+            finish();
         }
     }
 
