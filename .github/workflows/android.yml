@@ -37,3 +37,6 @@ jobs:
       with:
         name: unit_test_report
         path: app/build/reports/androidTests/connected/flavors/debugAndroidTest
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
