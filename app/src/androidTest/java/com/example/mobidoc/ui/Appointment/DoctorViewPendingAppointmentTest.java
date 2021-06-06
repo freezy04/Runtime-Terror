@@ -24,6 +24,14 @@ public class DoctorViewPendingAppointmentTest {
     }
 
     @Test
+    public void clickAppointment() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.AdapterPatient.appointmentClicked("-Mayj6xd4HQOgG8xzhj8", "iXVat02y4laSyrT2vrdZVgHd6SD2",
+                    "Nina Rose Tidy", "accepted");
+        });
+    }
+
+    @Test
     public void onBackPressed() {
 
         activityScenarioRule.getScenario().onActivity(activity -> {

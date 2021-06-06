@@ -131,7 +131,7 @@ public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder
         });
     }
 
-    private void appointmentClicked(String appointmentUID, String patientUID, String patientName, String status) {
+    public void appointmentClicked(String appointmentUID, String patientUID, String patientName, String status) {
         if (status.equals("accepted")) {
             goToConfirmResultsScreen(appointmentUID, patientUID, patientName);
         } else {
