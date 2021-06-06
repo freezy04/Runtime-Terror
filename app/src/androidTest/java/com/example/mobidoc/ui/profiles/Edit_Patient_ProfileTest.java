@@ -49,6 +49,15 @@ public class Edit_Patient_ProfileTest {
            activity.Update.performClick();
        });
    }
+   @Test
+    public void onBackPressed() {
 
+               activityScenarioRule.getScenario().onActivity(activity -> {
+
+                       activity.onSupportNavigateUp();
+                       activity.onBackPressed();
+
+               });
+       }
 
 }
