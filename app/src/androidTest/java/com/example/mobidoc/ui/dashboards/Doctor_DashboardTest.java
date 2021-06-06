@@ -23,7 +23,6 @@ public class Doctor_DashboardTest {
     public void loginUser(){
         FirebaseAuth.getInstance().signInWithEmailAndPassword("rr@email.com","Password1!");
     }
-
 //    @Test
 //    public void testInUserAcceptanceCriteria(){
 //        activityScenarioRule.getScenario().onActivity(activity -> {
@@ -43,9 +42,10 @@ public class Doctor_DashboardTest {
    // }
 
     @Test
-    public void clickAcceptedAppointment() {
+    public void clickAppointment() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.clickAdapterAppointment("-Mayj6xd4HQOgG8xzhj8", "iXVat02y4laSyrT2vrdZVgHd6SD2",
+            activity.getAllUsers("mbcFUqwFCHV0HnrfX3vxUbXfsqs2");
+            activity.AdapterPatient1.appointmentClicked("-Mayj6xd4HQOgG8xzhj8", "iXVat02y4laSyrT2vrdZVgHd6SD2",
                     "Nina Rose Tidy", "accepted");
         });
     }

@@ -28,16 +28,12 @@ import java.util.List;
 import java.util.Map;
 
 
-public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder> {
+public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder>{
     Activity context;
     List<Appointment> userList;
     TextView datetime2;
 
-    public AdapterPatient(Activity context) {
-        this.context = context;
-    }
-
-    public AdapterPatient(Activity context, List<Appointment> userList) {
+       public AdapterPatient(Activity context, List<Appointment> userList) {
         this.context = context;
         this.userList = userList;
     }
@@ -66,13 +62,13 @@ public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder
         String userTime = userList.get(position).getTime_for_appointment();
         holder.PatientTime.setText(userTime);
         holder.PatientDate.setText(userDate);
-        holder.Patientmessage.setText(userPatientMessage);
+        holder.Patientmessage.setText(userPatientMessage );
         holder.PatientName.setText(userPatientName);
 
 // moving to the  next activity
         holder.itemView.setOnClickListener(v -> {
             appointmentClicked(appointmentUID, patientUID, patientName, status);
-        });
+         });
     }
 
     private void goToConfirmResultsScreen(String appointmentUID, String patientUID, String patientName) {
@@ -83,7 +79,7 @@ public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder
         context.startActivity(intent);
     }
 
-    public void acceptAppointment(String appointmentUID) {
+    private void acceptAppointment(String appointmentUID) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Appointments");
         ref.addValueEventListener(new ValueEventListener() {
@@ -111,7 +107,7 @@ public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder
         });
     }
 
-    public void rejectAppointment(String appointmentUID) {
+    private void rejectAppointment(String appointmentUID) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Appointments");
         ref.addValueEventListener(new ValueEventListener() {
@@ -157,16 +153,16 @@ public class AdapterPatient extends RecyclerView.Adapter<AdapterPatient.MyHolder
         return userList.size();
     }
 
-    class MyHolder extends RecyclerView.ViewHolder {
+    class  MyHolder extends RecyclerView.ViewHolder{
 
         ImageView mAvatarIv2;
-        TextView PatientTime, PatientDate, PatientName, Patientmessage;
+        TextView PatientTime,PatientDate, PatientName,Patientmessage;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             PatientName = itemView.findViewById(R.id.patient_name);
-            Patientmessage = itemView.findViewById(R.id.patient_appointment_message);
+            Patientmessage= itemView.findViewById(R.id.patient_appointment_message);
             PatientTime = itemView.findViewById(R.id.patient_appointment_time);
             PatientDate = itemView.findViewById(R.id.patient_appointment_date);
         }
