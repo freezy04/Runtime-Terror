@@ -29,6 +29,7 @@ public class BookingTest {
                activityScenarioRule.getScenario().onActivity(activity -> activity.mDisplayTime.performClick());
        }
 
+
        @Test
        public void DiplayDate_Booking_BookingUnsucceful() {
                activityScenarioRule.getScenario().onActivity(activity -> activity.mDisplayDate.performClick());
