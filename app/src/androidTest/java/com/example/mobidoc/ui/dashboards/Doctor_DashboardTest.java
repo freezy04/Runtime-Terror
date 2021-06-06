@@ -44,6 +44,7 @@ public class Doctor_DashboardTest {
     @Test
     public void clickAppointment() {
         activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.getAllUsers("mbcFUqwFCHV0HnrfX3vxUbXfsqs2");
             activity.AdapterPatient1.appointmentClicked("-Mayj6xd4HQOgG8xzhj8", "iXVat02y4laSyrT2vrdZVgHd6SD2",
                     "Nina Rose Tidy", "accepted");
         });
