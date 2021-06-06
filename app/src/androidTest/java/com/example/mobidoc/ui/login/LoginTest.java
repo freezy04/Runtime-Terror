@@ -148,6 +148,7 @@ public class LoginTest {
     {
         activityScenarioRule.getScenario().onActivity(activity ->{
             activity.Show_ForgotPassword_ProgressDialog();
+            
         });
     }
 
