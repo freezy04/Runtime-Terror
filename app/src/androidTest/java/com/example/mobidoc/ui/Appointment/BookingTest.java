@@ -100,13 +100,13 @@ public class BookingTest {
                });
        }
 
-       @Test
-       public void clickAppointmentNavBarItem() {
-               activityScenarioRule.getScenario().onActivity(activity -> {
-                       activity.onNavBarItemClicked(R.id.menu_appointments);
-               });
+//        @Test
+//        public void clickAppointmentNavBarItem() {
+//                activityScenarioRule.getScenario().onActivity(activity -> {
+//                        activity.onNavBarItemClicked(R.id.menu_appointments);
+//                });
 
-       }
+//        }
 
        @Test
        public void clickConsultationNavBarItem() {
