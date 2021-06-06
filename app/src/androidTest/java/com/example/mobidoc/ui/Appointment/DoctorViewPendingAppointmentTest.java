@@ -24,10 +24,24 @@ public class DoctorViewPendingAppointmentTest {
     }
 
     @Test
-    public void clickAppointment() {
+    public void clickPendingAppointment() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.AdapterPatient.appointmentClicked("-Mayj6xd4HQOgG8xzhj8", "iXVat02y4laSyrT2vrdZVgHd6SD2",
-                    "Nina Rose Tidy", "accepted");
+            activity.clickAdapterAppointment("-Mayj6xd4HQOgG8xzhj8", "iXVat02y4laSyrT2vrdZVgHd6SD2",
+                    "Nina Rose Tidy", "pending");
+        });
+    }
+
+    @Test
+    public void RejectAppointment() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.rejectApp("-Mayj6xd4HQOgG8xzhj8");
+        });
+    }
+
+    @Test
+    public void AcceptAppointment() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.acceptApp("-Mayj6xd4HQOgG8xzhj8");
         });
     }
 

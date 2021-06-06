@@ -59,6 +59,11 @@ public class Doctor_Dashboard extends AppCompatActivity {
 
     }
 
+    public void clickAdapterAppointment(String appointmentUID, String patientUID, String patientName, String status) {
+        AdapterPatient ad = new AdapterPatient(Doctor_Dashboard.this);
+        ad.appointmentClicked(appointmentUID, patientUID, patientName, status);
+    }
+
     private void getAllUsers() {
 
         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();

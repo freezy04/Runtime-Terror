@@ -49,8 +49,20 @@ public class DoctorViewPendingAppointmentsActivity extends AppCompatActivity {
         ClickNavBar();
     }
 
+    public void clickAdapterAppointment(String appointmentUID, String patientUID, String patientName, String status) {
+        com.example.mobidoc.adapters.AdapterPatient ad = new AdapterPatient(DoctorViewPendingAppointmentsActivity.this);
+        ad.appointmentClicked(appointmentUID, patientUID, patientName, status);
+    }
 
+    public void acceptApp(String appointmentUID) {
+        AdapterPatient ad = new AdapterPatient(DoctorViewPendingAppointmentsActivity.this);
+        ad.acceptAppointment(appointmentUID);
+    }
 
+    public void rejectApp(String appointmentUID) {
+        AdapterPatient ad = new AdapterPatient(DoctorViewPendingAppointmentsActivity.this);
+        ad.rejectAppointment(appointmentUID);
+    }
 
     private void getAllUsers() {
 
