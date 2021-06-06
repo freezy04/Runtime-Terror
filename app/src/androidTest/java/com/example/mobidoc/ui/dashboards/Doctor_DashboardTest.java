@@ -49,7 +49,7 @@ public class Doctor_DashboardTest {
     }
 
     @Test
-    public void clickAppointmentNavBarItem() {
+    public void clickPatientRecordsNavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
             activity.ClickOnNavBar( R.id.nav_pateintrecords);
         });
@@ -57,7 +57,7 @@ public class Doctor_DashboardTest {
     }
 
     @Test
-    public void clickConsultationNavBarItem2() {
+    public void clickProfilenNavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
             activity.ClickOnNavBar(R.id.nav_profile2);
         });
