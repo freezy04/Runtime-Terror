@@ -59,9 +59,9 @@ https://developer.android.com/reference
 
  # Testing
  - As this is a test-driven developent, we utilized TravisCI to build and test the app on GitHub. Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. The following are badges that show the testing progress of our project.
+ - 
 
-
-[![Android GA CI](https://github.com/freezy04/Runtime-Terror/actions/workflows/android.yml/badge.svg)](https://github.com/freezy04/Runtime-Terror/actions/workflows/android.yml)
 <!-- [![Build Status](https://travis-ci.com/freezy04/Runtime-Terror.svg?branch=master)](https://travis-ci.com/freezy04/Runtime-Terror) -->
+[![Android CI](https://github.com/freezy04/Runtime-Terror/actions/workflows/android.yml/badge.svg)](https://github.com/freezy04/Runtime-Terror/actions/workflows/android.yml)
 [![codecov](https://codecov.io/gh/freezy04/Runtime-Terror/branch/master/graph/badge.svg?token=Y53OOEBQ4F)](https://codecov.io/gh/freezy04/Runtime-Terror)
 
