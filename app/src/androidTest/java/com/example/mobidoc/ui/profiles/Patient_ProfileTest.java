@@ -63,4 +63,14 @@ public class Patient_ProfileTest {
            activity.editProfile.performClick();
        });
    }
+   @Test
+     public void onBackPressed() {
+
+              activityScenarioRule.getScenario().onActivity(activity -> {
+
+                       activity.onSupportNavigateUp();
+                       activity.onBackPressed();
+
+               });
+       }
 }
