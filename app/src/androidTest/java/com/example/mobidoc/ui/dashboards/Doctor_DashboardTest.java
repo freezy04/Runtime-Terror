@@ -44,30 +44,36 @@ public class Doctor_DashboardTest {
     @Test
     public void clickHomeNavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.ClickOnNavBar(R.id.menu_home);
+            activity.ClickOnNavBar(R.id.nav_home2);
         });
     }
 
     @Test
     public void clickAppointmentNavBarItem() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.ClickOnNavBar(R.id.menu_appointments);
+            activity.ClickOnNavBar( R.id.nav_pateintrecords);
         });
 
     }
 
     @Test
-    public void clickConsultationNavBarItem() {
+    public void clickConsultationNavBarItem2() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.ClickOnNavBar(R.id.menu_consultation);
+            activity.ClickOnNavBar(R.id.nav_profile2);
         });
 
     }
 
     @Test
-    public void clickProfileNavBarItem() {
+    public void clickPendingTest() {
         activityScenarioRule.getScenario().onActivity(activity -> {
-            activity.ClickOnNavBar(R.id.menu_profile);
+            activity.ClickOnNavBar(R.id.nav_pendingappointments2);
+        });
+    }
+    @Test
+    public void clickAcceptanceTestNavBarItem2() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.ClickOnNavBar( R.id.nav_acceptedappointments2);
         });
     }
 
