@@ -152,6 +152,13 @@ public class LoginTest {
         });
     }
 
+    @Test
+    public void onBackPressed() {
+
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.onSupportNavigateUp();
+        });
+    }
 
 
 }
