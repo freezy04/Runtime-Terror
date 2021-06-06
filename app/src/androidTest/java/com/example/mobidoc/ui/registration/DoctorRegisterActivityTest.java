@@ -60,5 +60,14 @@ public class DoctorRegisterActivityTest {
     public void switchToLogin_UserHasAccount_ScreenSwitchesToLogin(){
         activityScenarioRule.getScenario().onActivity(DoctorRegisterActivity::switchToLogin);
     }
+@Test
+       public void onBackPressed() {
 
+               activityScenarioRule.getScenario().onActivity(activity -> {
+
+                       activity.onSupportNavigateUp();
+        //               activity.onBackPressed();
+
+               });
+       }
 }
