@@ -44,6 +44,13 @@ public class Edit_Patient_ProfileTest {
    }
 
    @Test
+   public void CheckIfFieldIsUpdated(){
+       activityScenarioRule.getScenario().onActivity(activity -> {
+           activity.updateDetails("empty","testing");
+       });
+   }
+
+   @Test
     public void ClickOnUpdateDetailsButton(){
        activityScenarioRule.getScenario().onActivity(activity -> {
            activity.Update.performClick();

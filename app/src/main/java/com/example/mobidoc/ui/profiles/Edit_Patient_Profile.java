@@ -76,6 +76,11 @@ public class Edit_Patient_Profile extends AppCompatActivity {
 
     }
     public void UpDateOnFirebaseDetails(String title , String value){
+
+        if(title.equals("empty")){
+            return;
+        }
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         if(mAuth != null){

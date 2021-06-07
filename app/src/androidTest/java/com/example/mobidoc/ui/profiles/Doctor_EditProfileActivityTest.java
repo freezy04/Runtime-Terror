@@ -41,6 +41,21 @@ public class Doctor_EditProfileActivityTest {
           activity.updateDetails("JAKLyVL37YV3PM0HZoUa8EhFWth2", "first_name", "Michael");
        });
    }
+
+    @Test
+    public void ClickOnUpdateDetailsButton(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.Update_details.performClick();
+        });
+    }
+
+    @Test
+    public void CheckIfFieldIsUpdated(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.updateDetails("empty","testing");
+        });
+    }
+
    @Test
        public void onBackPressed() {
 
