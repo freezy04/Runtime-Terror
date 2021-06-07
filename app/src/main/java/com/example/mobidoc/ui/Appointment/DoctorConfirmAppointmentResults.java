@@ -78,19 +78,19 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
 ////        }
 //    }
 
-    private void confirmUpdates(String medication, String cost, String notes) {
-        confirmUpdates_(medication,cost,notes);
+    private void confirmUpdates(String medication, String cost, String notes, String patientUID, String AppointmentUID) {
+        confirmUpdates_(medication,cost,notes, patientUID, AppointmentUID);
     }
 
-    public void confirmUpdates_(String medication, String cost, String notes) {
+    public void confirmUpdates_(String medication, String cost, String notes, String patientUID, String AppointmentUID) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Patients").child(patientUID).child("currentMedication");
         ref.setValue(medication);
-        ref = db.getReference("Appointments").child(appointmentUID).child("appointment_Cost");
+        ref = db.getReference("Appointments").child(AppointmentUID).child("appointment_Cost");
         ref.setValue(cost);
-        ref = db.getReference("Appointments").child(appointmentUID).child("notes");
+        ref = db.getReference("Appointments").child(AppointmentUID).child("notes");
         ref.setValue(notes);
-        ref = db.getReference("Appointments").child(appointmentUID).child("status");
+        ref = db.getReference("Appointments").child(AppointmentUID).child("status");
         ref.setValue("completed");
         progressDialog.dismiss();
         Toast.makeText(DoctorConfirmAppointmentResults.this, "Update successful.", Toast.LENGTH_SHORT).show();
@@ -109,8 +109,10 @@ public class DoctorConfirmAppointmentResults extends AppCompatActivity {
         String newMedication = newMedicationET.getText().toString().trim();
         String appointmentCost = appointmentCostET.getText().toString().trim();
         String notes = appointmentNotesET.getText().toString().trim();
+        String PatientUID = patientUID;
+        String AppointmentUID = appointmentUID;
         if (!appointmentCost.isEmpty()) {
-            confirmUpdates(newMedication, appointmentCost, notes);
+            confirmUpdates(newMedication, appointmentCost, notes, PatientUID, AppointmentUID);
         } else{
             progressDialog.dismiss();
             appointmentCostET.setError("Appointment cost cannot be empty");
