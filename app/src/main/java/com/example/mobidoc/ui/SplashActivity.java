@@ -34,20 +34,23 @@ public class SplashActivity extends AppCompatActivity {
         String Doctor = Paper.book().read(Utilities.Doctor);
 
         if (User_key != null) {
-
-            if (Doctor != null) {
-                //user is a doctor
-                startActivity(new Intent(getApplicationContext(), Doctor_Dashboard.class));
-                finish();
-            }
-            else {
-                //user is a patient
-                startActivity(new Intent(getApplicationContext(), Patient_Dashboard.class));
-                finish();
-            }
+            CheckSendRememberUser(Doctor);
         }
         else {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        }
+    }
+
+    public void CheckSendRememberUser(String Doctor){
+        if (Doctor != null) {
+            //user is a doctor
+            startActivity(new Intent(new Intent(getApplicationContext(), Doctor_Dashboard.class)));
+            finish();
+        }
+        else {
+            //user is a patient
+            startActivity(new Intent(new Intent(getApplicationContext(), Patient_Dashboard.class)));
+            finish();
         }
     }
 }

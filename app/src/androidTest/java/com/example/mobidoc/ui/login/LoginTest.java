@@ -151,14 +151,15 @@ public class LoginTest {
             
         });
     }
-//     @Test
-//     public void Beginresetting_Test()
-//     {
-//         activityScenarioRule.getScenario().onActivity(activity ->{
-//             activity.BeginResettingPassword("segosametsi.jane@gmail.com");
 
-//         });
-//     }
+     @Test
+     public void Beginresetting_Test()
+     {
+         activityScenarioRule.getScenario().onActivity(activity ->{
+             activity.BeginResettingPassword("segosametsi.jane@gmail.com");
+
+         });
+     }
 
     @Test
     public void onBackPressed() {

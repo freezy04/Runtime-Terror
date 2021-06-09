@@ -17,4 +17,18 @@ public class SplashActivityTest {
 
        });
    }
+   
+    @Test
+    public void CheckRememberMeSendUserDoctor(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.CheckSendRememberUser("Mike");
+        });
+    }
+
+    @Test
+    public void CheckRememberMeSendUserPatient(){
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            activity.CheckSendRememberUser(null);
+        });
+    }
 }
