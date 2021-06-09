@@ -19,14 +19,14 @@ public class LoginTest {
     @Rule
     public ActivityScenarioRule<Login> activityScenarioRule = new ActivityScenarioRule<>(Login.class);
 ////
-//     @Test
-//     public void loginUser_UserDoctorNotLoggedIn_isSuccessful(){
-//         activityScenarioRule.getScenario().onActivity(activity ->{
-//             activity.User_email.setText("drken@gmail.com");
-//             activity.User_password.setText("Jazzman@1");
-//             activity.login_Button.performClick();
-//         });
-//     }
+    @Test
+    public void loginUser_UserDoctorNotLoggedIn_isSuccessful(){
+        activityScenarioRule.getScenario().onActivity(activity ->{
+            activity.User_email.setText("drken@gmail.com");
+            activity.User_password.setText("Jazzman@1");
+            activity.login_Button.performClick();
+        });
+    }
 
     @Test
     public void loginUser_UserDoctorNotLoggedIn_isUnsuccessful(){
@@ -151,14 +151,14 @@ public class LoginTest {
             
         });
     }
-    @Test
-    public void Beginresetting_Test()
-    {
-        activityScenarioRule.getScenario().onActivity(activity ->{
-            activity.BeginResettingPassword("segosametsi.jane@gmail.com");
+//     @Test
+//     public void Beginresetting_Test()
+//     {
+//         activityScenarioRule.getScenario().onActivity(activity ->{
+//             activity.BeginResettingPassword("segosametsi.jane@gmail.com");
 
-        });
-    }
+//         });
+//     }
 
     @Test
     public void onBackPressed() {
