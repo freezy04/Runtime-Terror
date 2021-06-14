@@ -104,7 +104,6 @@ public class AdapterAppointmentList extends RecyclerView.Adapter<AdapterAppointm
             Patientmessage = itemView.findViewById(R.id.messageTv);
             datetime2 = itemView.findViewById(R.id.SelectDoctor);
             appointmentNotes = itemView.findViewById(R.id.appointmentNotesTV);
-            Button prog = itemView.findViewById(R.id.btn_edit_patient);
 
         }
     }
