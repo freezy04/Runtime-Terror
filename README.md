@@ -58,8 +58,8 @@ https://developer.android.com/reference
           - **Learn more:** https://developer.android.com/studio/run;https://developer.android.com/studio/build
 
  # Testing
- - As this is a test-driven developent, we initially used TravisCI to build and test the app. However, we switched to GitHub's built-in CI by implementing GitHub Action to fix the error we enountered. Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. The following are badges that show the testing progress of our project.
- - 
+ - As this is a test-driven developent, we initially used TravisCI to build and test the app. However, we switched to GitHub's built-in CI by implementing GitHub Action to fix the error we enountered. 
+ - Codecov was another testing tool used to measure the percentage of code that was tested and which parts that were not tested. The following are badges that show the testing progress of our project.
 
 <!-- [![Build Status](https://travis-ci.com/freezy04/Runtime-Terror.svg?branch=master)](https://travis-ci.com/freezy04/Runtime-Terror) -->
 [![Android CI](https://github.com/freezy04/Runtime-Terror/actions/workflows/android.yml/badge.svg)](https://github.com/freezy04/Runtime-Terror/actions/workflows/android.yml)
